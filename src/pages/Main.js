@@ -16,7 +16,7 @@ export default function Main() {
         </div>
       </div>
 
-      <section className="container py-5">
+      <section className="container py-5 m-0">
         <Title cn="日本酒探索" jp="お気に入りが見つかる"/>
         <div className="row md-row justify-content-md-around">
           <SakeCardA sakeImg='001.jpg'/>

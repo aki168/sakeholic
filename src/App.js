@@ -38,13 +38,13 @@ export default function App() {
             </ul>
             <bs.Button variant="outline-dark" className='fw-bold px-4 py-0'>登入</bs.Button>
           </div>
-        </div>
         <a href="!#" onClick={() => setToggleMenu(prev=>!prev)}>
           <Icon.List
             size={40}
-            className='d-md-none text-white me-4'
+            className='d-md-none text-white pe-2'
           />
         </a>
+        </div>
       </nav>
       <bs.Dropdown.Menu className='w-100 fs-2 text-center' show={toggleMenu || false}>
         <bs.Dropdown.Item eventKey="1" className='py-4'>關於小酌</bs.Dropdown.Item>
