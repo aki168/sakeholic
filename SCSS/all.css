@@ -10996,9 +10996,14 @@ body {
   margin: 0;
 }
 
+ul {
+  padding: 0;
+}
+
 .text-h1 {
   color: #F3F1F2;
   font-family: "Koulen", cursive;
+  letter-spacing: 0.15rem;
 }
 
 .navbar {
@@ -11022,4 +11027,16 @@ body {
   .text-h1 {
     color: #1E1E1E;
   }
+}
+.title-font {
+  font-family: "Koulen", cursive;
+  letter-spacing: 0.15rem;
+}
+
+.title-font {
+  font-family: "Koulen", cursive;
+}
+
+.inter-font {
+  font-family: "Inter", sans-serif;
 }/*# sourceMappingURL=all.css.map */
