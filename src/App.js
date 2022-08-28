@@ -21,6 +21,10 @@ import { useState } from 'react';
 export default function App() {
 
   const [toggleMenu, setToggleMenu] = useState(false);
+  const showMenu = (e) => {
+    e.preventDefault()
+    setToggleMenu(prev=>!prev)
+  }
 
   return (
     <HashRouter>
@@ -38,10 +42,10 @@ export default function App() {
             </ul>
             <bs.Button variant="outline-dark" className='fw-bold px-4 py-0'>登入</bs.Button>
           </div>
-        <a href="!#" onClick={() => setToggleMenu(prev=>!prev)}>
+        <a href="!#" onClick={showMenu} >
           <Icon.List
             size={40}
-            className='d-md-none text-white pe-2'
+            className='d-md-none text-white'
           />
         </a>
         </div>
