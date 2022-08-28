@@ -13,7 +13,7 @@ const FeedbackCard = ({icon,name,info,text}) => {
           position: "absolute",
           top: "0",
           button: "0",
-          left: "38%",
+          left: "40%",
           zIndex: "1"
         }}>
       </div>
@@ -26,7 +26,7 @@ const FeedbackCard = ({icon,name,info,text}) => {
         <h4 className='pt-5 pb-3' style={{letterSpacing:"0.15rem"}}>{name}</h4>
         <p className='py-1'>{info}</p>
         <p className='pt-1 pb-2'>
-          {text.map(item => <p>{item}</p> )}
+          {text.map(item => <p className='mb-1'>{item}</p> )}
         </p>
       </div>
     </div>

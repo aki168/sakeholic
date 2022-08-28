@@ -24,7 +24,7 @@ export default function App() {
   const [toggleMenu, setToggleMenu] = useState(false);
   const showMenu = (e) => {
     e.preventDefault()
-    setToggleMenu(prev=>!prev)
+    setToggleMenu(prev => !prev)
   }
 
   return (
@@ -43,22 +43,31 @@ export default function App() {
             </ul>
             <bs.Button variant="outline-dark" className='fw-bold px-4 py-0'>登入</bs.Button>
           </div>
-        <a href="!#" onClick={showMenu} className='d-md-none'>
-          <Icon.List
-            size={40}
-            className='text-white'
-          />
-        </a>
+          <a href="!#" onClick={showMenu} className='d-md-none'>
+            <Icon.List
+              size={40}
+              className='text-white'
+            />
+          </a>
         </div>
       </nav>
-      <bs.Dropdown.Menu className='w-100 fs-2 text-center' show={toggleMenu || false}>
-        <bs.Dropdown.Item eventKey="1" className='py-4'>關於小酌</bs.Dropdown.Item>
-        <bs.Dropdown.Item eventKey="2" className='py-4'>找日本酒</bs.Dropdown.Item>
-        <bs.Dropdown.Item eventKey="3" className='py-4'>會員專區</bs.Dropdown.Item>
-        <bs.Dropdown.Item eventKey="4" className="py-4">
-          <bs.Button variant="outline-dark" size="lg" className='fw-bold px-5 py-2'>登入</bs.Button>
-        </bs.Dropdown.Item>
-      </bs.Dropdown.Menu>
+        <bs.Dropdown.Menu className='w-100 fs-2 text-center' show={toggleMenu || false}>
+          <bs.Dropdown.Item eventKey="1" className='py-4' onClick={showMenu}>
+            <NavLink to="/about">關於小酌</NavLink>
+          </bs.Dropdown.Item>
+          <bs.Dropdown.Item eventKey="2" className='py-4' onClick={showMenu}>
+            <NavLink to="/search">找日本酒</NavLink>
+          </bs.Dropdown.Item>
+          <bs.Dropdown.Item eventKey="3" className='py-4' onClick={showMenu}>
+            <NavLink to="/user">會員專區</NavLink>
+          </bs.Dropdown.Item>
+          <bs.Dropdown.Item eventKey="4" className="py-4" onClick={showMenu}>
+            <bs.Button variant="outline-dark" size="lg" className='fw-bold px-5 py-2'>
+              登入
+            </bs.Button>
+          </bs.Dropdown.Item>
+        </bs.Dropdown.Menu>
+
 
       <Routes>
         <Route path='/' element={<Main />} />
@@ -67,7 +76,7 @@ export default function App() {
         <Route path='/user' element={<UserPage />} />
       </Routes>
 
-      <Footer/>
+      <Footer />
 
     </HashRouter>
   )
