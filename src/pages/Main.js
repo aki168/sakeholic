@@ -3,6 +3,7 @@ import SakeCardA from "../components/SakeCardA"
 import FeedbackCard from "../components/FeedbackCard"
 import Title from '../components/Title'
 import * as bs from 'react-bootstrap'
+import feedbackData from '../data/feedbackData'
 // import * as antd from 'antd';
 
 export default function Main() {
@@ -12,41 +13,6 @@ export default function Main() {
     '002.jpg',
     '003.jpg',
     '004.jpg',
-  ]
-
-  const feedbackData = [
-    {
-      icon: "custom2.png",
-      name: "NIPPON SUKI",
-      info: "20代  運動員",
-      text:[
-        "平常備賽時期沒辦法喝酒",
-        "結束慶功才會破例開喝",
-        "看到喜歡的，我都會追蹤起來。"
-      ]
-    },
-    {
-      icon: "custom3.png",
-      name: "Ruby Cheng",
-      info: "30代  廣告公關",
-      text: [
-        "推薦給喜歡日本清酒的酒友",
-        "收藏功能真的太方便了",
-        "也可以探索許多沒喝過的日本酒！"
-      ]
-    },
-    {
-      icon: "custom1.png",
-      name: "RAMEN",
-      info: "40代  軟體工程師",
-      text: [
-        "喜歡到日本自助旅遊時",
-        "嘗鮮各種日本酒，雖礙於語言不通",
-        "許多資訊都可以在這查到👍"
-      ]
-    }
-
-
   ]
 
 
@@ -63,17 +29,38 @@ export default function Main() {
 
       <section className="container py-5">
         <Title cn="日本酒探索" jp="お気に入りが見つかる" />
+
         <div className="row justify-content-md-around">
-          {defaultData.map((item,i) => <SakeCardA key={i} sakeImg={item} />)}
+          {defaultData.map((item, i) => <SakeCardA key={i} sakeImg={item} />)}
         </div>
       </section>
 
       <section className="vw-100 py-5">
         <Title cn="網友回饋" jp="みんなの声" />
-        <div className="row gap-5 flex-md-nowrap overflow-auto justify-content-md-around">
-          <FeedbackCard />
-          <FeedbackCard />
-          <FeedbackCard />
+        
+        <div
+          className="row mx-0 flex-md-nowrap 
+          overflow-auto justify-content-md-around
+          mb-1
+        ">
+          {feedbackData.map( (item,i)=> (
+            <FeedbackCard key={i} {...item}/>
+          ))}
+        </div>
+
+        <div className="d-flex justify-content-center py-5">
+          <a href="!#" onClick={(e)=>e.preventDefault()}
+            style={{ width: "12px", height: "12px" }}
+            className="ms-2 border rounded-circle bg-dark border-0">
+          </a>
+          <a href="!#" onClick={(e)=>e.preventDefault()}
+            style={{ width: "12px", height: "12px" }}
+            className="mx-2 border rounded-circle bg-white border-dark">
+          </a>
+          <a href="!#" onClick={(e)=>e.preventDefault()}
+            style={{ width: "12px", height: "12px" }}
+            className="me-2 border rounded-circle bg-dark border-0">
+          </a>
         </div>
       </section>
 

@@ -3,10 +3,11 @@ import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className='bg-dark text-white pt-2 pb-5'>
+    <footer className='bg-dark text-white pt-3 pb-5'>
       <div className='container text-center 
       d-flex flex-column 
-      flex-md-row justify-content-md-around'>
+      flex-md-row justify-content-md-around
+      pb-5'>
         <div className='pt-5'>
           <NavLink to="/" className='text-white d-md-none'>
             <h2 className='title-font'>SAKEHOLIC BOOK</h2>

@@ -43,10 +43,10 @@ export default function App() {
             </ul>
             <bs.Button variant="outline-dark" className='fw-bold px-4 py-0'>登入</bs.Button>
           </div>
-        <a href="!#" onClick={showMenu} >
+        <a href="!#" onClick={showMenu} className='d-md-none'>
           <Icon.List
             size={40}
-            className='d-md-none text-white'
+            className='text-white'
           />
         </a>
         </div>
