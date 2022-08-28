@@ -15,6 +15,7 @@ import Main from './pages/Main'
 import About from './pages/About'
 import SearchPage from './pages/SearchPage'
 import UserPage from './pages/UserPage'
+import Footer from './components/Footer';
 import { useState } from 'react';
 
 
@@ -65,6 +66,8 @@ export default function App() {
         <Route path='/search' element={<SearchPage />} />
         <Route path='/user' element={<UserPage />} />
       </Routes>
+
+      <Footer/>
 
     </HashRouter>
   )

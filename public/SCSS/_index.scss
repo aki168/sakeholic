@@ -7,13 +7,18 @@ $path: './';
   box-sizing: border-box;
 }
 
-body {
+body{
   margin: 0;
+}
+
+ul{
+  padding: 0;
 }
 
 .text-h1 {
   color: $light;
   font-family: 'Koulen', cursive;
+  letter-spacing: 0.15rem;
 }
 
 .navbar{
@@ -39,9 +44,18 @@ body {
   }
 }
 
+.title-font{
+  font-family: 'Koulen', cursive;
+  letter-spacing: 0.15rem;
+}
+
+.title-font{
+  font-family: 'Koulen', cursive;
+}
+
+.inter-font{
+  font-family: 'Inter', sans-serif;
+}
 
 
-// font-family: 'Inter', sans-serif;
-// font-family: 'Koulen', cursive;
 // font-family: 'M PLUS 1', sans-serif;
-// font-family: 'Poppins', sans-serif;

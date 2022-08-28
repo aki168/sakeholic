@@ -2,7 +2,7 @@ import React from 'react'
 
 const UserPage = () => {
   return (
-    <div>UserPage</div>
+    <div className='vh-100 text-primary container'>UserPage</div>
   )
 }
 
