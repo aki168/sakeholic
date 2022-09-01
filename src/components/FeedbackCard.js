@@ -25,9 +25,9 @@ const FeedbackCard = ({icon,name,info,text}) => {
         }}>
         <h4 className='pt-5 pb-3' style={{letterSpacing:"0.15rem"}}>{name}</h4>
         <p className='py-1'>{info}</p>
-        <p className='pt-1 pb-2'>
-          {text.map(item => <p className='mb-1'>{item}</p> )}
-        </p>
+        <div className='pt-1 pb-2'>
+          {text.map((item,i) => <p key={i} className='mb-1'>{item}</p> )}
+        </div>
       </div>
     </div>
   )
