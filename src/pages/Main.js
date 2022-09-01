@@ -4,7 +4,7 @@ import FeedbackCard from "../components/FeedbackCard"
 import Title from '../components/Title'
 import * as bs from 'react-bootstrap'
 import feedbackData from '../data/feedbackData'
-// import * as antd from 'antd';
+import Dots from "../components/Dots"
 
 export default function Main() {
 
@@ -35,33 +35,18 @@ export default function Main() {
         </div>
       </section>
 
-      <section className="vw-100 py-5">
+      <section className="py-5">
         <Title cn="網友回饋" jp="みんなの声" />
         
         <div
           className="row mx-0 flex-md-nowrap 
-          overflow-auto justify-content-md-around
-          mb-1
+          overflow-auto mb-1
         ">
           {feedbackData.map( (item,i)=> (
             <FeedbackCard key={i} {...item}/>
           ))}
         </div>
-
-        <div className="d-flex justify-content-center py-5">
-          <a href="!#" onClick={(e)=>e.preventDefault()}
-            style={{ width: "12px", height: "12px" }}
-            className="ms-2 border rounded-circle bg-dark border-0">
-          </a>
-          <a href="!#" onClick={(e)=>e.preventDefault()}
-            style={{ width: "12px", height: "12px" }}
-            className="mx-2 border rounded-circle bg-white border-dark">
-          </a>
-          <a href="!#" onClick={(e)=>e.preventDefault()}
-            style={{ width: "12px", height: "12px" }}
-            className="me-2 border rounded-circle bg-dark border-0">
-          </a>
-        </div>
+        <Dots/>
       </section>
 
 

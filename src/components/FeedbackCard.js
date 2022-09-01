@@ -1,12 +1,15 @@
 import React from 'react'
 
 const FeedbackCard = ({icon,name,info,text}) => {
+
+  const imgPath = 'https://raw.githubusercontent.com/aki168/sakeholic/main/public/media/';
+
   return (
     <div className='col-md-5 mb-5'
       style={{ position: "relative", minHeight: "360px" }}>
       <div className='rounded-circle'
         style={{
-          backgroundImage: `URL("media/${icon}")`,
+          backgroundImage: `URL("${imgPath}${icon}")`,
           backgroundSize: "cover",
           width: "120px",
           height: "120px",
