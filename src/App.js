@@ -8,6 +8,7 @@ import {
   useParams,
   Outlet
 } from 'react-router-dom';
+// import 'antd/dist/antd.css';
 // import * as antd from 'antd';
 import * as Icon from 'react-bootstrap-icons'
 import * as bs from 'react-bootstrap'
