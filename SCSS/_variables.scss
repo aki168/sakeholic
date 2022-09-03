@@ -300,9 +300,8 @@ $cyans: (
 // scss-docs-start theme-color-variables
 $primary:       #BD2F26 !default;
 $secondary:     #838383 !default;
-$secondary-:    #C4C4C4 !default;
 $success:       $green !default;
-$info:          $cyan !default;
+$info:          #C4C4C4 !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         #F3F1F2 !default;
@@ -540,8 +539,8 @@ $aspect-ratios: (
 // Font, line-height, and color for body text, headings, and more.
 
 // scss-docs-start font-variables
-// stylelint-disable value-keyword-case
-$font-family-sans-serif:      'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
+// stylelint-disable value-key"word-case
+$font-family-sans-serif:      'Poppins','Noto Sans TC', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 // stylelint-enable value-keyword-case
 $font-family-base:            var(--#{$prefix}font-sans-serif) !default;
