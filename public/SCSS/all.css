@@ -10999,6 +10999,10 @@ ul {
   padding: 0;
 }
 
+a:hover {
+  opacity: 0.8;
+}
+
 .text-h1 {
   color: #F3F1F2;
   font-family: "Koulen", cursive;

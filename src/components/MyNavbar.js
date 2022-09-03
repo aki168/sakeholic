@@ -55,7 +55,7 @@ const MyNavbar = () => {
           </a>
         </div>
       </nav>
-      <bs.Dropdown.Menu className='w-100 fs-2 text-center' show={toggleMenu || false}>
+      <bs.Dropdown.Menu className='w-100 fs-2 text-center rounded-0' show={toggleMenu || false}>
         {NavItems.map((item, i) => (
           <bs.Dropdown.Item key={i} eventKey={i} className='py-4' onClick={showMenu}>
             <NavLink to={item.path}>{item.name}</NavLink>
