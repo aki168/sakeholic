@@ -5,16 +5,11 @@ import Title from '../components/Title'
 import * as bs from 'react-bootstrap'
 import feedbackData from '../data/feedbackData'
 import Dots from "../components/Dots"
+import sakeCardDefault from "../data/sakeCardDefault"
 
 export default function Main() {
 
-  const defaultData = [
-    '001.jpg',
-    '002.jpg',
-    '003.jpg',
-    '004.jpg',
-  ]
-
+  const data = sakeCardDefault;
 
   return (
     <main>
@@ -29,18 +24,16 @@ export default function Main() {
 
       <section className="container py-5">
         <Title cn="日本酒探索" jp="お気に入りが見つかる" />
-
         <div className="row justify-content-md-around">
-          {defaultData.map((item, i) => <SakeCardA key={i} sakeImg={item} />)}
+          {data.map((item, i) => <SakeCardA key={i} {...item} />)}
         </div>
       </section>
 
-      <section className="py-5">
+      <section className="px-5 py-3 overflow-auto">
         <Title cn="網友回饋" jp="みんなの声" />
-        
         <div
           className="row mx-0 flex-md-nowrap 
-          overflow-auto mb-1
+          mb-1
         ">
           {feedbackData.map( (item,i)=> (
             <FeedbackCard key={i} {...item}/>

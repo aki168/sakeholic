@@ -20,7 +20,7 @@ const FeedbackCard = ({icon,name,info,text}) => {
           zIndex: "1"
         }}>
       </div>
-      <div className='bg-dark text-light text-center rounded'
+      <div className='bg-dark text-light text-center rounded pb-3'
         style={{
           width: "95%",
           position: "absolute",
