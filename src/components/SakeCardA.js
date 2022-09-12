@@ -14,7 +14,7 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
       <bs.Card.Header className='p-0 border-0'
         style={{
           height: '370px', 
-          backgroundImage: `url("${imgPath}${img}")`,
+          backgroundImage: `url("${process.env.PUBLIC_URL}/media/${img}")`,
           backgroundPosition: 'center center', 
           backgroundSize: 'cover',
           position:"relative"
@@ -30,8 +30,8 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
           background:'none',
           border:'none'
           }}>        
-          { like? <Icon.HeartFill className={`${ setLike||highlight? 'text-primary':''}`} size={20} />
-          : <Icon.Heart className={`${ highlight? 'text-primary':''}`} size={20}/> 
+          { like? <Icon.HeartFill className={`${ setLike||highlight? 'text-primary':'text-dark'}`} size={20} />
+          : <Icon.Heart className={`${ highlight? 'text-primary':'text-dark'}`} size={20}/> 
           }
         </button>
       </bs.Card.Header>

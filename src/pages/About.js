@@ -1,11 +1,58 @@
-import React from 'react'
+import { useState } from 'react'
 import Title from '../components/Title'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
+import withReactContent from 'sweetalert2-react-content';
+import Swal from 'sweetalert2';
+import { useForm } from "react-hook-form";
+
 
 
 const About = () => {
+
+  const MySwal = withReactContent(Swal)
+
+  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+    defaultValue:{}
+  });
+  const onError = (errors, e) => console.log(errors, e);
+
+  const [formData, setFormData] = useState({})
+
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
+  const onSubmit = (data) => {
+    // alert(JSON.stringify(data))
+    // MySwal.fire({
+    //   title: <strong>成功</strong>,
+    //   html: <i>親愛的{data.userName}，已收到您的來信<br/>
+    //   我們將盡速回覆您！</i>,
+    //   icon: 'success',
+    // })
+    Toast.fire({
+      icon: 'success',
+      title: '成功',
+      html: `${data.userName}，已收到您的來信<br/>
+      我們將盡速回覆您！`,
+    })
+    setFormData(data)
+    reset();
+  };
+  console.log(formData)
+
+
+
 
 
   return (
@@ -13,54 +60,106 @@ const About = () => {
       <div className='container py-5' style={{ maxWidth: "800px" }}>
         <Title cn="聯絡我們" jp="お問い合わせ" />
         {/* 聯絡表單 */}
-        <Form className='d-flex flex-column ps-5 mb-5'>
+        <Form className='d-flex flex-column ps-5 mb-5' onSubmit={handleSubmit(onSubmit, onError)}>
           <Form.Group className="mb-3" controlId="formBasicName" >
             <Form.Floating>
               <Form.Control
                 type="text"
+                name="userName"
                 placeholder="姓名 / 暱稱"
-                id="floatingInputCustom"
+                {...register("userName", {
+                  required: { value: true, message: "請輸入您的姓名" }
+                })}
+                // value={formData.userName}
+                // onChange={(e) => setFormData(prev => (
+                //   {
+                //     ...prev,
+                //     userName: e.target.value
+                //   }
+                // ))}
               />
-              <label htmlFor="floatingInputCustom">姓名 / 暱稱</label>
+              <Form.Text className='text-muted'>
+                {errors.userName?.message}
+              </Form.Text>
+              <label htmlFor="floatingInputCustom">
+                姓名 / 暱稱
+              </label>
             </Form.Floating>
-            {/* <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text> */}
           </Form.Group>
+          {/* -------------- */}
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Floating>
               <Form.Control
-                type="email"
+                type="text"
+                name="email"
                 placeholder="您的電子信箱"
+                {...register("email", {
+                  required: { value: true, message: "請輸入您的email" },
+                  pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: "email格式有誤" }
+                })}
+
+                // value={formData.email}
+                // onChange={(e) => setFormData(prev => (
+                //   {
+                //     ...prev,
+                //     email: e.target.value
+                //   }
+                // ))}
               />
-              <label htmlFor="floatingInputCustom">您的電子信箱</label>
-              {/* <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
-          </Form.Text> */}
+              <Form.Text className="text-muted">
+                {errors.email?.message}
+              </Form.Text>
+              <label htmlFor="floatingInputCustom">
+                您的電子信箱
+              </label>
             </Form.Floating>
           </Form.Group>
+          {/* -------------- */}
           <Form.Group className="mb-3" controlId="formBasicTitle" >
             <Form.Floating>
               <Form.Control
                 type="text"
+                name="title"
                 placeholder="主旨"
+                // value={formData.title}
+                // onChange={(e) => setFormData(prev => (
+                //   {
+                //     ...prev,
+                //     title: e.target.value
+                //   }
+                // ))}
               />
               <label htmlFor="floatingInputCustom">主旨</label>
             </Form.Floating>
           </Form.Group>
+          {/* -------------- */}
           <Form.Group className="mb-3" controlId="formBasicMessage" >
             <Form.Floating>
               <Form.Control
                 as="textarea"
-                placeholder="訊息內容"
                 style={{ minHeight: "180px" }}
+                name="message"
+                placeholder="訊息內容"
+                {...register("message", {
+                  required: { value: true, message: "請輸入訊息" }
+                })}
+                // value={formData.message}
+                // onChange={(e) => setFormData(prev => (
+                //   {
+                //     ...prev,
+                //     message: e.target.value
+                //   }
+                // ))}
               />
-              <label htmlFor="floatingInputCustom">訊息內容</label>
+              <Form.Text>
+                {errors.message?.message}
+              </Form.Text>
+              <label htmlFor="floatingInputCustom">
+                訊息內容
+              </label>
             </Form.Floating>
           </Form.Group>
-          {/* <Form.Group className="mb-4" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="Check me out" />
-        </Form.Group> */}
+          {/* -------------- */}
           <Button variant="primary" type="submit" style={{ width: "100px" }} className='align-self-end' >
             <span className='pe-1'>送出</span>
             <Icon.ArrowRightShort size={25} />
@@ -119,19 +218,19 @@ const About = () => {
                 <br />
                 <h5>亦可直接來信與我聯繫</h5>
                 <ul>
-                <li className='mb-2'>
-                  <Icon.Mailbox size={20} className="me-2" />
-                  mail：ahsi.aki@gmail.com
-                </li>
-                <li className='mb-2'>
-                  <Icon.Telegram size={20} className="me-2" />
-                  telegram：ahsiaki
-                </li>
-                <li className='mb-2'>
-                  <Icon.Line size={20} className="me-2" />
-                  LINE：sakeholic
-                </li>
-              </ul>
+                  <li className='mb-2'>
+                    <Icon.Mailbox size={20} className="me-2" />
+                    mail：ahsi.aki@gmail.com
+                  </li>
+                  <li className='mb-2'>
+                    <Icon.Telegram size={20} className="me-2" />
+                    telegram：ahsiaki
+                  </li>
+                  <li className='mb-2'>
+                    <Icon.Line size={20} className="me-2" />
+                    LINE：sakeholic
+                  </li>
+                </ul>
               </p>
             </div>
 

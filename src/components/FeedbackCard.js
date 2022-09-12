@@ -9,7 +9,7 @@ const FeedbackCard = ({icon,name,info,text}) => {
       style={{ position: "relative", minHeight: "360px" }}>
       <div className='rounded-circle'
         style={{
-          backgroundImage: `URL("${imgPath}${icon}")`,
+          backgroundImage: `URL("${process.env.PUBLIC_URL}/media/${icon}")`,
           backgroundSize: "cover",
           width: "120px",
           height: "120px",
