@@ -21,7 +21,6 @@ import RankingPage from './pages/RankingPage'
 import SearchList from './pages/SearchList';
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
-import { useState } from 'react';
 
 
 export default function App() {

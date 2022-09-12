@@ -16,7 +16,7 @@ const FeedbackCard = ({icon,name,info,text}) => {
           position: "absolute",
           top: "0",
           button: "0",
-          left: "40%",
+          left: "39%",
           zIndex: "1"
         }}>
       </div>
