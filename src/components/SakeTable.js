@@ -3,7 +3,12 @@ import axios from 'axios'
 import { Card, Table } from 'react-bootstrap'
 import { Pagination } from '@mui/material'
 
-const SakeTable = () => {
+const SakeTable = () => { 
+  
+  const aPrevDef = (e) => {
+    e.preventDefault()
+  }
+
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(false);
@@ -117,17 +122,17 @@ return (
           {currentPost.map(item => (
             <tr className='text-center'>
               <td>
-                <a href="/" className='py-2'>
+                <a onClick={aPrevDef} href="/" className='py-2'>
                   {item.maker}
                 </a>
               </td>
               <td>
-                <a href="/" className='py-2'>
+                <a onClick={aPrevDef} href="/" className='py-2'>
                   {item.name}
                 </a>
               </td>
               <td>
-                <a href="/" className='py-2'>
+                <a onClick={aPrevDef} href="/" className='py-2'>
                   {item.area}
                 </a>
               </td>
