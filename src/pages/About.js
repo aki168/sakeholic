@@ -71,7 +71,7 @@ const About = () => {
                   required: { value: true, message: "請輸入您的姓名" }
                 })}
               />
-              <Form.Text className='text-muted'>
+              <Form.Text className='text-danger'>
                 {errors.userName?.message}
               </Form.Text>
               <label htmlFor="floatingInputCustom">
@@ -91,7 +91,7 @@ const About = () => {
                   pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: "email格式有誤" }
                 })}
               />
-              <Form.Text className="text-muted">
+              <Form.Text className="text-danger">
                 {errors.email?.message}
               </Form.Text>
               <label htmlFor="floatingInputCustom">
@@ -122,7 +122,7 @@ const About = () => {
                   required: { value: true, message: "請輸入訊息" }
                 })}
               />
-              <Form.Text>
+              <Form.Text className="text-danger">
                 {errors.message?.message}
               </Form.Text>
               <label htmlFor="floatingInputCustom">

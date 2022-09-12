@@ -18,11 +18,19 @@ const MyNavbar = () => {
       path: "/about"
     },
     {
-      name: "找日本酒",
-      path: "/search"
+      name: "探索🍶",
+      path: "/finding"
     },
     {
-      name: "日本酒總覽",
+      name: "產地查詢",
+      path: "/areaSearch"
+    },
+    {
+      name: "熱門排名",
+      path: "/ranking"
+    },
+    {
+      name: "酒品總覽",
       path: "/searchList"
     },
   ]
@@ -36,7 +44,7 @@ const MyNavbar = () => {
             <h1 className="text-h1 mb-0">SAKEHOLIC BOOK</h1>
           </NavLink>
           <div className='d-none d-md-flex gap-4'>
-            <ul className='d-flex fs-4 gap-4 align-items-center mb-0'>
+            <ul className='d-flex fs-5 gap-4 align-items-center mb-0'>
               {NavItems.map((item, i) => (
                 <li key={i}>
                   <NavLink className={({ isActive }) => (

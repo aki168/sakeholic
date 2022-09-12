@@ -86,7 +86,7 @@ const SearchList = () => {
   // }, [])
   return (
     <div className='container px-3 px-md-5 py-5'>
-      SearchPage
+      日本酒總覽
       {/* {sakeList.slice(0,100).map( (item,index) => (
         <SakeSection key={index} {...item}/>
       )) } */}

@@ -15,7 +15,9 @@ import * as bs from 'react-bootstrap'
 import MyNavbar from './components/MyNavbar';
 import Main from './pages/Main'
 import About from './pages/About'
-import SearchPage from './pages/SearchPage'
+import FindingPage from './pages/FindingPage'
+import AreaSearchPage from './pages/AreaSearchPage'
+import RankingPage from './pages/RankingPage'
 import SearchList from './pages/SearchList';
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
@@ -31,7 +33,9 @@ export default function App() {
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/about' element={<About />} />
-        <Route path='/search' element={<SearchPage />} />
+        <Route path='/finding' element={<FindingPage />} />
+        <Route path='/areaSearch' element={<AreaSearchPage />} />
+        <Route path='/ranking' element={<RankingPage />} />
         <Route path='/searchList' element={<SearchList />} />
         <Route path='/user' element={<UserPage />} />
       </Routes>
