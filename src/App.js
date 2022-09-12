@@ -16,6 +16,7 @@ import MyNavbar from './components/MyNavbar';
 import Main from './pages/Main'
 import About from './pages/About'
 import SearchPage from './pages/SearchPage'
+import SearchList from './pages/SearchList';
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
 import { useState } from 'react';
@@ -31,6 +32,7 @@ export default function App() {
         <Route path='/' element={<Main />} />
         <Route path='/about' element={<About />} />
         <Route path='/search' element={<SearchPage />} />
+        <Route path='/searchList' element={<SearchList />} />
         <Route path='/user' element={<UserPage />} />
       </Routes>
 

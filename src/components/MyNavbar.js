@@ -22,8 +22,8 @@ const MyNavbar = () => {
       path: "/search"
     },
     {
-      name: "會員專區",
-      path: "/user"
+      name: "日本酒總覽",
+      path: "/searchList"
     },
   ]
 

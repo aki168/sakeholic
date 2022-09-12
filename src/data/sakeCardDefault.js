@@ -5,7 +5,7 @@ const sakeCardDefault = [
         furigana:'たまのひかり',
         name:'玉乃光',
         brewer:'玉乃光酒造',
-        area:'京都伏見',
+        area:'京都',
         isLike:false
     },
     {
