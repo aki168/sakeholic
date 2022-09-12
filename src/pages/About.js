@@ -70,13 +70,6 @@ const About = () => {
                 {...register("userName", {
                   required: { value: true, message: "請輸入您的姓名" }
                 })}
-                // value={formData.userName}
-                // onChange={(e) => setFormData(prev => (
-                //   {
-                //     ...prev,
-                //     userName: e.target.value
-                //   }
-                // ))}
               />
               <Form.Text className='text-muted'>
                 {errors.userName?.message}
@@ -97,14 +90,6 @@ const About = () => {
                   required: { value: true, message: "請輸入您的email" },
                   pattern: { value: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g, message: "email格式有誤" }
                 })}
-
-                // value={formData.email}
-                // onChange={(e) => setFormData(prev => (
-                //   {
-                //     ...prev,
-                //     email: e.target.value
-                //   }
-                // ))}
               />
               <Form.Text className="text-muted">
                 {errors.email?.message}
@@ -121,13 +106,6 @@ const About = () => {
                 type="text"
                 name="title"
                 placeholder="主旨"
-                // value={formData.title}
-                // onChange={(e) => setFormData(prev => (
-                //   {
-                //     ...prev,
-                //     title: e.target.value
-                //   }
-                // ))}
               />
               <label htmlFor="floatingInputCustom">主旨</label>
             </Form.Floating>
@@ -143,13 +121,6 @@ const About = () => {
                 {...register("message", {
                   required: { value: true, message: "請輸入訊息" }
                 })}
-                // value={formData.message}
-                // onChange={(e) => setFormData(prev => (
-                //   {
-                //     ...prev,
-                //     message: e.target.value
-                //   }
-                // ))}
               />
               <Form.Text>
                 {errors.message?.message}
@@ -188,11 +159,7 @@ const About = () => {
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
-                  ＸＸＸＸＸ
-                </li>
-                <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
-                  ＯＯＯＯＯ
+                  台中華美街各大日系居酒屋🍻🍶
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
@@ -200,11 +167,15 @@ const About = () => {
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
-                  ＸＸＸＸＸ
+                  日本酒記録アプリSakenote
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
-                  六角學院 2022夏切版直播班
+                  hex school 2022夏切版直播班 第17小組
+                </li>
+                <li>
+                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  hex school 校長
                 </li>
               </ul>
             </div>
