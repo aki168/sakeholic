@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Card, Table } from 'react-bootstrap'
-import { Pagination } from '@mui/material'
+import { Pagination, CircularProgress } from '@mui/material'
 
-const SakeTable = () => { 
-  
+const SakeTable = () => {
+
   const aPrevDef = (e) => {
     e.preventDefault()
   }
 
 
   const [sakeList, setSakeList] = useState([])
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   // 設定：目前要渲染哪一頁
   const [currentPage, setCurrentPage] = useState(1);
   // 設定：每一頁有幾筆
@@ -84,7 +84,10 @@ const SakeTable = () => {
           allData.push(myItem)
         });
         console.log(allData)
+        if(allData){
         setSakeList(allData)
+        setLoading(false)
+        }
 
 
       }
@@ -102,54 +105,63 @@ const SakeTable = () => {
     setCurrentPage(page)
   }
 
-// console.log(animals.slice(0, 100));
+  // console.log(animals.slice(0, 100));
 
-useEffect(() => {
-  init();
-}, [])
-return (
-  <>
-    <Card className='mb-4'>
-      <Table responsive="xl" striped hover>
-        <thead >
-          <tr className='fw-bold text-center border-bottom border-3'>
-            <th>酒藏名稱</th>
-            <th>酒款名稱</th>
-            <th>地區</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentPost.map(item => (
-            <tr className='text-center'>
-              <td>
-                <a onClick={aPrevDef} href="/" className='py-2'>
-                  {item.maker}
-                </a>
-              </td>
-              <td>
-                <a onClick={aPrevDef} href="/" className='py-2'>
-                  {item.name}
-                </a>
-              </td>
-              <td>
-                <a onClick={aPrevDef} href="/" className='py-2'>
-                  {item.area}
-                </a>
-              </td>
+  useEffect(() => {
+    init();
+  }, [])
+  return (
+    <>
+      <Card className='mb-4'>
+          {
+            loading ? 
+            <CircularProgress 
+            size="64px" 
+            color="error" 
+            className='d-block mx-auto m-3'
+            />
+            :
+        <Table responsive="xl" striped hover>
+          <thead>
+            <tr className='fw-bold border-bottom border-3 text-center'>
+              <th>酒藏名稱</th>
+              <th>酒款名稱</th>
+              <th>地區</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
-    </Card>
+          </thead>
+              <tbody>
+                {currentPost.map(item => (
+                  <tr>
+                    <td>
+                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+                        {item.maker}
+                      </a>
+                    </td>
+                    <td>
+                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+                        {item.name}
+                      </a>
+                    </td>
+                    <td>
+                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+                        {item.area}
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+        </Table>
+          }
+      </Card>
 
 
-    <Pagination
-      className='d-flex justify-content-end'
-      count={Math.floor(totalItems/perPage) + 1 }
-      shape="rounded"
-      onChange={pageHandler} />
-  </>
-)
+      <Pagination
+        className='d-flex justify-content-end'
+        count={Math.floor(totalItems / perPage) + 1}
+        shape="rounded"
+        onChange={pageHandler} />
+    </>
+  )
 }
 
 export default SakeTable

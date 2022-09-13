@@ -30,8 +30,8 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
           background:'none',
           border:'none'
           }}>        
-          { like? <Icon.HeartFill className={`${ setLike||highlight? 'text-primary':'text-dark'}`} size={20} />
-          : <Icon.Heart className={`${ highlight? 'text-primary':'text-dark'}`} size={20}/> 
+          { like? <Icon.HeartFill className={`${ setLike||highlight? 'text-primary':'text-dark'}`} size={28} />
+          : <Icon.Heart className={`${ highlight? 'text-primary':'text-dark'}`} size={28}/> 
           }
         </button>
       </bs.Card.Header>
