@@ -10,13 +10,15 @@ const FeedbackCard = ({icon,name,info,text}) => {
       <div className='rounded-circle'
         style={{
           backgroundImage: `URL("${process.env.PUBLIC_URL}/media/${icon}")`,
+          backgroundPosition:"center",
           backgroundSize: "cover",
           width: "120px",
           height: "120px",
           position: "absolute",
           top: "0",
           button: "0",
-          left: "39%",
+          left: "50%",
+          transform: 'translate(-50%, 0%)',
           zIndex: "1"
         }}>
       </div>
