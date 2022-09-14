@@ -48,7 +48,7 @@ const Footer = () => {
           <ul className='d-flex flex-column gap-3'>
 
             {NavItems.map((item, index) => (
-              <li>
+              <li key={index}>
                 <NavLink to={item.path} className='text-white'>
                   {item.name}
                 </NavLink>

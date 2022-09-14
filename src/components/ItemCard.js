@@ -50,7 +50,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
           <Stack direction="row" spacing={1} className='py-3 flex-wrap gap-1' >
             {tagsToText &&
               // tags.map(tag => (<span className='text-dark'>#{tag}</span>))
-              tagsToText.map(item => (<Chip label={`# ${item.tag}`} color="error" size='small'/>))
+              tagsToText.map(item => (<Chip key={item.id} label={`# ${item.tag}`} color="error" size='small'/>))
             }
           </Stack>
           <div className='row gap-2'>
@@ -59,7 +59,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
           </div>
         </Typography>
         <Typography variant="body2" color="text.secondary" className='col-12 col-xl-5 mb-5'>
-          <h3 className='fw-bolder text-dark'>風味分析</h3>
+          <p className='fw-bolder text-dark'>風味分析</p>
           {chart[0] ? 
             <Chart flavorData={chart} className="text-end"/>
           :  <p className='py-5 px-5 border-info bg-info rounded text-light'>暫無資料...</p>
@@ -67,14 +67,14 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
           <p className='fw-bold'>根據日本網友投稿數據分析呈現的風味表</p>
         </Typography>
         <Typography>
-          <h5 className='fw-bold'>風味相似的酒款</h5>
+          <p className='fw-bold'>風味相似的酒款</p>
           <div className='py-2 px-4 border rounded'>
             <span className='text-info fw-bold' style={{ fontSize: "12px" }}>
               おいまつ
             </span>
-            <h4 className='pb-3 fw-bold'>
+            <p className='pb-3 fw-bold'>
               老松
-            </h4>
+            </p>
             <div className='d-flex justify-content-between'>
               <div className='d-flex align-items-center'>
                 <Icon.PencilSquare

@@ -131,7 +131,7 @@ const SakeTable = () => {
           </thead>
               <tbody>
                 {currentPost.map(item => (
-                  <tr>
+                  <tr key={item.id}>
                     <td>
                       <a onClick={aPrevDef} href="/" className='py-2 text-center'>
                         {item.maker}
