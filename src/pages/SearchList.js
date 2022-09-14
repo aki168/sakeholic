@@ -4,6 +4,7 @@ import axios from 'axios'
 import SakeSection from '../components/SakeSection';
 import SakeTable from '../components/SakeTable';
 import * as Icon from 'react-bootstrap-icons';
+import ItemCard from '../components/ItemCard';
 
 const SearchList = () => {
 
@@ -67,8 +68,8 @@ const SearchList = () => {
           // console.log(myItem)
           allData.push(myItem)
         });
-        console.log(allData)
-        setSakeList(allData)
+        setSakeList(allData.slice(0, 10))
+        console.log(sakeList)
 
 
       }
@@ -81,9 +82,9 @@ const SearchList = () => {
 
   //   // console.log(animals.slice(0, 100));
 
-  // useEffect(() => {
-  //   init();
-  // }, [])
+  useEffect(() => {
+    init();
+  }, [])
   return (
     <div className='container px-3 px-md-5 py-5'>
       日本酒總覽
@@ -92,19 +93,20 @@ const SearchList = () => {
       )) } */}
       <InputGroup size="lg" className='py-5 border-primary'>
         <Form.Control
-        className='border-primary'
+          className='border-primary'
           aria-label="Large"
           aria-describedby="inputGroup-sizing-sm"
           placeholder='輸入酒藏或酒款關鍵字'
         />
         <Button variant="outline-primary" id="button-addon1" className='d-flex align-items-center'>
           搜尋
-          <Icon.ArrowRightShort size={24}/>
+          <Icon.ArrowRightShort size={24} />
         </Button>
       </InputGroup>
 
       <SakeTable />
 
+      {sakeList.map(item => (<ItemCard key={item.id} {...item}/>))}
 
 
       {/* <SakeSection
