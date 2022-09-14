@@ -15,9 +15,15 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
   let pic = 'https://cdn.shopify.com/s/files/1/0569/6389/1253/collections/sakecup-001_900x.png';
 
 
-  // let tagsToText = tagsIndex.filter( item => (
-  //   tags.indexOf(item.id) > -1
-  // ));
+  let tagsToText = (numArr, refArr) => {
+
+    if (numArr) {
+      return (refArr.filter(item => (
+        numArr.indexOf(item.id) > -1
+      )))
+    }
+
+  }
   console.log(tags);
 
   return (
@@ -51,8 +57,8 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
           </div>
           <Stack direction="row" spacing={1} className='py-3 flex-wrap gap-1' >
             {tags &&
-              tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
-              // tagsToText.map(item => (<Chip key={item.id} label={`# ${item.tag}`} color="error" size='small'/>) )
+              // tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
+              tagsToText(tags,tagsIndex).map(oneTag => (<Chip key={oneTag.id} label={`# ${oneTag.tag}`} color="error" size='small' />))
             }
           </Stack>
           <div className='row gap-2'>
@@ -62,9 +68,9 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
         </Typography>
         <Typography variant="body2" color="text.secondary" className='col-12 col-xl-5 mb-5'>
           <p className='fw-bolder text-dark'>風味分析</p>
-          {chart[0] ? 
-            <Chart flavorData={chart} className="text-end"/>
-          :  <p className='py-5 px-5 border-info bg-info rounded text-light'>暫無資料...</p>
+          {chart[0] ?
+            <Chart flavorData={chart} className="text-end" />
+            : <p className='py-5 px-5 border-info bg-info rounded text-light'>暫無資料...</p>
           }
           <p className='fw-bold'>根據日本網友投稿數據分析呈現的風味表</p>
         </Typography>
