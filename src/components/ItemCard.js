@@ -7,16 +7,18 @@ import { CardActionArea, Stack, Chip } from '@mui/material';
 import * as Icon from 'react-bootstrap-icons'
 import Chart from './Charts';
 import tagsIndex from '../data/tagsIndex';
+import { useEffect } from 'react';
 
 
 const ItemCard = ({ area, chart, id, maker, name, tags }) => {
 
   let pic = 'https://cdn.shopify.com/s/files/1/0569/6389/1253/collections/sakecup-001_900x.png';
 
-  let tagsToText = tagsIndex.filter( item => (
-    tags.indexOf(item.id) > -1
-  ));
-  console.log(tagsToText);
+
+  // let tagsToText = tagsIndex.filter( item => (
+  //   tags.indexOf(item.id) > -1
+  // ));
+  console.log(tags);
 
   return (
     <Card className="bg-light p-3 my-3">
@@ -48,9 +50,9 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
             </div>
           </div>
           <Stack direction="row" spacing={1} className='py-3 flex-wrap gap-1' >
-            {tagsToText &&
-              // tags.map(tag => (<span className='text-dark'>#{tag}</span>))
-              tagsToText.map(item => (<Chip key={item.id} label={`# ${item.tag}`} color="error" size='small'/>))
+            {tags &&
+              tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
+              // tagsToText.map(item => (<Chip key={item.id} label={`# ${item.tag}`} color="error" size='small'/>) )
             }
           </Stack>
           <div className='row gap-2'>

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Card, Table } from 'react-bootstrap'
 import { Pagination, CircularProgress } from '@mui/material'
+import ItemCard from './ItemCard'
 
 const SakeTable = () => {
 
@@ -84,9 +85,9 @@ const SakeTable = () => {
           allData.push(myItem)
         });
         console.log(allData)
-        if(allData){
-        setSakeList(allData)
-        setLoading(false)
+        if (allData) {
+          setSakeList(allData)
+          setLoading(false)
         }
 
 
@@ -95,7 +96,7 @@ const SakeTable = () => {
 
   }
 
-  console.log(sakeList)
+  console.log('目前',currentPost)
 
   const pageHandler = (event, page) => {
     // function(event: object, page: number) => void
@@ -113,22 +114,22 @@ const SakeTable = () => {
   return (
     <>
       <Card className='mb-4'>
-          {
-            loading ? 
-            <CircularProgress 
-            size="64px" 
-            color="error" 
-            className='d-block mx-auto m-3'
+        {
+          loading ?
+            <CircularProgress
+              size="64px"
+              color="error"
+              className='d-block mx-auto m-3'
             />
             :
-        <Table responsive="xl" striped hover>
-          <thead>
-            <tr className='fw-bold border-bottom border-3 text-center'>
-              <th>酒藏名稱</th>
-              <th>酒款名稱</th>
-              <th>地區</th>
-            </tr>
-          </thead>
+            <Table responsive="xl" striped hover>
+              <thead>
+                <tr className='fw-bold border-bottom border-3 text-center'>
+                  <th>酒藏名稱</th>
+                  <th>酒款名稱</th>
+                  <th>地區</th>
+                </tr>
+              </thead>
               <tbody>
                 {currentPost.map(item => (
                   <tr key={item.id}>
@@ -150,8 +151,8 @@ const SakeTable = () => {
                   </tr>
                 ))}
               </tbody>
-        </Table>
-          }
+            </Table>
+        }
       </Card>
 
 
@@ -160,6 +161,8 @@ const SakeTable = () => {
         count={Math.floor(totalItems / perPage) + 1}
         shape="rounded"
         onChange={pageHandler} />
+
+      {currentPost.map(item => (<ItemCard key={item.id} {...item} />))}
     </>
   )
 }
