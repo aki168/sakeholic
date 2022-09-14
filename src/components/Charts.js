@@ -53,7 +53,7 @@ const Chart = ({flavorData}) => {
       cx='50%'
       cy='50%'
       outerRadius={120}
-      width={300}
+      width={310}
       height={300}
       data={realData}
     >
