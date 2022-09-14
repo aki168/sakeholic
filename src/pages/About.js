@@ -144,12 +144,12 @@ const About = () => {
             <div className="col-12 col-md-6 py-5 px-4 mb-5 bg-light">
               <h3 className='fw-bold text-primary mb-2'>製作初衷</h3>
               <p className='mb-5'>
-                「小酌圖鑑」日本酒檢索網站。<br />
-                針對喜歡日本酒，但總感中文資訊匱乏的人。<br />
+                「小酌圖鑑」日本酒檢索網站<br />
+                針對喜歡日本酒，但總感中文資訊匱乏的人<br />
                 <br />
-                使用者可以輸入酒廠、酒名、產地等資訊<br />
-                查詢到在居酒屋、超市看到的日本酒，<br />
-                得知各項風味量表、建議喝法等實用資訊。
+                使用者可輸入酒廠、酒名、產地等資訊<br />
+                查詢在居酒屋、超市看到的日本酒<br />
+                得知各項風味量表、建議喝法等情報
               </p>
               <h3 className='fw-bold text-primary mb-2'>特別感謝</h3>
               <ul>
@@ -171,7 +171,7 @@ const About = () => {
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
-                  hex school 2022夏切版直播班 第17小組
+                  22夏切版直播班 第17小組
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
