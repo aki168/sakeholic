@@ -18,21 +18,20 @@ const NotFoundPage = () => {
       <Container maxWidth="md">
         <Grid container spacing={1}>
           <Grid xs={6}>
-            <Typography variant="h2" className='title-font'>
+            <Typography variant="h2" className='title-font fw-bold'>
               404
             </Typography>
+            <Typography variant="h6" className='title-font fw-bold'>
               您訪問的頁面不存在
-            <Typography variant="h6">
-              
             </Typography>
             <Link to='/'>
-              <Button variant="primary" >Back Home</Button>
+              <Button variant="primary">Back Home</Button>
             </Link>    
           </Grid>
           <Grid xs={6}>
             <img
               src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg"
-              alt=""
+              alt="404pic"
               width={500} height={250}
             />
           </Grid>

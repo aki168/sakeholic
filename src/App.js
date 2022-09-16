@@ -27,11 +27,22 @@ import LoginPage from './pages/LoginPage'
 import { AuthContext, useAuth } from './MyContext';
 
 
-const ProtectedRoute = ({ children }) => { 
+const ProtectedRoute = ({ children }) => {
   const { token } = useAuth()
-  return token ? <UserPage/> : <LoginPage/>
+  return token ? <Outlet /> : <Navigate to="/login" replace />
 }
 ////////////////////////////////////////////
+
+const Layout = () => {
+  const { token } = useAuth()
+  return (
+    <>
+      <MyNavbar />
+      <Outlet />
+      <Footer />
+    </>
+  )
+}
 
 export default function App() {
 
@@ -42,19 +53,20 @@ export default function App() {
   return (
     <HashRouter>
       <AuthContext.Provider value={{ token, setToken }}>
-        <MyNavbar />
         <Routes>
-          <Route path='/' element={<Main />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/finding' element={<FindingPage />} />
-          <Route path='/areaSearch' element={<AreaSearchPage />} />
-          <Route path='/ranking' element={<RankingPage />} />
-          <Route path='/searchList' element={<SearchList />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route element={<ProtectedRoute />}>
-            <Route path='/user' element={<UserPage />} />
+          <Route path='/' element={<Layout/>}>
+            <Route path='/' element={<Main />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/finding' element={<FindingPage />} />
+            <Route path='/areaSearch' element={<AreaSearchPage />} />
+            <Route path='/searchList' element={<SearchList />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/ranking' element={<RankingPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/user' element={<UserPage />} />
+            </Route>
+            <Route path='*' element={<NotFoundPage />} />
           </Route>
-          <Route path='*' element={<NotFoundPage />} />
         </Routes>
         <Footer />
       </AuthContext.Provider>

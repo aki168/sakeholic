@@ -25,8 +25,8 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
         onClick={()=>setLike(prev => !prev)}
         style={{
           position:"absolute", 
-          right:'0.5em', 
-          top:'0.5em', 
+          right:'0.8em', 
+          top:'1em', 
           background:'none',
           border:'none'
           }}>        
@@ -42,7 +42,7 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
         <bs.Card.Title>
           <p className='pb-3 h1 fw-bold'>{name}</p>
         </bs.Card.Title>
-        <bs.Card.Text className='d-flex justify-content-between'>
+        <div className='d-flex justify-content-between'>
           <div className='d-flex align-items-center'>
             <Icon.PencilSquare
               size={21}
@@ -57,7 +57,7 @@ const SakeCardA = ({ img, furigana, name, brewer, area, isLike }) => {
             />
             <p className='text-secondary fw-bold mb-0'>{area}</p>
           </div>
-        </bs.Card.Text>
+        </div>
       </bs.Card.Body>
     </bs.Card>
 
