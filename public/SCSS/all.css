@@ -11048,6 +11048,10 @@ a:hover {
   opacity: 0.3;
 }
 
+.recharts-wrapper {
+  margin: auto;
+}
+
 /******* 地図成形 *******/
 #japan-map div div.area div {
   border: 1px #ffffff solid;

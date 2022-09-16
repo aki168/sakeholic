@@ -16,7 +16,7 @@ export default function ControlledAccordions({currentPost}) {
   return (
     <div>
       {currentPost.map ( item => (
-      <Accordion expanded={expanded === `${item.id}` } onChange={handleChange(`${item.id}`)}>
+      <Accordion style={{boxShadow:"none"}} expanded={expanded === `${item.id}` } onChange={handleChange(`${item.id}`)}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls={`${item.id}bh-content`}
@@ -32,7 +32,7 @@ export default function ControlledAccordions({currentPost}) {
             {item.area}
           </Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className='p-0'>
           <ItemCard key={item.id} {...item} />
         </AccordionDetails>
       </Accordion>

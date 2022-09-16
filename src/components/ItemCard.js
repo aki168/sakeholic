@@ -48,7 +48,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
         }
       </button>
       {/* <CardActionArea> */}
-      <CardContent className='row gx-3'>
+      <CardContent className='row gx-3 p-0 py-2 p-md-4'>
         <div className='col col-xl-7 mb-5'>
           <p>No. {id}</p>
           <h2 className='fw-bold'>{name}</h2>
@@ -94,10 +94,10 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
             />
           </div>
         </div>
-        <div className='col-12 col-xl-5 mb-5 my-auto ps-3'>
+        <div className='col-12 col-xl-5 mb-5 my-auto'>
           <p className='fw-bolder text-dark py-auto'>風味分析</p>
           {chart[0] ?
-            <Chart flavorData={chart} className="text-end" />
+            <Chart flavorData={chart} />
             : <div className='px-auto py-5 border-info bg-info rounded text-light text-center' style={{verticalAlign:"center"}}>暫無資料...</div>
           }
           <p className='fw-bold'>根據日本網友投稿數據分析呈現的風味表</p>
