@@ -3,8 +3,16 @@ import * as bs from 'react-bootstrap'
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons'
+import { useAuth } from '../MyContext';
+import { useEffect } from 'react';
 
 const MyNavbar = () => {
+
+
+  const { token } = useAuth();
+  console.log(token)
+
+
 
   const [toggleMenu, setToggleMenu] = useState(false);
   const showMenu = (e) => {
@@ -53,7 +61,13 @@ const MyNavbar = () => {
                 </li>
               ))}
             </ul>
-            <bs.Button variant="outline-dark" className='fw-bold px-4 py-0'>登入</bs.Button>
+            <NavLink to={token ? '/user' : '/login'}>
+              <bs.Button
+                variant={token ? "outline-dark" : "outline-primary"}
+                className='fw-bold px-4 py-0'>
+                {token ? '會員中心' : '登入'}
+              </bs.Button>
+            </NavLink>
           </div>
           <a href="!#" onClick={showMenu} className='d-md-none'>
             <Icon.List
@@ -70,9 +84,14 @@ const MyNavbar = () => {
           </bs.Dropdown.Item>
         ))}
         <bs.Dropdown.Item eventKey="4" className="py-4" onClick={showMenu}>
-          <bs.Button variant="outline-dark" size="lg" className='fw-bold px-5 py-2'>
-            登入
-          </bs.Button>
+          <NavLink to={token ? '/user' : '/login'}>
+            <bs.Button
+              variant={token ? "outline-dark" : "outline-primary"}
+              size="lg"
+              className='fw-bold px-5 py-2'>
+              {token ? '會員中心' : '登入'}
+            </bs.Button>
+          </NavLink>
         </bs.Dropdown.Item>
       </bs.Dropdown.Menu>
     </div>

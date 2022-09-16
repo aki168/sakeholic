@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   HashRouter,
   NavLink,
@@ -6,7 +6,8 @@ import {
   Route,
   useNavigate,
   useParams,
-  Outlet
+  Outlet,
+  Navigate
 } from 'react-router-dom';
 // import 'antd/dist/antd.css';
 // import * as antd from 'antd';
@@ -21,26 +22,42 @@ import RankingPage from './pages/RankingPage'
 import SearchList from './pages/SearchList';
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
+import NotFoundPage from './pages/NotFoundPage';
+import LoginPage from './pages/LoginPage'
+import { AuthContext, useAuth } from './MyContext';
 
+
+const ProtectedRoute = ({ children }) => { 
+  const { token } = useAuth()
+  return token ? <UserPage/> : <LoginPage/>
+}
+////////////////////////////////////////////
 
 export default function App() {
+
+  // const [token, setToken] = useState('ABC')
+  const [token, setToken] = useState(null)
 
 
   return (
     <HashRouter>
-      <MyNavbar/>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/finding' element={<FindingPage />} />
-        <Route path='/areaSearch' element={<AreaSearchPage />} />
-        <Route path='/ranking' element={<RankingPage />} />
-        <Route path='/searchList' element={<SearchList />} />
-        <Route path='/user' element={<UserPage />} />
-      </Routes>
-
-      <Footer />
-
+      <AuthContext.Provider value={{ token, setToken }}>
+        <MyNavbar />
+        <Routes>
+          <Route path='/' element={<Main />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/finding' element={<FindingPage />} />
+          <Route path='/areaSearch' element={<AreaSearchPage />} />
+          <Route path='/ranking' element={<RankingPage />} />
+          <Route path='/searchList' element={<SearchList />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route element={<ProtectedRoute />}>
+            <Route path='/user' element={<UserPage />} />
+          </Route>
+          <Route path='*' element={<NotFoundPage />} />
+        </Routes>
+        <Footer />
+      </AuthContext.Provider>
     </HashRouter>
   )
 }
