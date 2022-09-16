@@ -24,6 +24,7 @@ import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
 import LoginPage from './pages/LoginPage'
+import RegisterPage from './pages/RegisterPage';
 import { AuthContext, useAuth } from './MyContext';
 
 
@@ -48,11 +49,13 @@ export default function App() {
 
   // const [token, setToken] = useState('ABC')
   const [token, setToken] = useState(null)
+  const [userData, setUserData] = useState({})
+  console.log('userData',userData)
 
 
   return (
     <HashRouter>
-      <AuthContext.Provider value={{ token, setToken }}>
+      <AuthContext.Provider value={{ token, setToken, userData, setUserData }}>
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route path='/' element={<Main />} />
@@ -60,8 +63,9 @@ export default function App() {
             <Route path='/finding' element={<FindingPage />} />
             <Route path='/areaSearch' element={<AreaSearchPage />} />
             <Route path='/searchList' element={<SearchList />} />
-            <Route path='/login' element={<LoginPage />} />
             <Route path='/ranking' element={<RankingPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
             <Route element={<ProtectedRoute />}>
               <Route path='/user' element={<UserPage />} />
             </Route>
