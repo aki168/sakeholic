@@ -157,7 +157,7 @@ const RegisterPage = () => {
           </div>
         </Card>
         <div className='site-image py-4 d-none d-md-block col-md-6 col-lg-7 col-xl-8 bg-dark' >
-          <video autoPlay loop muted className="img-fluid" >
+          <video autoPlay loop muted className="img-fluid d-none d-md-block" >
             <source src={`${process.env.PUBLIC_URL}/media/170111_056_Tokyo_Alleyway2_1080p.mp4`} type="video/mp4" />
           </video>
           {/* <img src={`${process.env.PUBLIC_URL}/media/google.png`} /> */}
