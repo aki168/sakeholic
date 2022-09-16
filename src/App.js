@@ -68,7 +68,6 @@ export default function App() {
             <Route path='*' element={<NotFoundPage />} />
           </Route>
         </Routes>
-        <Footer />
       </AuthContext.Provider>
     </HashRouter>
   )
