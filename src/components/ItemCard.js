@@ -8,11 +8,16 @@ import * as Icon from 'react-bootstrap-icons'
 import Chart from './Charts';
 import tagsIndex from '../data/tagsIndex';
 import { useEffect } from 'react';
+import ScrollableTabsButtonVisible from './ScrollableTabsButtonVisible';
 
 
 const ItemCard = ({ area, chart, id, maker, name, tags }) => {
 
-  let pic = 'https://cdn.shopify.com/s/files/1/0569/6389/1253/collections/sakecup-001_900x.png';
+  let pic1 = 'https://cdn.shopify.com/s/files/1/0569/6389/1253/collections/sakecup-001_900x.png';
+  let pic2 = 'https://www.snowmonkeyresorts.com/wp-content/uploads/2021/11/japan-sake-banner-edit-1.jpg';
+
+  const [ like, setLike ] = React.useState( false ) 
+  const [ highlight, setHighlight ] = React.useState( false ) 
 
 
   let tagsToText = (numArr, refArr) => {
@@ -27,18 +32,26 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
   console.log(tags);
 
   return (
-    <Card className="bg-light p-3 my-3">
+    <Card className="bg-light p-3 my-3" style={{position:"relative"}}>
+      <button
+        onMouseOver={() => setHighlight(prev => !prev)}
+        onClick={() => setLike(prev => !prev)}
+        style={{
+          position: "absolute",
+          right: '0.8em',
+          top: '1em',
+          background: 'none',
+          border: 'none'
+        }}>
+        {like ? <Icon.HeartFill className={`${setLike || highlight ? 'text-primary' : 'text-dark'}`} size={28} />
+          : <Icon.Heart className={`${highlight ? 'text-primary' : 'text-dark'}`} size={28} />
+        }
+      </button>
       {/* <CardActionArea> */}
-      {/* <CardMedia
-        component="img"
-        height="140"
-        image={`${process.env.PUBLIC_URL}/media/001.jpg`}
-        alt="sake"
-      /> */}
       <CardContent className='row gx-3'>
-        <Typography gutterBottom variant="body1" component="div" className='col col-xl-7 mb-5'>
+        <div className='col col-xl-7 mb-5'>
+          <p>No. {id}</p>
           <h2 className='fw-bold'>{name}</h2>
-          <p>furigana</p>
           <div className='d-flex gap-5'>
             <div className='d-flex align-items-center'>
               <Icon.PencilSquare
@@ -55,27 +68,42 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
               <p className='text-secondary fw-bold mb-0'>{area}</p>
             </div>
           </div>
-          <Stack direction="row" spacing={1} className='py-3 flex-wrap gap-1' >
+          {tags &&
+            // tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
+            <ScrollableTabsButtonVisible currentData={tagsToText(tags, tagsIndex)} />
+            // tagsToText(tags,tagsIndex).map(oneTag => (<Chip key={oneTag.id} label={`# ${oneTag.tag}`} color="error" size='small' />))
+          }
+          {/* <Stack 
+          direction="row" 
+          spacing={1} 
+          className='py-3 flex-wrap gap-1'
+          >
             {tags &&
               // tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
               tagsToText(tags,tagsIndex).map(oneTag => (<Chip key={oneTag.id} label={`# ${oneTag.tag}`} color="error" size='small' />))
             }
-          </Stack>
-          <div className='row gap-2'>
-            <img src={pic} alt="sake" className="rounded col-md-5" />
-            <img src={pic} alt="sake" className="rounded col-md-5" />
+          </Stack> */}
+          <div className='flex my-2 justify-content-between'>
+            <img src={pic1}
+              alt="sake"
+              className="rounded w-50 p-1 img-fluid"
+            />
+            <img src={pic2}
+              alt="sake"
+              className="rounded w-50 p-1 img-fluid"
+            />
           </div>
-        </Typography>
-        <Typography variant="body2" color="text.secondary" className='col-12 col-xl-5 mb-5'>
-          <p className='fw-bolder text-dark'>風味分析</p>
+        </div>
+        <div className='col-12 col-xl-5 mb-5 my-auto ps-3'>
+          <p className='fw-bolder text-dark py-auto'>風味分析</p>
           {chart[0] ?
             <Chart flavorData={chart} className="text-end" />
-            : <p className='py-5 px-5 border-info bg-info rounded text-light'>暫無資料...</p>
+            : <div className='px-auto py-5 border-info bg-info rounded text-light text-center' style={{verticalAlign:"center"}}>暫無資料...</div>
           }
           <p className='fw-bold'>根據日本網友投稿數據分析呈現的風味表</p>
-        </Typography>
-        <Typography>
-          <p className='fw-bold'>風味相似的酒款</p>
+        </div>
+        {/* <Typography> */}
+          <p className='fw-bold'>你可能會喜歡...</p>
           <div className='py-2 px-4 border rounded'>
             <span className='text-info fw-bold' style={{ fontSize: "12px" }}>
               おいまつ
@@ -104,7 +132,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
               </div>
             </div>
           </div>
-        </Typography>
+        {/* </Typography> */}
       </CardContent>
       {/* </CardActionArea> */}
     </Card>

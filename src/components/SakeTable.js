@@ -3,6 +3,7 @@ import axios from 'axios'
 import { Card, Table } from 'react-bootstrap'
 import { Pagination, CircularProgress } from '@mui/material'
 import ItemCard from './ItemCard'
+import ControlledAccordions from './ControlledAccordions'
 
 const SakeTable = () => {
 
@@ -112,58 +113,60 @@ const SakeTable = () => {
     init();
   }, [])
   return (
-    <>
-      <Card className='mb-4'>
+    <main className='mb-5'>
+      <div className='mb-4'>
         {
           loading ?
+          <div className='vh-100'>
             <CircularProgress
               size="64px"
               color="error"
-              className='d-block mx-auto m-3'
+              className='d-block mx-auto'
             />
+          </div>
             :
-            <Table responsive="xl" striped hover>
-              <thead>
-                <tr className='fw-bold border-bottom border-3 text-center'>
-                  <th>酒藏名稱</th>
-                  <th>酒款名稱</th>
-                  <th>地區</th>
-                </tr>
-              </thead>
-              <tbody>
-                {currentPost.map(item => (
-                  <tr key={item.id}>
-                    <td>
-                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
-                        {item.maker}
-                      </a>
-                    </td>
-                    <td>
-                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
-                        {item.name}
-                      </a>
-                    </td>
-                    <td>
-                      <a onClick={aPrevDef} href="/" className='py-2 text-center'>
-                        {item.area}
-                      </a>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </Table>
+          (<ControlledAccordions currentPost={currentPost}/>)
+            // <Table responsive="xl" striped hover>
+            //   <thead>
+            //     <tr className='fw-bold border-bottom border-3 text-center'>
+            //       <th>酒款名稱</th>
+            //       <th>酒藏名稱</th>
+            //       <th>地區</th>
+            //     </tr>
+            //   </thead>
+            //   <tbody>
+            //     {currentPost.map(item => (
+            //       <tr key={item.id}>
+            //         <td>
+            //           <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+            //             {item.name}
+            //           </a>
+            //         </td>
+            //         <td>
+            //           <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+            //             {item.maker}
+            //           </a>
+            //         </td>
+            //         <td>
+            //           <a onClick={aPrevDef} href="/" className='py-2 text-center'>
+            //             {item.area}
+            //           </a>
+            //         </td>
+            //       </tr>
+            //     ))}
+            //   </tbody>
+            // </Table>
         }
-      </Card>
-
-
+      </div>
       <Pagination
+        size="small"
         className='d-flex justify-content-end'
         count={Math.floor(totalItems / perPage) + 1}
         shape="rounded"
-        onChange={pageHandler} />
-
-      {currentPost.map(item => (<ItemCard key={item.id} {...item} />))}
-    </>
+        onChange={pageHandler} 
+        showLastButton/>
+      {/* {currentPost.map(item => (<ItemCard key={item.id} {...item} />))} */}
+    </main>
   )
 }
 
