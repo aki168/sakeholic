@@ -12,7 +12,7 @@ const NotFoundPage = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh'
+        minHeight: '60vh'
       }}
     >
       <Container maxWidth="md">
@@ -21,8 +21,8 @@ const NotFoundPage = () => {
             <Typography variant="h2" className='title-font fw-bold'>
               404
             </Typography>
-            <Typography variant="h6" className='title-font fw-bold'>
-              您訪問的頁面不存在
+            <Typography variant="h6" className='title-font fw-bold mb-2'>
+              訪問頁面不存在
             </Typography>
             <Link to='/'>
               <Button variant="primary">Back Home</Button>

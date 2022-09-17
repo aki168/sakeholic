@@ -29,7 +29,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
     }
 
   }
-  console.log(tags);
+  // console.log(tags);
 
   return (
     <Card className="bg-light p-3 my-3" style={{position:"relative"}}>
@@ -58,7 +58,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
                 size={21}
                 className='text-dark me-2'
               />
-              <p className='text-secondary fw-bold mb-0'>{maker}</p>
+              <p className='text-secondary fw-bold mb-0'>{maker? maker : <small className='text-info fw-light'> -- </small>}</p>
             </div>
             <div className='d-flex align-items-center'>
               <Icon.GeoAlt
@@ -69,20 +69,8 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
             </div>
           </div>
           {tags &&
-            // tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
             <ScrollableTabsButtonVisible currentData={tagsToText(tags, tagsIndex)} />
-            // tagsToText(tags,tagsIndex).map(oneTag => (<Chip key={oneTag.id} label={`# ${oneTag.tag}`} color="error" size='small' />))
           }
-          {/* <Stack 
-          direction="row" 
-          spacing={1} 
-          className='py-3 flex-wrap gap-1'
-          >
-            {tags &&
-              // tags.map((tag,index) => (<Chip key={index} label={`# ${tag}`} color="error" size='small'/>))
-              tagsToText(tags,tagsIndex).map(oneTag => (<Chip key={oneTag.id} label={`# ${oneTag.tag}`} color="error" size='small' />))
-            }
-          </Stack> */}
           <div className='flex my-2 justify-content-between'>
             <img src={pic1}
               alt="sake"

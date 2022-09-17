@@ -11,7 +11,7 @@ export default function ScrollableTabsButtonVisible({currentData}) {
     setValue(newValue);
   };
 
-  console.log('data',currentData)
+  // console.log('data',currentData)
 
   return (
     <Box

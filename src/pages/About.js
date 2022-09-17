@@ -12,14 +12,12 @@ import { useForm } from "react-hook-form";
 const About = () => {
 
   const MySwal = withReactContent(Swal)
-
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValue:{}
   });
   const onError = (errors, e) => console.log(errors, e);
-
   const [formData, setFormData] = useState({})
-
+  
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -33,13 +31,6 @@ const About = () => {
   })
 
   const onSubmit = (data) => {
-    // alert(JSON.stringify(data))
-    // MySwal.fire({
-    //   title: <strong>成功</strong>,
-    //   html: <i>親愛的{data.userName}，已收到您的來信<br/>
-    //   我們將盡速回覆您！</i>,
-    //   icon: 'success',
-    // })
     Toast.fire({
       icon: 'success',
       title: '成功',
@@ -49,12 +40,6 @@ const About = () => {
     setFormData(data)
     reset();
   };
-  console.log(formData)
-
-
-
-
-
   return (
     <>
       <div className='container py-5' style={{ maxWidth: "800px" }}>
@@ -147,7 +132,7 @@ const About = () => {
                 「小酌圖鑑」日本酒檢索網站<br />
                 針對喜歡日本酒，但總感中文資訊匱乏的人<br />
                 <br />
-                使用者可輸入酒廠、酒名、產地等資訊<br />
+                瀏覽酒廠、酒名、產地等資訊<br />
                 查詢在居酒屋、超市看到的日本酒<br />
                 得知各項風味量表、建議喝法等情報
               </p>

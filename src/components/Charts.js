@@ -11,9 +11,6 @@ import {
 
 const Chart = ({flavorData}) => {
 
-  console.log(flavorData)
-
-
   const realData = [
     {
       subject: "華麗豐富", // 華やか

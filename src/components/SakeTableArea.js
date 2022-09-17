@@ -4,8 +4,13 @@ import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 // import ItemCard from './ItemCard'
 import ControlledAccordions from './ControlledAccordions'
+import areaIndex from '../data/areaIndex'
 
-const SakeTable = () => {
+const SakeTableArea = ({ clickAreaId, setClickArea }) => {
+
+  const [areaId, setAreaId] = useState('ALL')
+  // console.log('clickAreaId',clickAreaId)
+  console.log('areaId',areaId)
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -21,6 +26,15 @@ const SakeTable = () => {
   // 淺拷貝部分data,取出當前頁面所需資料
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;
+
+  const letNameToId = (idName, idIndexArr) => {
+    const filterIt = idIndexArr.find( item => item.dataId === idName );
+    return filterIt
+  }
+
+  // let filterRes = letNameToId(clickAreaId, areaIndex);
+
+  // console.log('測試轉換FN', filterRes?.id)
 
 
   const init = () => {
@@ -67,6 +81,7 @@ const SakeTable = () => {
             id: element.id,
             name: element.name,
             maker: oneBrewery.name,
+            areaId: oneArea.id,
             area: oneArea.name,
             tags: oneTags?.tagIds,
             chart: [oneChart?.f1, oneChart?.f2, oneChart?.f3, oneChart?.f4, oneChart?.f5, oneChart?.f6]
@@ -74,24 +89,39 @@ const SakeTable = () => {
 
           allData.push(myItem)
         });
-        // console.log(allData)
+        // console.log('allData',allData)
         if (allData) {
-          setSakeList(allData)
-          setLoading(false)
+          // setAreaId(clickAreaId)
+          if (areaId === 'ALL') {
+            setSakeList(allData)
+            setLoading(false)
+          } else {
+            // setClickArea(areaId)
+            let filterArea = allData.filter(item => item.areaId == areaId?.id)
+            console.log('filterArea',filterArea)
+            setSakeList(filterArea)
+            setLoading(false)
+          }
+        } 
+          })
         }
-      })
-  }
-
-  console.log('目前', currentPost)
+        
+        // console.log('目前', currentPost)
 
   const pageHandler = (event, page) => {
-    // console.log(page)
     setCurrentPage(page)
   }
 
   useEffect(() => {
     init();
-  }, [])
+  }, [areaId])
+
+  useEffect(() => {
+    if (clickAreaId !== 'ALL'){
+    let filterRes = letNameToId(clickAreaId, areaIndex)
+    setAreaId(filterRes)
+  }
+  },[clickAreaId])
   return (
     <main className='mb-5'>
       <div className='mb-4'>
@@ -119,4 +149,4 @@ const SakeTable = () => {
   )
 }
 
-export default SakeTable
+export default SakeTableArea

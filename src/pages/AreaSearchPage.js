@@ -1,95 +1,100 @@
-import React from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { tohokuIndex } from '../data/areasIdIndex'
+import SakeTableArea from '../components/SakeTableArea'
 
 
 const AreaSearchPage = () => {
 
+  const [clickArea, setClickArea] = useState('ALL')
 
-
+  ////////////////// MAP ///////////////////////////
   const JapanMap = () => {
-
     const areaHandler = (e) => {
       e.preventDefault()
+      setClickArea(e.target.id)
     }
-
     return (
       <div id="japan-map" className="clearfix">
         <div id="hokkaido-touhoku" className="clearfix">
           <p className="area-title">北海道・東北</p>
           <div className="area">
-            <a href="#" onClick={areaHandler}>
+
+            <a href="!#" onClick={areaHandler} >
               <div id="hokkaido">
-                <p>北海道</p>
+                北海道
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+
+            <a href="!#" onClick={areaHandler}>
               <div id="aomori">
-                <p>青森</p>
+                青森
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="akita">
-                <p>秋田</p>
+                秋田
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="iwate">
-                <p>岩手</p>
+                岩手
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="yamagata">
-                <p>山形</p>
+                山形
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="miyagi">
-                <p>宮城</p>
+                宮城
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="fukushima">
-                <p>福島</p>
+                福島
               </div>
             </a>
+
           </div>
         </div>
 
         <div id="kantou">
           <p className="area-title">関東</p>
           <div className="area">
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="gunma">
-                <p>群馬</p>
+                群馬
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="tochigi">
-                <p>栃木</p>
+                栃木
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="ibaraki">
-                <p>茨城</p>
+                茨城
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="saitama">
-                <p>埼玉</p>
+                埼玉
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="chiba">
-                <p>千葉</p>
+                千葉
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="tokyo">
-                <p>東京</p>
+                東京
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kanagawa">
-                <p>神奈川</p>
+                神奈川
               </div>
             </a>
           </div>
@@ -98,49 +103,49 @@ const AreaSearchPage = () => {
         <div id="tyubu" className="clearfix">
           <p className="area-title">中部</p>
           <div className="area">
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="nigata">
-                <p>新潟</p>
+                新潟
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="toyama">
-                <p>富山</p>
+                富山
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="ishikawa">
-                <p>石川</p>
+                石川
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="fukui">
-                <p>福井</p>
+                福井
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="nagano">
-                <p>長野</p>
+                長野
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="gifu">
-                <p>岐阜</p>
+                岐阜
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="yamanashi">
-                <p>山梨</p>
+                山梨
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="aichi">
-                <p>愛知</p>
+                愛知
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="shizuoka">
-                <p>静岡県</p>
+                静岡
               </div>
             </a>
           </div>
@@ -149,39 +154,39 @@ const AreaSearchPage = () => {
         <div id="kinki" className="clearfix">
           <p className="area-title">近畿</p>
           <div className="area">
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kyoto">
-                <p>京都</p>
+                京都
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="shiga">
-                <p>滋賀</p>
+                滋賀
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="osaka">
-                <p>大阪</p>
+                大阪
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="nara">
-                <p>奈良</p>
+                奈良
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="mie">
-                <p>三重</p>
+                三重
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="wakayama">
-                <p>和歌山</p>
+                和歌山
               </div>
             </a>
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="hyougo">
-                <p>兵庫</p>
+                兵庫
               </div>
             </a>
           </div>
@@ -190,29 +195,29 @@ const AreaSearchPage = () => {
         <div id="tyugoku" className="clearfix">
           <p className="area-title">中国</p>
           <div className="area">
-            <a href="#" onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="tottori">
-                <p>鳥取</p>
+                鳥取
               </div>
             </a>
-            <a href="#"  onClick={areaHandler} >
+            <a href="!#" onClick={areaHandler} >
               <div id="okayama">
-                <p>岡山</p>
+                岡山
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="shimane">
-                <p>島根</p>
+                島根
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="hiroshima">
-                <p>広島</p>
+                広島
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="yamaguchi">
-                <p>山口</p>
+                山口
               </div>
             </a>
           </div>
@@ -221,24 +226,24 @@ const AreaSearchPage = () => {
         <div id="shikoku" className="clearfix">
           <p className="area-title">四国</p>
           <div className="area">
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kagawa">
-                <p>香川</p>
+                香川
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="ehime">
-                <p>愛媛</p>
+                愛媛
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="tokushima">
-                <p>徳島</p>
+                徳島
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kouchi">
-                <p>高地</p>
+                高知
               </div>
             </a>
           </div>
@@ -247,44 +252,44 @@ const AreaSearchPage = () => {
         <div id="kyusyu" className="clearfix">
           <p className="area-title">九州・沖縄</p>
           <div className="area">
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="fukuoka">
-                <p>福岡</p>
+                福岡
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="saga">
-                <p>佐賀</p>
+                佐賀
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="nagasaki">
-                <p>長崎</p>
+                長崎
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="oita">
-                <p>大分</p>
+                大分
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kumamoto">
-                <p>熊本</p>
+                熊本
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="miyazaki">
-                <p>宮崎</p>
+                宮崎
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="kagoshima">
-                <p>鹿児島</p>
+                鹿児島
               </div>
             </a>
-            <a href="#"  onClick={areaHandler}>
+            <a href="!#" onClick={areaHandler}>
               <div id="okinawa">
-                <p>沖縄</p>
+                沖縄
               </div>
             </a>
           </div>
@@ -295,18 +300,19 @@ const AreaSearchPage = () => {
   }
 
 
-
-
-
   return (
-    <>
+    <main>
       <section className='py-3 px-2 px-md-0'>
-        <JapanMap />
+        <JapanMap/>
       </section>
-      <div className='vh-100 px-3 px-md-5 py-3 my-2 container'>
-
+      <div 
+      className='px-3 px-md-3 py-3 my-2 container'>
+       {/* className='d-sm-none d-md-block px-3 px-md-3 py-3 my-2 container'> */}
+        <h3>{clickArea}</h3>
+        <p>請選擇您想探索的城市</p>
+        {clickArea && <SakeTableArea clickAreaId={clickArea} setClickArea={setClickArea} />}
       </div>
-    </>
+    </main>
   )
 }
 

@@ -10,7 +10,7 @@ const MyNavbar = () => {
 
 
   const { token } = useAuth();
-  console.log(token)
+  // console.log(token)
 
 
 
@@ -48,7 +48,7 @@ const MyNavbar = () => {
     <div>
       <nav className='navbar'>
         <div className="d-flex justify-content-between container py-3">
-          <NavLink to="/">
+          <NavLink to="/" onClick={()=>setToggleMenu(false)}>
             <h1 className="text-h1 mb-0">SAKEHOLIC BOOK</h1>
           </NavLink>
           <div className='d-none d-md-flex gap-4'>

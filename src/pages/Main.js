@@ -2,7 +2,6 @@ import React from "react"
 import SakeCardA from "../components/SakeCardA"
 import FeedbackCard from "../components/FeedbackCard"
 import Title from '../components/Title'
-import * as bs from 'react-bootstrap'
 import feedbackData from '../data/feedbackData'
 import Dots from "../components/Dots"
 import sakeCardDefault from "../data/sakeCardDefault"
