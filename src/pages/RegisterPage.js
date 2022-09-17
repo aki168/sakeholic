@@ -11,6 +11,10 @@ import { useAuth } from '../MyContext';
 
 const RegisterPage = () => {
 
+  const defaultMedia = ['A','B','C','D','E','F']
+  const random = (len) => Math.floor(Math.random()*len + 1);
+  let randomMedia = defaultMedia[random(defaultMedia.length)-1]
+
   const [formData, setFormData] = useState({})
   const { token, setToken } = useAuth()
   let navigate = useNavigate()
@@ -136,12 +140,10 @@ const RegisterPage = () => {
             <Link to='/login' className='fw-bold text-primary'>前往登入</Link>
           </div>
         </Card>
-        <div className='site-image py-4 d-none d-md-block col-md-6 col-lg-7 col-xl-8 bg-dark' >
+        <div className='site-image py-2 d-none d-md-block col-md-6 col-lg-7 col-xl-8 my-auto' >
           <video autoPlay loop muted className="img-fluid d-none d-md-block" >
-            <source src={`${process.env.PUBLIC_URL}/media/170111_056_Tokyo_Alleyway2_1080p.mp4`} type="video/mp4" />
+            <source src={`${process.env.PUBLIC_URL}/media/${randomMedia}.mp4`} type="video/mp4" />
           </video>
-          {/* <img src={`${process.env.PUBLIC_URL}/media/google.png`} /> */}
-
         </div>
       </div>
     </section>

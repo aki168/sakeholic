@@ -58,6 +58,9 @@ const UserPage = () => {
 
   return (
     <div className='container'>
+      <p className='text-primary text-end pt-2 px-5'>
+        親愛的{userData.nickname}， 您好！ようこそSAKEHOLIC🍶
+      </p>
       <Title cn="會員中心" jp="アカウント" />
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-lg-3 d-flex flex-column
@@ -81,7 +84,6 @@ const UserPage = () => {
           </Button>
         </div>
         <div className='col-12 col-md-5 col-lg-3 d-flex flex-column align-items-center'>
-          <small className='text-primary'>親愛的{userData.nickname}， 您好！<br />ようこそSAKEHOLIC🍶</small>
           <p className='text-muted my-2'>sakurai@mail.com</p>
           <h5>{userData.nickname}</h5>
           <p>1982 / 1 / 25</p>

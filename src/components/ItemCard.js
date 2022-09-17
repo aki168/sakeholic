@@ -20,7 +20,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   let randomImgA = defaultImgA[random(defaultImgA.length)-1]
   let randomImgB = defaultImgB[random(defaultImgB.length)-1]
 
-  const [ like, setLike ] = React.useState( {isLike} ) 
+  const [ like, setLike ] = React.useState( isLike ) 
   const [ highlight, setHighlight ] = React.useState(false) 
 
 

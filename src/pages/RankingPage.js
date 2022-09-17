@@ -6,8 +6,11 @@ import { Pagination, CircularProgress } from '@mui/material'
 
 
 const RankingPage = () => {
-
-
+  
+  const defaultImg = ['w001','w002','w005','w007']
+  const random = (len) => Math.floor(Math.random()*len + 1);
+  let randomImg = defaultImg[random(defaultImg.length)-1]
+  
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
   // 設定：目前要渲染哪一頁
@@ -103,46 +106,55 @@ const RankingPage = () => {
   }, [])
 
 
-
-
   return (
-    <div className='container'>
-      <Title cn="日本酒排名 " jp="日本酒ランキング" />
-
-      <main className='mb-5'>
-        <p className='text-end'>日本酒ランキング 2022年夏季</p>
-        <div className='mb-4'>
-          {
-            loading ?
-              <div className='vh-100'>
-                <CircularProgress
-                  size="64px"
-                  color="error"
-                  className='d-block mx-auto'
-                />
-              </div>
-              : (
-                <>
-                  <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
-                    <p className='col-4 text-center my-2'>排名</p>
-                    <p className='col-4 text-center my-2'>酒款名稱</p>
-                    <p className='col-4 text-center my-2'>評級</p>
-                  </div>
-                  <ControlledAccordionsRank currentPost={currentPost} />
-                </>
-              )
-          }
+    <>
+      <div className='container'>
+        <Title cn="日本酒排名 " jp="日本酒ランキング" />
+      </div>
+      <div
+        style={{
+          height: "350px",
+          backgroundImage: `url("${process.env.PUBLIC_URL}/media/${randomImg}.jpg")`,
+          backgroundPosition: 'center center',
+          backgroundSize: 'cover',
+        }}
+      >
+      </div>
+      <main className='container'>
+        <div className='mb-5 mt-3'>
+          <p className='text-end'>日本酒ランキング 2022年夏季</p>
+          <div className='mb-4'>
+            {
+              loading ?
+                <div className='vh-100'>
+                  <CircularProgress
+                    size="64px"
+                    color="error"
+                    className='d-block mx-auto'
+                  />
+                </div>
+                : (
+                  <>
+                    <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
+                      <p className='col-4 text-center my-2'>排名</p>
+                      <p className='col-4 text-center my-2'>酒款名稱</p>
+                      <p className='col-4 text-center my-2'>評級</p>
+                    </div>
+                    <ControlledAccordionsRank currentPost={currentPost} />
+                  </>
+                )
+            }
+          </div>
+          <Pagination
+            size="small"
+            className='d-flex justify-content-end'
+            count={Math.floor(totalItems / perPage)}
+            shape="rounded"
+            onChange={pageHandler}
+            showLastButton />
         </div>
-        <Pagination
-          size="small"
-          className='d-flex justify-content-end'
-          count={Math.floor(totalItems / perPage)}
-          shape="rounded"
-          onChange={pageHandler}
-          showLastButton />
       </main>
-
-    </div>
+    </>
   )
 }
 

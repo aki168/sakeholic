@@ -11,13 +11,13 @@ import { useAuth } from '../MyContext'
 
 const LoginPage = () => {
 
-  
-  const defaultMedia = ['A','B','C','D','E','F']
-  const random = (len) => Math.floor(Math.random()*len + 1);
-  let randomMedia = defaultMedia[random(defaultMedia.length)-1]
+
+  const defaultMedia = ['A', 'B', 'C', 'D', 'E', 'F']
+  const random = (len) => Math.floor(Math.random() * len + 1);
+  let randomMedia = defaultMedia[random(defaultMedia.length) - 1]
 
   const [formData, setFormData] = useState({})
-  const {setToken, setUserData} = useAuth()
+  const { setToken, setUserData } = useAuth()
   let navigate = useNavigate()
   const MySwal = withReactContent(Swal)
 
@@ -29,7 +29,7 @@ const LoginPage = () => {
 
   const Toast = Swal.mixin({
     showConfirmButton: false,
-    timer:3000,
+    timer: 3000,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -43,7 +43,7 @@ const LoginPage = () => {
     axios.post(url, postObj).then(res => {
       console.log(res)
 
-      if(res.data.message === '登入成功'){
+      if (res.data.message === '登入成功') {
         Toast.fire({
           icon: 'success',
           title: '登入成功',
@@ -112,7 +112,7 @@ const LoginPage = () => {
                   name="password"
                   placeholder="請輸入密碼"
                   {...register("password", {
-                    required: { value: true, min:6, message: "請輸入至少六碼的密碼" },
+                    required: { value: true, min: 6, message: "請輸入至少六碼的密碼" },
                     // pattern: { value:/^\w{6,}$/, message:"密碼至少為6碼" }
                   })}
                 />
@@ -137,7 +137,6 @@ const LoginPage = () => {
           <video autoPlay loop muted className="img-fluid d-none d-md-block" >
             <source src={`${process.env.PUBLIC_URL}/media/${randomMedia}.mp4`} type="video/mp4" />
           </video>
-          {/* <img src={`${process.env.PUBLIC_URL}/media/google.png`} /> */}
         </div>
       </div>
     </section>

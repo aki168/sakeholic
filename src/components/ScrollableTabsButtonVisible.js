@@ -23,6 +23,8 @@ export default function ScrollableTabsButtonVisible({currentData}) {
       <Badge className='mt-2 fw-light' bg="info"># 風味標籤 tags </Badge>
       {currentData[0] && (
       <Tabs
+        textColor="inherit"
+        indicatorColor="secondary"
         value={value}
         onChange={handleChange}
         variant="scrollable"

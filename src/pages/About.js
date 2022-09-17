@@ -126,15 +126,17 @@ const About = () => {
 
           <div className="row justify-content-between">
 
-            <div className="col-12 col-md-6 py-5 px-4 mb-5 bg-light">
+            <div className="col-12 col-md-6 py-5 px-4 mb-5 bg-light lh-base">
               <h3 className='fw-bold text-primary mb-2'>製作初衷</h3>
-              <p className='mb-5'>
+              <p className='mb-4'>
                 「小酌圖鑑」日本酒檢索網站<br />
-                針對喜歡日本酒，但總感中文資訊匱乏的人<br />
+                供喜歡日本酒，卻總感中文資訊匱乏的人<br />
                 <br />
-                瀏覽酒廠、酒名、產地等資訊<br />
+                能瀏覽酒廠、酒名、產地等資訊<br />
                 查詢在居酒屋、超市看到的日本酒<br />
-                得知各項風味量表、建議喝法等情報
+                得知各項風味量表、建議喝法等情報<br />
+                <br />
+                自身也需要這樣的服務，因此投入製作💻
               </p>
               <h3 className='fw-bold text-primary mb-2'>特別感謝</h3>
               <ul>
@@ -165,7 +167,7 @@ const About = () => {
               </ul>
             </div>
 
-            <div className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center">
+            <div className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center lh-base">
               <h3 className='fw-bold mb-2'>版權聲明</h3>
               <div className='rounded-circle my-2'
                 style={{

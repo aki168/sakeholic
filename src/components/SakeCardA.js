@@ -30,7 +30,7 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }
           </bs.Modal.Title>
         </bs.Modal.Header>
         <bs.Modal.Body className='p-0'>
-          <ItemCard area={area} chart={chart} id={id} maker={maker} name={name} tags={tags}/>
+          <ItemCard area={area} chart={chart} id={id} maker={maker} name={name} tags={tags} isLike={isLike}/>
         </bs.Modal.Body>
       </bs.Modal>
 
