@@ -36,7 +36,7 @@ export default function ControlledAccordionsRank({ currentPost }) {
             </p>
             <p style={{ width: '30%', color: 'text.secondary', textAlign:"center", fontSize:"14px"  }}>
               <Rating name="read-only" value={item.score} precision={0.5} size="small" readOnly />
-              <br/>{numeral(item.score).format('0.00000')} 星 / 5 星
+              <br/>{numeral(item.score).format('0.00')} / 5 星
             </p>
           </AccordionSummary>
           <AccordionDetails className='p-0'>
