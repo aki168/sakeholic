@@ -1,35 +1,37 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea, Stack, Chip } from '@mui/material';
+import { CardActionArea } from '@mui/material';
 import * as Icon from 'react-bootstrap-icons'
 import Chart from './Charts';
 import tagsIndex from '../data/tagsIndex';
-import { useEffect } from 'react';
 import ScrollableTabsButtonVisible from './ScrollableTabsButtonVisible';
 
 
-const ItemCard = ({ area, chart, id, maker, name, tags }) => {
+const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
 
-  let pic1 = 'https://cdn.shopify.com/s/files/1/0569/6389/1253/collections/sakecup-001_900x.png';
-  let pic2 = 'https://www.snowmonkeyresorts.com/wp-content/uploads/2021/11/japan-sake-banner-edit-1.jpg';
+  const AHandler = (e) => {
+    e.preventDefault()
+  }
 
-  const [ like, setLike ] = React.useState( false ) 
-  const [ highlight, setHighlight ] = React.useState( false ) 
+  const defaultImgA = ['005','006','007','008','009','010']
+  const defaultImgB = ['find1','find2','find3','find4','find5','find6','find7','find8','find9']
+  const random = (len) => Math.floor(Math.random()*len + 1);
+  let randomImgA = defaultImgA[random(defaultImgA.length)-1]
+  let randomImgB = defaultImgB[random(defaultImgB.length)-1]
+
+  const [ like, setLike ] = React.useState( {isLike} ) 
+  const [ highlight, setHighlight ] = React.useState(false) 
 
 
   let tagsToText = (numArr, refArr) => {
-
     if (numArr) {
       return (refArr.filter(item => (
         numArr.indexOf(item.id) > -1
       )))
     }
-
   }
-  // console.log(tags);
+
 
   return (
     <Card className="bg-light p-3" style={{position:"relative"}}>
@@ -72,11 +74,11 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
             <ScrollableTabsButtonVisible currentData={tagsToText(tags, tagsIndex)} />
           }
           <div className='flex my-2 justify-content-between'>
-            <img src={pic1}
+            <img src={`${process.env.PUBLIC_URL}/media/${randomImgA}.jpg`}
               alt="sake"
               className="rounded w-50 p-1 img-fluid"
             />
-            <img src={pic2}
+            <img src={`${process.env.PUBLIC_URL}/media/${randomImgB}.jpg`}
               alt="sake"
               className="rounded w-50 p-1 img-fluid"
             />
@@ -92,7 +94,10 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
         </div>
         {/* <Typography> */}
           <p className='fw-bold'>你可能會喜歡...</p>
-          <div className='py-2 px-4 border rounded'>
+          <a onClick={AHandler} 
+            href="!#" 
+            className='py-2 px-4 border rounded'
+            >
             <span className='text-info fw-bold' style={{ fontSize: "12px" }}>
               おいまつ
             </span>
@@ -119,7 +124,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
                 </p>
               </div>
             </div>
-          </div>
+          </a>
         {/* </Typography> */}
       </CardContent>
       {/* </CardActionArea> */}

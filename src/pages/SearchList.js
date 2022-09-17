@@ -1,7 +1,7 @@
 import { InputGroup, Form, Button } from 'react-bootstrap'
 import SakeTable from '../components/SakeTable';
 import * as Icon from 'react-bootstrap-icons';
-import Title from '../components/Title'
+import { Title } from '../components/Title'
 
 const SearchList = () => {
 

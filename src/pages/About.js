@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Title from '../components/Title'
+import {Title} from '../components/Title'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';
@@ -174,12 +174,6 @@ const About = () => {
                   backgroundSize: "cover",
                   width: "120px",
                   height: "120px",
-                  // position: "absolute",
-                  // top: "0",
-                  // button: "0",
-                  left: "50%",
-                  // transform: 'translate(-50%, 0%)',
-                  // zIndex: "1"
                 }}>
               </div>
               <p className='fw-lighter'>

@@ -4,7 +4,6 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import * as Icon from 'react-bootstrap-icons'
 import { useAuth } from '../MyContext';
-import { useEffect } from 'react';
 
 const MyNavbar = () => {
 

@@ -1,8 +1,7 @@
 import React from 'react'
 
-const FeedbackCard = ({icon,name,info,text}) => {
+const FeedbackCard = ({ icon, name, info, text }) => {
 
-  const imgPath = 'https://raw.githubusercontent.com/aki168/sakeholic/main/public/media/';
 
   return (
     <div className='col-md-5 mb-5'

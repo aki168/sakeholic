@@ -2,7 +2,6 @@ import { useState } from 'react'
 import * as bs from 'react-bootstrap'
 import * as Icon from 'react-bootstrap-icons'
 import ItemCard from '../components/ItemCard'
-import sakeCardDefault from '../data/sakeCardDefault'
 
 const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }) => {
 
@@ -15,27 +14,6 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }
     setShow(prev => !prev)
     
   }
-
-  // const Modal = () => {
-
-  //   return (
-  //     <bs.Modal
-  //       show={show}
-  //       onHide={() => setShow(false)}
-  //       dialogClassName="modal-90w"
-  //       aria-labelledby="example-custom-modal-styling-title"
-  //     >
-  //       <bs.Modal.Header closeButton>
-  //         <bs.Modal.Title id="example-custom-modal-styling-title">
-  //           Custom Modal Styling
-  //         </bs.Modal.Title>
-  //       </bs.Modal.Header>
-  //       <bs.Modal.Body closeButton>
-  //         <ItemCard />
-  //       </bs.Modal.Body>
-  //     </bs.Modal>
-  //   )
-  // }
 
   return (
     <>
@@ -58,7 +36,7 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }
 
       <a href="!#" onClick={AHandler}
         className="rounded col-11 col-md-5 col-lg-4 mx-3 my-4 p-0 shadow-sm bg-opacity">
-        <bs.Card className='border-light'>
+        <bs.Card className='border-light rounded'>
           <bs.Card.Header className='p-0 border-0'
             style={{
               height: '370px',

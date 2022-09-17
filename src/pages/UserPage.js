@@ -1,11 +1,13 @@
 import React from 'react'
 import { useAuth } from '../MyContext'
-import Title from '../components/Title'
+import { Title, TitleReverse } from '../components/Title'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
+import sakeCardDefault from '../data/sakeCardDefault'
+import ControlledAccordionsUser from '../components/ControlledAccordionsUser'
 
 const UserPage = () => {
 
@@ -55,17 +57,41 @@ const UserPage = () => {
   }
 
   return (
-    <div className='container vh-100'>
+    <div className='container'>
       <Title cn="會員中心" jp="アカウント" />
-      <p className='text-primary'>UserPage: hi {userData.nickname}</p>
-      <div className='d-flex flex-column'>
-        <Button
-          variant="outline-dark" style={{ width: "100px" }}
-          className='align-self-end'
-          onClick={logout}
-        >
-          <span className='pe-1'>登出</span>
-        </Button>
+      <div className='row justify-content-center'>
+        <div className='col-12 col-md-5 col-lg-3 d-flex flex-column
+        mb-3  align-items-center'>
+          <div className='rounded-circle my-4'
+            style={{
+              backgroundImage: `URL("${process.env.PUBLIC_URL}/media/user001.jpg")`,
+              backgroundPosition: "center",
+              backgroundSize: "cover",
+              width: "120px",
+              height: "120px",
+            }}>
+          </div>
+          <Button
+            variant="outline-dark"
+            size='sm'
+            className='justify-content-center ms-2'
+            onClick={logout}
+          >
+            <span className='py-1'>登出</span>
+          </Button>
+        </div>
+        <div className='col-12 col-md-5 col-lg-3 d-flex flex-column align-items-center'>
+          <small className='text-primary'>親愛的{userData.nickname}， 您好！<br />ようこそSAKEHOLIC🍶</small>
+          <p className='text-muted my-2'>sakurai@mail.com</p>
+          <h5>{userData.nickname}</h5>
+          <p>1982 / 1 / 25</p>
+          <p>0900-555-888</p>
+        </div>
+      </div>
+
+      <TitleReverse cn="我的收藏" jp="お気に入り" />
+      <div className='mt-3 mb-5 d-flex justify-content-center'>
+          <ControlledAccordionsUser sakeCardDefault={sakeCardDefault} />
       </div>
 
     </div>

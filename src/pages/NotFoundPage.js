@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Container, Typography } from '@mui/material'
 import { Button } from 'react-bootstrap';
 import Grid from '@mui/material/Grid'
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const NotFoundPage = () => {
 

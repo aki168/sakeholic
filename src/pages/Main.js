@@ -1,7 +1,7 @@
 import React from "react"
 import SakeCardA from "../components/SakeCardA"
 import FeedbackCard from "../components/FeedbackCard"
-import Title from '../components/Title'
+import { Title } from '../components/Title'
 import feedbackData from '../data/feedbackData'
 import Dots from "../components/Dots"
 import sakeCardDefault from "../data/sakeCardDefault"
@@ -34,16 +34,12 @@ export default function Main() {
           className="row mx-0 flex-md-nowrap 
           mb-1
         ">
-          {feedbackData.map( (item,i)=> (
-            <FeedbackCard key={i} {...item}/>
+          {feedbackData.map((item, i) => (
+            <FeedbackCard key={i} {...item} />
           ))}
         </div>
-        <Dots/>
+        <Dots />
       </section>
-
-
-
     </main>
   )
-
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   HashRouter,
   NavLink,
@@ -9,10 +9,6 @@ import {
   Outlet,
   Navigate
 } from 'react-router-dom';
-// import 'antd/dist/antd.css';
-// import * as antd from 'antd';
-import * as Icon from 'react-bootstrap-icons'
-import * as bs from 'react-bootstrap'
 import MyNavbar from './components/MyNavbar';
 import Main from './pages/Main'
 import About from './pages/About'

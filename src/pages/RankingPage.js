@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import Title from '../components/Title'
+import { Title } from '../components/Title'
 import ControlledAccordionsRank from '../components/ControlledAccordionsRank'
 import { Pagination, CircularProgress } from '@mui/material'
 
@@ -38,7 +38,6 @@ const RankingPage = () => {
 
         // 1 酒名搜尋
         const itemsData = await responseArr[0].data.brands;
-        // let oneItem = await itemsData.filter(item => item.id === 1 )[0];
         // console.log('oneItem:',oneItem)
 
         // 2 找酒廠
@@ -80,30 +79,25 @@ const RankingPage = () => {
             rank: oneRank?.rank,
             score: oneRank?.score
           }
-
           // console.log('rankData',rankData)
-
           allData.push(myItem)
         });
-        console.log('allData',allData)
+        console.log('allData', allData)
         if (allData) {
-          let currentData = 
-          allData.filter( item => item.rank !== undefined )
-          .sort((x, y) => x.rank > y.rank ? 1:-1)
+          let currentData =
+            allData.filter(item => item.rank !== undefined)
+              .sort((x, y) => x.rank > y.rank ? 1 : -1)
 
-          console.log('currentData',currentData)
+          console.log('currentData', currentData)
           setSakeList(currentData)
           setLoading(false)
         }
       })
   }
-
-  console.log('目前', currentPost)
-
+  // console.log('目前', currentPost)
   const pageHandler = (event, page) => {
     setCurrentPage(page)
   }
-
   useEffect(() => {
     init();
   }, [])

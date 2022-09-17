@@ -1,7 +1,6 @@
-import { useEffect, useState, useRef } from 'react'
-import { tohokuIndex } from '../data/areasIdIndex'
+import { useState } from 'react'
 import SakeTableArea from '../components/SakeTableArea'
-import Title from '../components/Title'
+import { Title } from '../components/Title'
 
 
 const AreaSearchPage = () => {
