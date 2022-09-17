@@ -5,8 +5,10 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ItemCard from './ItemCard';
+import Rating from '@mui/material/Rating';
+import numeral from 'numeral'
 
-export default function ControlledAccordions({ currentPost }) {
+export default function ControlledAccordionsRank({ currentPost }) {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleChange = (panel) => (event, isExpanded) => {
@@ -27,14 +29,15 @@ export default function ControlledAccordions({ currentPost }) {
             aria-controls={`${item.id}bh-content`}
             id={`${item.id}bh-header`}
           >
-            <p style={{ width: '30%', flexShrink: 0, color: "darkred", textAlign:"center" }}>
+            <p style={{ width: '30%', flexShrink: 0, color: "text.secondary", textAlign:"center"}}>
+              {item.rank}
+            </p>
+            <p style={{ width: '40%', color: 'darkred', textAlign:"center"  }}>
               {item.name}
             </p>
-            <p style={{ width: '40%', color: 'text.secondary', fontSize: '14px', textAlign:"center" }}>
-              {item.maker? item.maker : <small className='text-info'>暫無資料</small>}
-            </p>
-            <p style={{ width: '30%', color: 'text.secondary', textAlign:"center" }}>
-              {item.area}
+            <p style={{ width: '30%', color: 'text.secondary', textAlign:"center", fontSize:"14px"  }}>
+              <Rating name="read-only" value={item.score} precision={0.5} readOnly />
+              <br/>{numeral(item.score).format('0.00000')} 星 / 5 星
             </p>
           </AccordionSummary>
           <AccordionDetails className='p-0'>

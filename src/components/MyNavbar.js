@@ -25,10 +25,10 @@ const MyNavbar = () => {
       name: "關於小酌",
       path: "/about"
     },
-    {
-      name: "探索🍶",
-      path: "/finding"
-    },
+    // {
+    //   name: "探索🍶",
+    //   path: "/finding"
+    // },
     {
       name: "產地查詢",
       path: "/areaSearch"

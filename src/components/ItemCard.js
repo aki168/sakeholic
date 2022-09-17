@@ -32,7 +32,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
   // console.log(tags);
 
   return (
-    <Card className="bg-light p-3 my-3" style={{position:"relative"}}>
+    <Card className="bg-light p-3" style={{position:"relative"}}>
       <button
         onMouseOver={() => setHighlight(prev => !prev)}
         onClick={() => setLike(prev => !prev)}

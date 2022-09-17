@@ -1,12 +1,13 @@
 import { InputGroup, Form, Button } from 'react-bootstrap'
 import SakeTable from '../components/SakeTable';
 import * as Icon from 'react-bootstrap-icons';
+import Title from '../components/Title'
 
 const SearchList = () => {
 
   return (
-    <div className='container px-3 px-md-5 py-3 my-2'>
-      <h4 className='text-primary'>酒品總覽</h4>
+    <div className='container px-3 px-md-5 pb-3 my-2'>
+      <Title cn="酒品總覽 " jp="日本酒を探す"/>
       <InputGroup size="lg" className='py-3 border-primary'>
         <Form.Control
           className='border-primary'

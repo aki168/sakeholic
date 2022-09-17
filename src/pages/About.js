@@ -13,11 +13,11 @@ const About = () => {
 
   const MySwal = withReactContent(Swal)
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
-    defaultValue:{}
+    defaultValue: {}
   });
   const onError = (errors, e) => console.log(errors, e);
   const [formData, setFormData] = useState({})
-  
+
   const Toast = Swal.mixin({
     toast: true,
     position: 'top-end',
@@ -42,7 +42,7 @@ const About = () => {
   };
   return (
     <>
-      <div className='container py-5' style={{ maxWidth: "800px" }}>
+      <div className='container pb-3' style={{ maxWidth: "800px" }}>
         <Title cn="聯絡我們" jp="お問い合わせ" />
         {/* 聯絡表單 */}
         <Form className='d-flex flex-column ps-5 mb-5' onSubmit={handleSubmit(onSubmit, onError)}>
@@ -160,15 +160,30 @@ const About = () => {
                 </li>
                 <li>
                   <Icon.BrightnessLowFill size={20} className="me-2" />
-                  hex school 校長
+                  hex school 洧杰校長
                 </li>
               </ul>
             </div>
 
             <div className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center">
               <h3 className='fw-bold mb-2'>版權聲明</h3>
+              <div className='rounded-circle my-2'
+                style={{
+                  backgroundImage: `URL("${process.env.PUBLIC_URL}/media/aki-icon.jpg")`,
+                  backgroundPosition: "center",
+                  backgroundSize: "cover",
+                  width: "120px",
+                  height: "120px",
+                  // position: "absolute",
+                  // top: "0",
+                  // button: "0",
+                  left: "50%",
+                  // transform: 'translate(-50%, 0%)',
+                  // zIndex: "1"
+                }}>
+              </div>
               <p className='fw-lighter'>
-                由AKI CHENG製作及維護<br />
+                由AKI CHENG製作之個人作品<br />
                 若有相關聯繫或商業合作意願<br />
                 歡迎填寫站內聯絡表單<br />
                 <br />
@@ -180,11 +195,11 @@ const About = () => {
                   </li>
                   <li className='mb-2'>
                     <Icon.Telegram size={20} className="me-2" />
-                    telegram：ahsiaki
+                    telegram：@ahsiaki
                   </li>
                   <li className='mb-2'>
-                    <Icon.Line size={20} className="me-2" />
-                    LINE：sakeholic
+                    <Icon.Discord size={20} className="me-2" />
+                    Discord：bakiii #2652
                   </li>
                 </ul>
               </p>

@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import { tohokuIndex } from '../data/areasIdIndex'
 import SakeTableArea from '../components/SakeTableArea'
+import Title from '../components/Title'
 
 
 const AreaSearchPage = () => {
@@ -302,6 +303,7 @@ const AreaSearchPage = () => {
 
   return (
     <main>
+      <Title cn="產地查詢 " jp="地域別 厳選された日本酒"/>
       <section className='py-3 px-2 px-md-0'>
         <JapanMap/>
       </section>

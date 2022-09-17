@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-// import { Card, Table } from 'react-bootstrap'
 import { Pagination, CircularProgress } from '@mui/material'
-// import ItemCard from './ItemCard'
 import ControlledAccordions from './ControlledAccordions'
 import areaIndex from '../data/areaIndex'
 
@@ -10,7 +8,7 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const [areaId, setAreaId] = useState('ALL')
   // console.log('clickAreaId',clickAreaId)
-  console.log('areaId',areaId)
+  console.log('areaId', areaId)
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -28,14 +26,12 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   const totalItems = sakeList.length;
 
   const letNameToId = (idName, idIndexArr) => {
-    const filterIt = idIndexArr.find( item => item.dataId === idName );
+    const filterIt = idIndexArr.find(item => item.dataId === idName);
     return filterIt
   }
 
   // let filterRes = letNameToId(clickAreaId, areaIndex);
-
   // console.log('測試轉換FN', filterRes?.id)
-
 
   const init = () => {
     // execute simultaneous requests -------------------------------------------------------------------------------------
@@ -98,15 +94,15 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
           } else {
             // setClickArea(areaId)
             let filterArea = allData.filter(item => item.areaId == areaId?.id)
-            console.log('filterArea',filterArea)
+            console.log('filterArea', filterArea)
             setSakeList(filterArea)
             setLoading(false)
           }
-        } 
-          })
         }
-        
-        // console.log('目前', currentPost)
+      })
+  }
+
+  // console.log('目前', currentPost)
 
   const pageHandler = (event, page) => {
     setCurrentPage(page)
@@ -117,11 +113,11 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   }, [areaId])
 
   useEffect(() => {
-    if (clickAreaId !== 'ALL'){
-    let filterRes = letNameToId(clickAreaId, areaIndex)
-    setAreaId(filterRes)
-  }
-  },[clickAreaId])
+    if (clickAreaId !== 'ALL') {
+      let filterRes = letNameToId(clickAreaId, areaIndex)
+      setAreaId(filterRes)
+    }
+  }, [clickAreaId])
   return (
     <main className='mb-5'>
       <div className='mb-4'>
@@ -134,14 +130,20 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
                 className='d-block mx-auto'
               />
             </div>
-            :
-            (<ControlledAccordions currentPost={currentPost} />)
+            : (<>
+              <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
+                <p className='col-4 text-center my-2'>酒款名稱</p>
+                <p className='col-4 text-center my-2'>酒藏名稱</p>
+                <p className='col-4 text-center my-2'>地區</p>
+              </div>
+              <ControlledAccordions currentPost={currentPost} />
+            </>)
         }
       </div>
       <Pagination
         size="small"
         className='d-flex justify-content-end'
-        count={Math.floor(totalItems / perPage) + 1}
+        count={Math.floor(totalItems / perPage)}
         shape="rounded"
         onChange={pageHandler}
         showLastButton />

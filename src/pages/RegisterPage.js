@@ -48,7 +48,7 @@ const RegisterPage = () => {
         setFormData(data)
         reset()
         // setToken(res.headers.authorization)
-        navigate('/Login')
+        navigate('/')
       }
 
     }).catch(err => {
@@ -118,7 +118,6 @@ const RegisterPage = () => {
                   placeholder="請輸入密碼"
                   {...register("password", {
                     required: { value: true, min: 6, message: "請輸入至少六碼的密碼" },
-                    // pattern: { value: /^\{6,}$/, message: "密碼至少六碼" }
                   })}
                 />
                 <Form.Text className="text-danger">
@@ -127,25 +126,6 @@ const RegisterPage = () => {
                 <label htmlFor="floatingInputCustom">輸入密碼</label>
               </Form.Floating>
             </Form.Group>
-            {/* -------------- */}
-            {/* <Form.Group className="mb-4" controlId="formBasicTitle" >
-              <Form.Floating>
-                <Form.Control
-                  type="password"
-                  name="passwordRepeat"
-                  placeholder="請再次輸入設定密碼"
-                  {...register("passwordRepeat", {
-                    required: { value: true, min: 6, message: "請輸入至少六碼的密碼" },
-                    // pattern: { value: /^\{6,}$/, message: "密碼至少六碼" }
-                  })}
-                />
-                <Form.Text className="text-danger">
-                  {errors.passwordRepeat?.message}
-                </Form.Text>
-                <label htmlFor="floatingInputCustom">請再次輸入密碼</label>
-              </Form.Floating>
-            </Form.Group> */}
-            {/* -------------- */}
             <Button variant="primary mt-5" type="submit" >
               <span className='pe-1 h3'>Register</span>
             </Button>

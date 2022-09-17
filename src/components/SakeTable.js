@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-// import { Card, Table } from 'react-bootstrap'
 import { Pagination, CircularProgress } from '@mui/material'
-// import ItemCard from './ItemCard'
 import ControlledAccordions from './ControlledAccordions'
 
 const SakeTable = () => {
@@ -85,7 +83,6 @@ const SakeTable = () => {
   console.log('目前', currentPost)
 
   const pageHandler = (event, page) => {
-    // console.log(page)
     setCurrentPage(page)
   }
 
@@ -104,8 +101,16 @@ const SakeTable = () => {
                 className='d-block mx-auto'
               />
             </div>
-            :
-            (<ControlledAccordions currentPost={currentPost} />)
+            : (
+              <>
+                <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
+                  <p className='col-4 text-center my-2'>酒款名稱</p>
+                  <p className='col-4 text-center my-2'>酒藏名稱</p>
+                  <p className='col-4 text-center my-2'>地區</p>
+                </div>
+                <ControlledAccordions currentPost={currentPost} />
+              </>
+            )
         }
       </div>
       <Pagination
