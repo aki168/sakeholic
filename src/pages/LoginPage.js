@@ -12,7 +12,7 @@ import { useAuth } from '../MyContext'
 const LoginPage = () => {
 
 
-  const defaultMedia = ['A', 'B', 'C', 'D', 'E', 'F']
+  const defaultMedia = ['A', 'B', 'C', 'E', 'F']
   const random = (len) => Math.floor(Math.random() * len + 1);
   let randomMedia = defaultMedia[random(defaultMedia.length) - 1]
 
