@@ -80,7 +80,7 @@ const SakeTable = () => {
       })
   }
 
-  console.log('目前', currentPost)
+  // console.log('目前', currentPost)
 
   const pageHandler = (event, page) => {
     setCurrentPage(page)

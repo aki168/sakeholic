@@ -85,13 +85,13 @@ const RankingPage = () => {
           // console.log('rankData',rankData)
           allData.push(myItem)
         });
-        console.log('allData', allData)
+        // console.log('allData', allData)
         if (allData) {
           let currentData =
             allData.filter(item => item.rank !== undefined)
               .sort((x, y) => x.rank > y.rank ? 1 : -1)
 
-          console.log('currentData', currentData)
+          // console.log('currentData', currentData)
           setSakeList(currentData)
           setLoading(false)
         }

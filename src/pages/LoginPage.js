@@ -63,7 +63,7 @@ const LoginPage = () => {
       })
     })
   }
-  console.log(formData)
+  // console.log(formData)
 
 
   return (

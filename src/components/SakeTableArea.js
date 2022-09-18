@@ -8,7 +8,7 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const [areaId, setAreaId] = useState('ALL')
   // console.log('clickAreaId',clickAreaId)
-  console.log('areaId', areaId)
+  // console.log('areaId', areaId)
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
