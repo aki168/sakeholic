@@ -124,7 +124,9 @@ const About = () => {
         {/* 關於小酌 */}
         <section className='container py-5'>
 
-          <div className="row justify-content-between">
+          <div className="row justify-content-between"
+          data-aos="fade-right"
+          >
 
             <div className="col-12 col-md-6 py-5 px-4 mb-5 bg-light lh-base">
               <h3 className='fw-bold text-primary mb-2'>製作初衷</h3>
@@ -167,7 +169,10 @@ const About = () => {
               </ul>
             </div>
 
-            <div className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center lh-base">
+            <div 
+              className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center lh-base"
+              data-aos="fade-left"
+              >
               <h3 className='fw-bold mb-2'>版權聲明</h3>
               <div className='rounded-circle my-2'
                 style={{

@@ -4,7 +4,10 @@ const FeedbackCard = ({ icon, name, info, text }) => {
 
 
   return (
-    <div className='col-md-5 mb-5'
+    <div 
+      className='col-md-5 mb-5'         
+      data-aos="fade-up"
+      data-aos-easing="ease-in-sine"
       style={{ position: "relative", minHeight: "360px" }}>
       <div className='rounded-circle'
         style={{

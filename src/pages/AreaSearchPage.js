@@ -303,7 +303,7 @@ const AreaSearchPage = () => {
   return (
     <main>
       <Title cn="產地查詢 " jp="地域別 厳選された日本酒"/>
-      <section className='py-3 px-2 px-md-0'>
+      <section className='py-3 px-2 px-md-0'  data-aos="zoom-out-down">
         <JapanMap/>
       </section>
       <div 

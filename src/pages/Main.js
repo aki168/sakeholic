@@ -10,6 +10,9 @@ export default function Main() {
 
   const data = sakeCardDefault;
 
+  const aosEffectForCard = ['right','left','right','left',]
+  //zoom-in-left
+
   return (
     <main>
       <div className="hero">
@@ -24,7 +27,11 @@ export default function Main() {
       <section className="container py-5">
         <Title cn="日本酒探索" jp="お気に入りが見つかる" />
         <div className="row justify-content-md-around">
-          {data.map((item, i) => <SakeCardA key={i} {...item} />)}
+          {data.map((item, i) => (
+          <div data-aos={`zoom-in-${aosEffectForCard[i]}`} className='col-11 col-md-5 col-lg-4 mx-3 my-4 p-0' >
+            <SakeCardA  key={i} {...item} />
+          </div>)
+          )}
         </div>
       </section>
 

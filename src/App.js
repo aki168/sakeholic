@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos'
 import {
   HashRouter,
   NavLink,
@@ -47,6 +48,12 @@ export default function App() {
   const [token, setToken] = useState(null)
   const [userData, setUserData] = useState({})
   // console.log('userData',userData)
+
+  useEffect(() => {
+    AOS.init({
+      duration : 2000
+    });
+  }, [])
 
 
   return (

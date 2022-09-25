@@ -35,7 +35,7 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }
       </bs.Modal>
 
       <a href="!#" onClick={AHandler}
-        className="rounded col-11 col-md-5 col-lg-4 mx-3 my-4 p-0 shadow-sm bg-opacity">
+        className="rounded shadow-sm bg-opacity">
         <bs.Card className='border-light rounded'>
           <bs.Card.Header className='p-0 border-0'
             style={{
