@@ -46,7 +46,7 @@ const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, curr
         <Pagination
         size="small"
         className='d-flex justify-content-end'
-        count={Math.floor(totalItems / perPage)}
+        count={Math.floor(totalItems / perPage) === 0 ? 1 : Math.floor(totalItems / perPage) }
         shape="rounded"
         onChange={pageHandler}
         currentpage={currentpage}
