@@ -3,25 +3,26 @@ import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 import ControlledAccordions from './ControlledAccordions'
 
-const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, currentPage}) => {
+const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, currentpage}) => {
 
-  const PaginationWrap = ({currentPage}) => {
-    return(
-      <Pagination
-        size="small"
-        className='d-flex justify-content-end'
-        count={Math.floor(totalItems / perPage) + 1}
-        shape="rounded"
-        onChange={pageHandler}
-        currentPage={currentPage}
-        showLastButton />
-    )
-  }
+  // const PaginationWrap = ({currentPage}) => {
+  //   return(
+  //     <Pagination
+  //       size="small"
+  //       className='d-flex justify-content-end'
+  //       count={Math.floor(totalItems / perPage) + 1}
+  //       shape="rounded"
+  //       onChange={pageHandler}
+  //       // currentPage={currentPage}
+  //       // setCurrentPage={setCurrentPage}
+  //       showLastButton />
+  //   )
+  // }
 
   return (
     <main className='mb-5'>
       <div className='mb-4'>
-        {
+        {/* {
           loading ?
             <div className='vh-100'>
               <CircularProgress
@@ -30,7 +31,7 @@ const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, curr
                 className='d-block mx-auto'
               />
             </div>
-            : (
+            : ( */}
               <>
                 <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
                   <p className='col-4 text-center my-2'>酒款名稱</p>
@@ -39,10 +40,19 @@ const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, curr
                 </div>
                 <ControlledAccordions currentPost={currentPost} />
               </>
-            )
-        }
+            {/* ) */}
+        {/* } */}
       </div>
-      <PaginationWrap currentPage={currentPage}/>
+        <Pagination
+        size="small"
+        className='d-flex justify-content-end'
+        count={Math.floor(totalItems / perPage)}
+        shape="rounded"
+        onChange={pageHandler}
+        currentpage={currentpage}
+        showLastButton />
+
+      {/* <PaginationWrap currentPage={currentPage}/> */}
     </main>
   )
 }

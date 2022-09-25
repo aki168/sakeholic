@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { InputGroup, Form, Button, Badge, Card } from 'react-bootstrap'
+import { CircularProgress } from '@mui/material'
 import SakeTable from '../components/SakeTable'
 import * as Icon from 'react-bootstrap-icons'
 import { Title } from '../components/Title'
@@ -15,13 +16,13 @@ const SearchList = () => {
   const [sakeList, setSakeList] = useState([]) //fetch data
   const [loading, setLoading] = useState(true)
   // 設定：目前要渲染哪一頁
-  const [currentPage, setCurrentPage] = useState(1)
+  const [currentpage, setCurrentpage] = useState(1)
   // 設定：每一頁有幾筆
   const [perPage, setPerPage] = useState(10)
 
   // arr.slice(0,2) =>> 取出arr[0]&arr[1]取2個資料排一個陣列
   // 獲取當前頁面的資料
-  const sliceEnd = currentPage * perPage // 若我在第二頁時=2*10=第20筆
+  const sliceEnd = currentpage * perPage // 若我在第二頁時=2*10=第20筆
   const sliceStart = sliceEnd - perPage // 第20筆 - 每頁有幾筆＝第10筆
   // 淺拷貝部分data,取出當前頁面所需資料
   const currentPost = sakeList.slice(sliceStart, sliceEnd)
@@ -95,7 +96,7 @@ const SearchList = () => {
   }
 
   const pageHandler = (event, page) => {
-    setCurrentPage(page)
+    setCurrentpage(page)
   }
 
   const recommendTags = ['純米', '赤武', '獺祭', '久保田', '新潟', '吟醸', '月桂冠', '白鶴']
@@ -124,7 +125,7 @@ const SearchList = () => {
               }, 3000)
               setInputValue(e.target.value)
               setSubmitValue(inputValue)
-              setCurrentPage(1)
+              setCurrentpage(1)
             }
           }}
         />
@@ -138,7 +139,7 @@ const SearchList = () => {
               setLoading(false)
             }, 3000)
             setSubmitValue(inputValue)
-            setCurrentPage(1)
+            setCurrentpage(1)
           }
           }
         >
@@ -147,27 +148,40 @@ const SearchList = () => {
         </Button>
       </InputGroup>
       <Form.Text>熱門關鍵字.... </Form.Text>
-      {recommendTags.map(item => (
-        <Badge as="button" className='border-0 mx-1' onClick={() => setInputValue(item)}>
+      {recommendTags.map((item, i) => (
+        <Badge key={i} as="button" className='border-0 mx-1' onClick={() => setInputValue(item)}>
           # {item}
         </Badge>
       ))}
 
-      {sakeList.length > 0 ?
-        <SakeTable
-          currentPost={currentPost}
-          totalItems={totalItems}
-          perPage={perPage}
-          pageHandler={pageHandler}
-          loading={loading}
-          currentPage={currentPage}
-        />
-        :
-        <Card className='mt-4 py-5 bg-light border-0'>
-          <Card.Text className='text-info text-center'>
-            查無資料，請再次輸入關鍵字
-          </Card.Text>
-        </Card>
+      {loading ? (
+        <div className='vh-100'>
+          <CircularProgress
+            size="64px"
+            color="error"
+            className='d-block mx-auto'
+          />
+        </div>
+      ) :
+        (
+          sakeList.length > 0 ?
+            <SakeTable
+              currentPost={currentPost}
+              totalItems={totalItems}
+              perPage={perPage}
+              pageHandler={pageHandler}
+              // loading={loading}
+              // setLoading={setLoading}
+              currentpage={currentpage}
+              setCurrentpage={setCurrentpage}
+            />
+            :
+            <Card className='mt-4 py-5 bg-light border-0'>
+              <Card.Text className='text-info text-center'>
+                查無資料，請再次輸入關鍵字
+              </Card.Text>
+            </Card>
+        )
       }
     </div>
 
