@@ -1,6 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { InputGroup, Form, Button, Badge } from 'react-bootstrap'
+import { InputGroup, Form, Button, Badge, Card } from 'react-bootstrap'
 import SakeTable from '../components/SakeTable'
 import * as Icon from 'react-bootstrap-icons'
 import { Title } from '../components/Title'
@@ -98,7 +98,7 @@ const SearchList = () => {
     setCurrentPage(page)
   }
 
-  const recommendTags = ['純米', '赤武', '獺祭', '久保田', '新潟', '吟醸','月桂冠','白鶴']
+  const recommendTags = ['純米', '赤武', '獺祭', '久保田', '新潟', '吟醸', '月桂冠', '白鶴']
 
   useEffect(() => {
     init()
@@ -148,7 +148,7 @@ const SearchList = () => {
       </InputGroup>
       <Form.Text>熱門關鍵字.... </Form.Text>
       {recommendTags.map(item => (
-        <Badge as="button" className='border-0 mx-1' onClick={()=>setInputValue(item)}>
+        <Badge as="button" className='border-0 mx-1' onClick={() => setInputValue(item)}>
           # {item}
         </Badge>
       ))}
@@ -163,7 +163,11 @@ const SearchList = () => {
           currentPage={currentPage}
         />
         :
-        <div>查無資料，請再次輸入關鍵字</div>
+        <Card className='mt-4 py-5 bg-light border-0'>
+          <Card.Text className='text-info text-center'>
+            查無資料，請再次輸入關鍵字
+          </Card.Text>
+        </Card>
       }
     </div>
 
