@@ -38,7 +38,7 @@ export default function Main() {
             <FeedbackCard key={i} {...item} />
           ))}
         </div>
-        <Dots />
+        {/* <Dots /> */}
       </section>
     </main>
   )

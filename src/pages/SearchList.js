@@ -98,7 +98,7 @@ const SearchList = () => {
     setCurrentPage(page)
   }
 
-  const recommendTags = ['純米', '赤武', '獺祭', '久保田', '新潟', '吟醸']
+  const recommendTags = ['純米', '赤武', '獺祭', '久保田', '新潟', '吟醸','月桂冠','白鶴']
 
   useEffect(() => {
     init()
