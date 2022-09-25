@@ -5,6 +5,7 @@ import { CircularProgress } from '@mui/material'
 import SakeTable from '../components/SakeTable'
 import * as Icon from 'react-bootstrap-icons'
 import { Title } from '../components/Title'
+import numeral from 'numeral'
 
 const SearchList = () => {
 
@@ -108,6 +109,9 @@ const SearchList = () => {
   return (
     <div className='container px-3 px-md-5 pb-3 my-2 min-vh-100'>
       <Title cn="酒品總覽 " jp="日本酒を探す" />
+      <h3 className='text-primary text-end'>
+        共 {numeral(totalItems).format('0,0')} 款日本酒
+      </h3>
       <Form.Text>請以 酒名 / 酒廠 / 產地 進行搜尋</Form.Text>
       <InputGroup size="lg" className='py-3 border-primary'>
         <Form.Control

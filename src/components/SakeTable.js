@@ -3,7 +3,7 @@ import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 import ControlledAccordions from './ControlledAccordions'
 
-const SakeTable = ({currentPost, totalItems, perPage, pageHandler, loading, currentpage}) => {
+const SakeTable = ({currentPost, totalItems, perPage, pageHandler, currentpage}) => {
 
   // const PaginationWrap = ({currentPage}) => {
   //   return(
