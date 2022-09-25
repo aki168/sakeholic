@@ -114,6 +114,10 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   useEffect(() => {
     if (clickAreaId !== 'ALL') {
+      setLoading(true)
+      setTimeout(() => {
+        setLoading(false)
+      }, 3000)
       let filterRes = letNameToId(clickAreaId, areaIndex)
       setAreaId(filterRes)
     }
