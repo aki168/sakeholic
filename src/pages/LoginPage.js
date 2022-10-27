@@ -8,9 +8,11 @@ import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../MyContext'
+import useCheckMobileMode from '../hooks/useCheckMobileMode';
 
 const LoginPage = () => {
 
+  const isMobile = useCheckMobileMode()
 
   const defaultMedia = ['A', 'B', 'C', 'E', 'F']
   const random = (len) => Math.floor(Math.random() * len + 1);
@@ -63,7 +65,6 @@ const LoginPage = () => {
       })
     })
   }
-  // console.log(formData)
 
 
   return (
@@ -134,9 +135,11 @@ const LoginPage = () => {
           </div>
         </Card>
         <div className='site-image py-4 d-none d-md-block col-md-6 col-lg-7 col-xl-8 my-auto' >
+        { isMobile ||
           <video autoPlay loop muted className="img-fluid d-none d-md-block" >
             <source src={`${process.env.PUBLIC_URL}/media/${randomMedia}.mp4`} type="video/mp4" />
           </video>
+        }
         </div>
       </div>
     </section>
