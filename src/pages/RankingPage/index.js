@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Title } from '../components/Title'
-import ControlledAccordionsRank from '../components/ControlledAccordionsRank'
+import { Title } from '../../components/Title'
+import ControlledAccordionsRank from '../../components/ControlledAccordionsRank'
 import { Pagination, CircularProgress } from '@mui/material'
 
 

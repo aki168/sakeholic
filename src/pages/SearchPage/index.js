@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { InputGroup, Form, Button, Badge, Card } from 'react-bootstrap'
 import { CircularProgress } from '@mui/material'
-import SakeTable from '../components/SakeTable'
+import SakeTable from '../../components/SakeTable'
 import * as Icon from 'react-bootstrap-icons'
-import { Title } from '../components/Title'
+import { Title } from '../../components/Title'
 import numeral from 'numeral'
 
-const SearchList = () => {
+const SearchPage = () => {
 
 
   const [inputValue, setInputValue] = useState('')
@@ -192,4 +192,4 @@ const SearchList = () => {
   )
 }
 
-export default SearchList
+export default SearchPage

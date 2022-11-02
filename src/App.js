@@ -16,7 +16,7 @@ import About from './pages/About'
 import FindingPage from './pages/FindingPage'
 import AreaSearchPage from './pages/AreaSearchPage'
 import RankingPage from './pages/RankingPage'
-import SearchList from './pages/SearchList';
+import SearchPage from './pages/SearchPage';
 import UserPage from './pages/UserPage'
 import Footer from './components/Footer';
 import NotFoundPage from './pages/NotFoundPage';
@@ -65,7 +65,7 @@ export default function App() {
             <Route path='/about' element={<About />} />
             <Route path='/finding' element={<FindingPage />} />
             <Route path='/areaSearch' element={<AreaSearchPage />} />
-            <Route path='/searchList' element={<SearchList />} />
+            <Route path='/search' element={<SearchPage />} />
             <Route path='/ranking' element={<RankingPage />} />
             <Route path='/login' element={<LoginPage />} />
             <Route path='/register' element={<RegisterPage />} />

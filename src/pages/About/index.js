@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import {Title} from '../components/Title'
+import { Title } from '../../components/Title'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import * as Icon from 'react-bootstrap-icons';

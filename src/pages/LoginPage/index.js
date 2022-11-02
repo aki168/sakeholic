@@ -7,8 +7,8 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../MyContext'
-import useCheckMobileMode from '../hooks/useCheckMobileMode';
+import { useAuth } from '../../MyContext'
+import useCheckMobileMode from '../../hooks/useCheckMobileMode';
 
 const LoginPage = () => {
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import SakeTableArea from '../components/SakeTableArea'
-import { Title } from '../components/Title'
+import SakeTableArea from '../../components/SakeTableArea'
+import { Title } from '../../components/Title'
 
 
 const AreaSearchPage = () => {

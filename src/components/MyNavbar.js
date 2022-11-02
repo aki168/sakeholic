@@ -38,7 +38,7 @@ const MyNavbar = () => {
     },
     {
       name: "酒品總覽",
-      path: "/searchList"
+      path: "/search"
     },
   ]
 

@@ -1,4 +1,4 @@
-import { Title } from '../components/Title'
+import { Title } from '../../components/Title'
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';

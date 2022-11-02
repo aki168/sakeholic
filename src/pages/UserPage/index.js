@@ -1,13 +1,13 @@
 import React from 'react'
-import { useAuth } from '../MyContext'
-import { Title, TitleReverse } from '../components/Title'
+import { useAuth } from '../../MyContext'
+import { Title, TitleReverse } from '../../components/Title'
 import { Button } from 'react-bootstrap'
 import axios from 'axios'
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2';
-import sakeCardDefault from '../data/sakeCardDefault'
-import ControlledAccordionsUser from '../components/ControlledAccordionsUser'
+import sakeCardDefault from '../../data/sakeCardDefault'
+import ControlledAccordionsUser from '../../components/ControlledAccordionsUser'
 
 const UserPage = () => {
 
