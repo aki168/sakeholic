@@ -16,7 +16,6 @@ export default function Main() {
     await axios.get('https://json-server-vercel-sepia.vercel.app/sakeCardDefault')
     .then(result => {
       if(result?.data){
-        console.log(result.data)
         setData(result.data)
       }
     }).catch(err => {
@@ -28,7 +27,6 @@ export default function Main() {
     await axios.get('https://json-server-vercel-sepia.vercel.app/feedbackData')
     .then(result => {
       if(result?.data){
-        console.log(result.data)
         setFeedbackData(result.data)
       }
     }).catch(err =>{

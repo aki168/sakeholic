@@ -99,7 +99,7 @@ const UserPage = () => {
         </div>
         <div className='col-12 col-md-5 col-lg-3 d-flex flex-column align-items-center'>
           <p className='text-muted my-2'>{userData.email}</p>
-          <h5>{userData.nickname}</h5>
+          <p className='h5'>{userData.nickname}</p>
           <p>1982 / 1 / 25</p>
           <p>0900-555-888</p>
         </div>

@@ -54,11 +54,11 @@ const Footer = () => {
 
       <div className='py-4'>
         <h2 className='title-font d-none d-md-block text-start mb-3'>COPYRIGHT</h2>
-        <h5 className='d-none d-md-block text-start fw-lighter'>
+        <p className='d-none d-md-block text-start fw-lighter'>
           ©2022 SAKEHOLIC BOOK<br />
           BY AKI CHENG<br />
           All rights reserved.
-        </h5>
+        </p>
         <p className='fw-lighter d-md-none'>©2022 SAKEHOLIC BOOK All rights reserved.</p>
       </div>
     </div>
