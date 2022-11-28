@@ -1,15 +1,47 @@
-import feedbackData from '../../data/feedbackData'
-import sakeCardDefault from "../../data/sakeCardDefault"
+import { useState, useEffect } from 'react'
 import { Title } from '../../components/Title'
 import ScrollableTabsFeedback from "../../components/ScrollableTabsFeedback"
 import SakeCardA from "../../components/SakeCardA"
 import FeedbackCard from "../../components/FeedbackCard"
+import axios from 'axios'
 
 export default function Main() {
 
-  const data = sakeCardDefault
+  const [data, setData] = useState([])
+  const [feedbackData, setFeedbackData] = useState([])
+
+  // const data = sakeCardDefault
 
   const aosEffectForCard = ['right', 'left', 'right', 'left',]
+
+  const getDefaultData = async() => {
+    await axios.get('https://json-server-vercel-sepia.vercel.app/sakeCardDefault')
+    .then(result => {
+      if(result?.data){
+        console.log(result.data)
+        setData(result.data)
+      }
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const getFeedback = async() => {
+    await axios.get('https://json-server-vercel-sepia.vercel.app/feedbackData')
+    .then(result => {
+      if(result?.data){
+        console.log(result.data)
+        setFeedbackData(result.data)
+      }
+    }).catch(err =>{
+      console.error(err)
+    })
+  }
+
+  useEffect(()=>{
+    getDefaultData()
+    getFeedback()
+  },[])
 
   return (
     <main>

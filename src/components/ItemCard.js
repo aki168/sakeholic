@@ -1,11 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import styled from 'styled-components'
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import { HeartFill, Heart, PencilSquare, GeoAlt } from 'react-bootstrap-icons'
-import tagsIndex from '../data/tagsIndex';
 import ScrollableTabsButtonVisible from './ScrollableTabsButtonVisible';
 import Chart from './Charts';
 
+const KeepBtn = styled.button`
+  position:absolute;
+  right:0.8em;
+  top:1em; 
+  background:none;
+  border:none
+`;
 
 const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
 
@@ -21,6 +29,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
 
   const [like, setLike] = useState(isLike)
   const [highlight, setHighlight] = useState(false)
+  const [tagsIndex, setTagsIndex] = useState([])
 
 
   let tagsToText = (numArr, refArr) => {
@@ -31,23 +40,32 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
     }
   }
 
+  const getTagsIndex = async () => {
+    await axios.get('https://json-server-vercel-sepia.vercel.app/tagsIndex')
+      .then(result => {
+        if (result?.data) {
+          console.log(result.data)
+          setTagsIndex(result.data)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
+  }
+
+  useEffect(() => {
+    getTagsIndex()
+  }, [])
 
   return (
     <Card className="bg-light p-3" style={{ position: "relative" }}>
-      <button
+      <KeepBtn
         onMouseOver={() => setHighlight(prev => !prev)}
         onClick={() => setLike(prev => !prev)}
-        style={{
-          position: "absolute",
-          right: '0.8em',
-          top: '1em',
-          background: 'none',
-          border: 'none'
-        }}>
+      >
         {like ? <HeartFill className={`${setLike || highlight ? 'text-primary' : 'text-dark'}`} size={28} />
           : <Heart className={`${highlight ? 'text-primary' : 'text-dark'}`} size={28} />
         }
-      </button>
+      </KeepBtn>
       <CardContent className='row gx-3 p-0 py-2 p-md-4'>
         <div className='col col-xl-7 mb-5'>
           <p>No. {id}</p>

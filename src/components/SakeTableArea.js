@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 import ControlledAccordions from './ControlledAccordions'
-import areaIndex from '../data/areaIndex'
 
 const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const [areaId, setAreaId] = useState('ALL')
+  const [areaIndex ,setAreaIndex] = useState([])
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -83,12 +83,29 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
         }
       })
   }
+
+  const getDataIndex = async () => {
+    await axios.get('https://json-server-vercel-sepia.vercel.app/areaIndex')
+    .then(result => {
+      if(result?.data){
+        setAreaIndex(result.data)
+      }
+    })
+    .catch(err => {
+      console.error(err)
+    })
+    // if(data){
+    //   console.log(data.data)
+    // }
+  }
+
   const pageHandler = (event, page) => {
     setCurrentPage(page)
   }
 
   useEffect(() => {
-    init();
+    init()
+    getDataIndex()
   }, [areaId])
 
   useEffect(() => {
