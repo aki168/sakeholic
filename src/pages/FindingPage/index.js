@@ -1,11 +1,9 @@
 import { Title } from '../../components/Title'
-import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
 
 const heights = [160, 200, 130, 270, 200, 150, 240, 180, 150];
-
 
 const Item = styled(Paper)(({ theme }) => ({
   padding: theme.spacing(0),

@@ -29,7 +29,6 @@ const ProtectedRoute = ({ children }) => {
   const { token } = useAuth()
   return token ? <Outlet /> : <Navigate to="/login" replace />
 }
-////////////////////////////////////////////
 
 const Layout = () => {
   const { token } = useAuth()
@@ -44,10 +43,9 @@ const Layout = () => {
 
 export default function App() {
 
-  // const [token, setToken] = useState('ABC')
   const [token, setToken] = useState(null)
   const [userData, setUserData] = useState({})
-  // console.log('userData',userData)
+  const mediaPath = `${process.env.PUBLIC_URL}/media/`
 
   useEffect(() => {
     AOS.init({
@@ -58,7 +56,7 @@ export default function App() {
 
   return (
     <HashRouter>
-      <AuthContext.Provider value={{ token, setToken, userData, setUserData }}>
+      <AuthContext.Provider value={{ token, setToken, userData, setUserData, mediaPath }}>
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route path='/' element={<Main />} />

@@ -308,7 +308,6 @@ const AreaSearchPage = () => {
       </section>
       <div 
       className='px-3 px-md-3 py-3 my-2 container'>
-       {/* className='d-sm-none d-md-block px-3 px-md-3 py-3 my-2 container'> */}
         <h3>{clickArea}</h3>
         <p>請選擇您想探索的城市</p>
         {clickArea && <SakeTableArea clickAreaId={clickArea} setClickArea={setClickArea} />}

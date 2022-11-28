@@ -1,19 +1,26 @@
-import React from 'react'
-import { useAuth } from '../../MyContext'
-import { Title, TitleReverse } from '../../components/Title'
-import { Button } from 'react-bootstrap'
 import axios from 'axios'
-import withReactContent from 'sweetalert2-react-content';
+import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { useAuth } from '../../MyContext'
+import { Button } from 'react-bootstrap'
 import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import sakeCardDefault from '../../data/sakeCardDefault'
+import { Title, TitleReverse } from '../../components/Title'
 import ControlledAccordionsUser from '../../components/ControlledAccordionsUser'
 
+const MemberAvatar = styled.div`
+  background-image: URL(${({ mediaPath }) => mediaPath + "/user001.jpg"});
+  background-position: center;
+  background-size: cover;
+  width: 120px;
+  height: 120px;
+`;
 const UserPage = () => {
 
   let navigate = useNavigate()
 
-  const { userData, setToken, token } = useAuth()
+  const { userData, setToken, token, mediaPath } = useAuth()
 
   const MySwal = withReactContent(Swal)
 
@@ -65,15 +72,7 @@ const UserPage = () => {
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-lg-3 d-flex flex-column
         mb-3  align-items-center'>
-          <div className='rounded-circle my-4'
-            style={{
-              backgroundImage: `URL("${process.env.PUBLIC_URL}/media/user001.jpg")`,
-              backgroundPosition: "center",
-              backgroundSize: "cover",
-              width: "120px",
-              height: "120px",
-            }}>
-          </div>
+          <MemberAvatar mediaPath={mediaPath} className='rounded-circle my-4' />
           <Button
             variant="outline-dark"
             size='sm'
@@ -93,7 +92,7 @@ const UserPage = () => {
 
       <TitleReverse cn="我的收藏" jp="お気に入り" />
       <div className='mt-3 mb-5 d-flex justify-content-center'>
-          <ControlledAccordionsUser sakeCardDefault={sakeCardDefault} />
+        <ControlledAccordionsUser sakeCardDefault={sakeCardDefault} />
       </div>
 
     </div>

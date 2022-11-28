@@ -1,8 +1,7 @@
-import React from 'react'
-import * as bs from 'react-bootstrap'
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import * as Icon from 'react-bootstrap-icons'
+import { Button, Dropdown } from 'react-bootstrap'
+import { List } from 'react-bootstrap-icons'
 import { useAuth } from '../MyContext';
 
 const MyNavbar = () => {
@@ -24,10 +23,6 @@ const MyNavbar = () => {
       name: "關於小酌",
       path: "/about"
     },
-    // {
-    //   name: "探索🍶",
-    //   path: "/finding"
-    // },
     {
       name: "產地查詢",
       path: "/areaSearch"
@@ -41,7 +36,6 @@ const MyNavbar = () => {
       path: "/search"
     },
   ]
-
 
   return (
     <div>
@@ -61,38 +55,38 @@ const MyNavbar = () => {
               ))}
             </ul>
             <NavLink to={token ? '/user' : '/login'}>
-              <bs.Button
+              <Button
                 variant={token ? "outline-dark" : "outline-primary"}
                 className='fw-bold px-4 py-0'>
                 {token ? '會員中心' : '登入'}
-              </bs.Button>
+              </Button>
             </NavLink>
           </div>
           <a href="!#" onClick={showMenu} className='d-md-none'>
-            <Icon.List
+            <List
               size={40}
               className='text-white'
             />
           </a>
         </div>
       </nav>
-      <bs.Dropdown.Menu className='w-100 fs-2 text-center rounded-0' show={toggleMenu || false}>
+      <Dropdown.Menu className='w-100 fs-2 text-center rounded-0' show={toggleMenu || false}>
         {NavItems.map((item, i) => (
-          <bs.Dropdown.Item key={i} eventKey={i} className='py-4' onClick={showMenu}>
+          <Dropdown.Item key={i} eventKey={i} className='py-4' onClick={showMenu}>
             <NavLink to={item.path}>{item.name}</NavLink>
-          </bs.Dropdown.Item>
+          </Dropdown.Item>
         ))}
-        <bs.Dropdown.Item eventKey="4" className="py-4" onClick={showMenu}>
+        <Dropdown.Item eventKey="4" className="py-4" onClick={showMenu}>
           <NavLink to={token ? '/user' : '/login'}>
-            <bs.Button
+            <Button
               variant={token ? "outline-dark" : "outline-primary"}
               size="lg"
               className='fw-bold px-5 py-2'>
               {token ? '會員中心' : '登入'}
-            </bs.Button>
+            </Button>
           </NavLink>
-        </bs.Dropdown.Item>
-      </bs.Dropdown.Menu>
+        </Dropdown.Item>
+      </Dropdown.Menu>
     </div>
   )
 }

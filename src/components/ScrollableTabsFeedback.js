@@ -11,8 +11,6 @@ export default function ScrollableTabsFeedback({feedbackData}) {
     setValue(newValue);
   };
 
-  // console.log('data',currentData)
-
   return (
     <Box
       sx={{

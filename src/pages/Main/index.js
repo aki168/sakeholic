@@ -1,27 +1,20 @@
-import React from "react"
+import feedbackData from '../../data/feedbackData'
+import sakeCardDefault from "../../data/sakeCardDefault"
+import { Title } from '../../components/Title'
+import ScrollableTabsFeedback from "../../components/ScrollableTabsFeedback"
 import SakeCardA from "../../components/SakeCardA"
 import FeedbackCard from "../../components/FeedbackCard"
-import { Title } from '../../components/Title'
-import feedbackData from '../../data/feedbackData'
-import { Button } from "react-bootstrap"
-import sakeCardDefault from "../../data/sakeCardDefault"
-import ScrollableTabsFeedback from "../../components/ScrollableTabsFeedback"
 
 export default function Main() {
 
-  const data = sakeCardDefault;
+  const data = sakeCardDefault
 
   const aosEffectForCard = ['right', 'left', 'right', 'left',]
-  //zoom-in-left
 
   return (
     <main>
       <div className="hero">
         <div className="container">
-          {/* <Button variant="outline-dark"
-          className="">
-            立即搜尋
-          </Button> */}
         </div>
       </div>
 
@@ -40,8 +33,7 @@ export default function Main() {
         <Title cn="網友回饋" jp="みんなの声" />
         <div
           className="row mx-0 flex-md-nowrap mb-1 d-md-none">
-        {/* mobile */}
-          {
+          { // mobile
             feedbackData.map((item, i) => (
               <FeedbackCard key={i} {...item} />
             ))

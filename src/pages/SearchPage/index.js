@@ -3,7 +3,7 @@ import axios from 'axios'
 import { InputGroup, Form, Button, Badge, Card } from 'react-bootstrap'
 import { CircularProgress } from '@mui/material'
 import SakeTable from '../../components/SakeTable'
-import * as Icon from 'react-bootstrap-icons'
+import { ArrowRightShort } from 'react-bootstrap-icons'
 import { Title } from '../../components/Title'
 import numeral from 'numeral'
 
@@ -148,7 +148,7 @@ const SearchPage = () => {
           }
         >
           搜尋
-          <Icon.ArrowRightShort size={24} />
+          <ArrowRightShort size={24} />
         </Button>
       </InputGroup>
       <Form.Text>熱門關鍵字.... </Form.Text>
@@ -174,8 +174,6 @@ const SearchPage = () => {
               totalItems={totalItems}
               perPage={perPage}
               pageHandler={pageHandler}
-              // loading={loading}
-              // setLoading={setLoading}
               currentpage={currentpage}
               setCurrentpage={setCurrentpage}
             />

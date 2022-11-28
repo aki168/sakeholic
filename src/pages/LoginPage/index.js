@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../MyContext'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -6,8 +8,6 @@ import Card from 'react-bootstrap/Card'
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../MyContext'
 import useCheckMobileMode from '../../hooks/useCheckMobileMode';
 
 const LoginPage = () => {
@@ -19,7 +19,7 @@ const LoginPage = () => {
   let randomMedia = defaultMedia[random(defaultMedia.length) - 1]
 
   const [formData, setFormData] = useState({})
-  const { setToken, setUserData } = useAuth()
+  const { setToken, setUserData, mediaPath } = useAuth()
   let navigate = useNavigate()
   const MySwal = withReactContent(Swal)
 
@@ -79,7 +79,7 @@ const LoginPage = () => {
             </div>
             <div className='col-6'>
               <Button variant='info d-flex align-items-center gap-1'>
-                <img style={{ width: "16px" }} src={`${process.env.PUBLIC_URL}/media/google.png`} alt="google-icon" />
+                <img style={{ width: "16px" }} src={`${mediaPath}/google.png`} alt="google-icon" />
                 Google登入
               </Button>
             </div>
@@ -114,7 +114,6 @@ const LoginPage = () => {
                   placeholder="請輸入密碼"
                   {...register("password", {
                     required: { value: true, min: 6, message: "請輸入至少六碼的密碼" },
-                    // pattern: { value:/^\w{6,}$/, message:"密碼至少為6碼" }
                   })}
                 />
                 <Form.Text className="text-danger">
@@ -137,7 +136,7 @@ const LoginPage = () => {
         <div className='site-image py-4 d-none d-md-block col-md-6 col-lg-7 col-xl-8 my-auto' >
         { isMobile ||
           <video autoPlay loop muted className="img-fluid d-none d-md-block" >
-            <source src={`${process.env.PUBLIC_URL}/media/${randomMedia}.mp4`} type="video/mp4" />
+            <source src={`${mediaPath}${randomMedia}.mp4`} type="video/mp4" />
           </video>
         }
         </div>

@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card'
+import { useForm } from "react-hook-form";
+import { useAuth } from '../../MyContext';
+import { Form, Card, Button } from 'react-bootstrap';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../MyContext';
 import useCheckMobileMode from '../../hooks/useCheckMobileMode';
 
 const RegisterPage = () => {
@@ -19,7 +17,7 @@ const RegisterPage = () => {
   let randomMedia = defaultMedia[random(defaultMedia.length)-1]
 
   const [formData, setFormData] = useState({})
-  const { token, setToken } = useAuth()
+  const { token, setToken, mediaPath } = useAuth()
   let navigate = useNavigate()
   const MySwal = withReactContent(Swal)
 
@@ -32,7 +30,6 @@ const RegisterPage = () => {
   const Toast = Swal.mixin({
     showConfirmButton: false,
     timer: 3000,
-    //timerProgressBar: true,
     didOpen: (toast) => {
       toast.addEventListener('mouseenter', Swal.stopTimer)
       toast.addEventListener('mouseleave', Swal.resumeTimer)
@@ -146,7 +143,7 @@ const RegisterPage = () => {
         <div className='site-image py-2 d-none d-md-block col-md-6 col-lg-7 col-xl-8 my-auto' >
           { isMobile ||
           <video autoPlay loop muted className="img-fluid d-none d-md-block" >
-            <source src={`${process.env.PUBLIC_URL}/media/${randomMedia}.mp4`} type="video/mp4" />
+            <source src={`${mediaPath}${randomMedia}.mp4`} type="video/mp4" />
           </video>
           }
         </div>

@@ -1,17 +1,15 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Badge } from 'react-bootstrap';
 
 export default function ScrollableTabsButtonVisible({currentData}) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  // console.log('data',currentData)
+  }
 
   return (
     <Box

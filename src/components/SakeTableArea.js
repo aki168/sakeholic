@@ -7,8 +7,6 @@ import areaIndex from '../data/areaIndex'
 const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const [areaId, setAreaId] = useState('ALL')
-  // console.log('clickAreaId',clickAreaId)
-  // console.log('areaId', areaId)
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -30,9 +28,6 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
     return filterIt
   }
 
-  // let filterRes = letNameToId(clickAreaId, areaIndex);
-  // console.log('測試轉換FN', filterRes?.id)
-
   const init = () => {
     // execute simultaneous requests -------------------------------------------------------------------------------------
     axios.all([
@@ -47,9 +42,6 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
         // 1 酒名搜尋
         const itemsData = await responseArr[0].data.brands;
-        // let oneItem = await itemsData.filter(item => item.id === 1 )[0];
-        // console.log('oneItem:',oneItem)
-
         // 2 找酒廠
         const breweriesData = await responseArr[1].data.breweries;
         // 2-1 找地區
@@ -61,17 +53,10 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
         let allData = [];
         itemsData.forEach(element => {
-          let oneBrewery = breweriesData.filter(item => item.id === element.breweryId)[0];
-          // console.log('oneBrewery:', oneBrewery)
-
+          let oneBrewery = breweriesData.filter(item => item.id === element.breweryId)[0]
           let oneArea = AreasData.filter(item => item.id === oneBrewery.areaId)[0];
-          // console.log('oneArea:', oneArea)
-
           let oneTags = tagsData.filter(item => item.brandId === element.id)[0];
-          // console.log('oneTags:', oneTags)
-
           let oneChart = chartData.filter(item => item.brandId === element.id)[0];
-          // console.log('oneChart:', oneChart)
 
           const myItem = {
             id: element.id,
@@ -84,15 +69,12 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
           }
 
           allData.push(myItem)
-        });
-        // console.log('allData',allData)
+        })
         if (allData) {
-          // setAreaId(clickAreaId)
           if (areaId === 'ALL') {
             setSakeList(allData)
             setLoading(false)
           } else {
-            // setClickArea(areaId)
             let filterArea = allData.filter(item => item.areaId == areaId?.id)
             console.log('filterArea', filterArea)
             setSakeList(filterArea)
@@ -101,9 +83,6 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
         }
       })
   }
-
-  // console.log('目前', currentPost)
-
   const pageHandler = (event, page) => {
     setCurrentPage(page)
   }

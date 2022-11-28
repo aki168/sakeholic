@@ -1,11 +1,10 @@
 import { useState } from 'react'
-import { Title } from '../../components/Title'
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import * as Icon from 'react-bootstrap-icons';
+import { Button, Form } from 'react-bootstrap';
+import { ArrowRightShort, BrightnessLowFill, Mailbox, Discord, Telegram } from 'react-bootstrap-icons';
+import { useForm } from "react-hook-form";
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
-import { useForm } from "react-hook-form";
+import { Title } from '../../components/Title'
 
 
 
@@ -118,7 +117,7 @@ const About = () => {
           {/* -------------- */}
           <Button variant="primary" type="submit" style={{ width: "100px" }} className='align-self-end' >
             <span className='pe-1'>送出</span>
-            <Icon.ArrowRightShort size={25} />
+            <ArrowRightShort size={25} />
           </Button>
         </Form>
         {/* 關於小酌 */}
@@ -143,27 +142,27 @@ const About = () => {
               <h3 className='fw-bold text-primary mb-2'>特別感謝</h3>
               <ul>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   喜歡喝日本酒的大家
                 </li>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   台中華美街各大日系居酒屋🍻🍶
                 </li>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   さけのわデータ
                 </li>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   日本酒記録アプリSakenote
                 </li>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   22夏切版直播班 第17小組
                 </li>
                 <li>
-                  <Icon.BrightnessLowFill size={20} className="me-2" />
+                  <BrightnessLowFill size={20} className="me-2" />
                   hex school 洧杰校長
                 </li>
               </ul>
@@ -191,15 +190,15 @@ const About = () => {
                 <h5>亦可直接來信與我聯繫</h5>
                 <ul>
                   <li className='mb-2'>
-                    <Icon.Mailbox size={20} className="me-2" />
+                    <Mailbox size={20} className="me-2" />
                     mail：ahsi.aki@gmail.com
                   </li>
                   <li className='mb-2'>
-                    <Icon.Telegram size={20} className="me-2" />
+                    <Telegram size={20} className="me-2" />
                     telegram：@ahsiaki
                   </li>
                   <li className='mb-2'>
-                    <Icon.Discord size={20} className="me-2" />
+                    <Discord size={20} className="me-2" />
                     Discord：bakiii #2652
                   </li>
                 </ul>

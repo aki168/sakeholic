@@ -1,16 +1,29 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { Pagination, CircularProgress } from '@mui/material'
 import { Title } from '../../components/Title'
 import ControlledAccordionsRank from '../../components/ControlledAccordionsRank'
-import { Pagination, CircularProgress } from '@mui/material'
 
+
+const Loding = () => {
+  return (
+    <div className='vh-100'>
+      <CircularProgress
+        size="64px"
+        color="error"
+        className='d-block mx-auto'
+      />
+    </div>
+  )
+}
 
 const RankingPage = () => {
-  
-  const defaultImg = ['w001','w002','w005','w007']
-  const random = (len) => Math.floor(Math.random()*len + 1);
-  let randomImg = defaultImg[random(defaultImg.length)-1]
-  
+
+  const defaultImg = ['w001', 'w002', 'w005', 'w007']
+  const random = (len) => Math.floor(Math.random() * len + 1);
+  let randomImg = defaultImg[random(defaultImg.length) - 1]
+  const [banner, setBanner] = useState('w001')
+
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
   // 設定：目前要渲染哪一頁
@@ -38,11 +51,7 @@ const RankingPage = () => {
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/rankings.json')
     ])
       .then(async (responseArr) => {
-
-        // 1 酒名搜尋
         const itemsData = await responseArr[0].data.brands;
-        // console.log('oneItem:',oneItem)
-
         // 2 找酒廠
         const breweriesData = await responseArr[1].data.breweries;
         // 2-1 找地區
@@ -55,21 +64,12 @@ const RankingPage = () => {
         const rankData = await responseArr[5].data.overall;
 
         let allData = [];
-
         itemsData.forEach(element => {
 
           let oneBrewery = breweriesData.filter(item => item.id === element.breweryId)[0];
-          // console.log('oneBrewery:', oneBrewery)
-
           let oneArea = AreasData.filter(item => item.id === oneBrewery.areaId)[0];
-          // console.log('oneArea:', oneArea)
-
           let oneTags = tagsData.filter(item => item.brandId === element.id)[0];
-          // console.log('oneTags:', oneTags)
-
           let oneChart = chartData.filter(item => item.brandId === element.id)[0];
-          // console.log('oneChart:', oneChart)
-
           let oneRank = rankData.filter(item => item.brandId === element.id)[0];
 
           const myItem = {
@@ -82,27 +82,25 @@ const RankingPage = () => {
             rank: oneRank?.rank,
             score: oneRank?.score
           }
-          // console.log('rankData',rankData)
           allData.push(myItem)
         });
-        // console.log('allData', allData)
         if (allData) {
           let currentData =
             allData.filter(item => item.rank !== undefined)
               .sort((x, y) => x.rank > y.rank ? 1 : -1)
-
-          // console.log('currentData', currentData)
           setSakeList(currentData)
           setLoading(false)
         }
       })
   }
-  // console.log('目前', currentPost)
   const pageHandler = (event, page) => {
     setCurrentPage(page)
   }
+  const initBanner = () => { setBanner(randomImg) }
+  
   useEffect(() => {
-    init();
+    init()
+    initBanner()
   }, [])
 
 
@@ -114,7 +112,7 @@ const RankingPage = () => {
       <div
         style={{
           height: "350px",
-          backgroundImage: `url("${process.env.PUBLIC_URL}/media/${randomImg}.jpg")`,
+          backgroundImage: `url("${process.env.PUBLIC_URL}/media/${banner}.jpg")`,
           backgroundPosition: 'center center',
           backgroundSize: 'cover',
         }}
@@ -124,25 +122,16 @@ const RankingPage = () => {
         <div className='mb-5 mt-3'>
           <p className='text-end'>日本酒ランキング 2022年夏季</p>
           <div className='mb-4'>
-            {
-              loading ?
-                <div className='vh-100'>
-                  <CircularProgress
-                    size="64px"
-                    color="error"
-                    className='d-block mx-auto'
-                  />
+            {loading ? <Loding /> : (
+              <>
+                <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
+                  <p className='col-4 text-center my-2'>排名</p>
+                  <p className='col-4 text-center my-2'>酒款名稱</p>
+                  <p className='col-4 text-center my-2'>評級</p>
                 </div>
-                : (
-                  <>
-                    <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
-                      <p className='col-4 text-center my-2'>排名</p>
-                      <p className='col-4 text-center my-2'>酒款名稱</p>
-                      <p className='col-4 text-center my-2'>評級</p>
-                    </div>
-                    <ControlledAccordionsRank currentPost={currentPost} />
-                  </>
-                )
+                <ControlledAccordionsRank currentPost={currentPost} />
+              </>
+            )
             }
           </div>
           <Pagination
