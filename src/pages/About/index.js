@@ -180,12 +180,12 @@ const About = () => {
                   height: "120px",
                 }}>
               </div>
-              <p className='fw-lighter'>
+              <div className='fw-lighter'>
                 由AKI CHENG製作之個人作品<br />
                 若有相關聯繫或商業合作意願<br />
                 歡迎填寫站內聯絡表單<br />
                 <br />
-                <h5>亦可直接來信與我聯繫</h5>
+                <span className='h5'>亦可直接來信與我聯繫</span>
                 <ul>
                   <li className='mb-2'>
                     <Mailbox size={20} className="me-2" />
@@ -200,7 +200,7 @@ const About = () => {
                     Discord：bakiii #2652
                   </li>
                 </ul>
-              </p>
+              </div>
             </div>
 
           </div>
