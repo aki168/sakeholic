@@ -75,7 +75,7 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
             setSakeList(allData)
             setLoading(false)
           } else {
-            let filterArea = allData.filter(item => item.areaId == areaId?.id)
+            let filterArea = allData.filter(item => item.areaId === areaId?.id)
             console.log('filterArea', filterArea)
             setSakeList(filterArea)
             setLoading(false)

@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useForm } from "react-hook-form";
 import { useAuth } from '../../MyContext';
 import { Form, Card, Button } from 'react-bootstrap';
-import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import useCheckMobileMode from '../../hooks/useCheckMobileMode';
 
@@ -17,9 +16,8 @@ const RegisterPage = () => {
   let randomMedia = defaultMedia[random(defaultMedia.length)-1]
 
   const [formData, setFormData] = useState({})
-  const { token, setToken, mediaPath } = useAuth()
+  const { mediaPath } = useAuth()
   let navigate = useNavigate()
-  const MySwal = withReactContent(Swal)
 
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValue: {}

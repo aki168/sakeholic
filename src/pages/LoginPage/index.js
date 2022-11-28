@@ -5,7 +5,6 @@ import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
-import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
 import useCheckMobileMode from '../../hooks/useCheckMobileMode';
@@ -21,9 +20,8 @@ const LoginPage = () => {
   const [formData, setFormData] = useState({})
   const { setToken, setUserData, mediaPath } = useAuth()
   let navigate = useNavigate()
-  const MySwal = withReactContent(Swal)
 
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValue: {}
   });
   const onError = (errors, e) => console.log(errors, e);

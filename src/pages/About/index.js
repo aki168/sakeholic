@@ -2,15 +2,13 @@ import { useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import { ArrowRightShort, BrightnessLowFill, Mailbox, Discord, Telegram } from 'react-bootstrap-icons';
 import { useForm } from "react-hook-form";
-import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import { Title } from '../../components/Title'
 
 
 
 const About = () => {
-
-  const MySwal = withReactContent(Swal)
+  
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValue: {}
   });

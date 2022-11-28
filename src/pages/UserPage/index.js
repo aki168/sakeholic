@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../MyContext'
 import { Button } from 'react-bootstrap'
 import Swal from 'sweetalert2';
-import withReactContent from 'sweetalert2-react-content';
 import sakeCardDefault from '../../data/sakeCardDefault'
 import { Title, TitleReverse } from '../../components/Title'
 import ControlledAccordionsUser from '../../components/ControlledAccordionsUser'
@@ -21,8 +20,6 @@ const UserPage = () => {
   let navigate = useNavigate()
 
   const { userData, setToken, token, mediaPath } = useAuth()
-
-  const MySwal = withReactContent(Swal)
 
   const Toast = Swal.mixin({
     showConfirmButton: false,

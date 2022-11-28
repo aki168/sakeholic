@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import AOS from 'aos'
 import {
   HashRouter,
-  NavLink,
   Routes,
   Route,
-  useNavigate,
-  useParams,
   Outlet,
   Navigate
+  // NavLink,
+  // useNavigate,
+  // useParams,
 } from 'react-router-dom';
 import MyNavbar from './components/MyNavbar';
 import Main from './pages/Main'
@@ -31,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
 }
 
 const Layout = () => {
-  const { token } = useAuth()
+  // const { token } = useAuth()
   return (
     <>
       <MyNavbar />
