@@ -6,7 +6,7 @@ import { useAuth } from '../../MyContext'
 import { Button } from 'react-bootstrap'
 import Swal from 'sweetalert2';
 import { Title, TitleReverse } from '../../components/Title'
-import ControlledAccordionsUser from '../../components/ControlledAccordionsUser'
+import ControlledAccordionsUser from './ControlledAccordionsUser'
 
 const MemberAvatar = styled.div`
 background-image: URL(${({ mediaPath }) => mediaPath + "/user001.jpg"});

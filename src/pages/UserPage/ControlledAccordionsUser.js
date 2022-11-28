@@ -4,7 +4,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Card } from 'react-bootstrap'
-import ItemCard from './ItemCard';
+import ItemCard from '../../components/ItemCard';
 
 export default function ControlledAccordionsUser({ sakeCardDefault }) {
   const [expanded, setExpanded] = useState(false);

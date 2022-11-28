@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Modal, Card } from 'react-bootstrap'
 import { HeartFill, Heart, PencilSquare, GeoAlt } from 'react-bootstrap-icons'
-import ItemCard from '../components/ItemCard'
+import ItemCard from '../../../components/ItemCard'
 import styled from 'styled-components'
 
 const KeepBtn = styled.button`

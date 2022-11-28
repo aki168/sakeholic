@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import SakeTableArea from '../../components/SakeTableArea'
+import SakeTableArea from './SakeTableArea'
 import { Title } from '../../components/Title'
 
 

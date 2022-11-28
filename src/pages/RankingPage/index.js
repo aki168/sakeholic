@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 import { Title } from '../../components/Title'
-import ControlledAccordionsRank from '../../components/ControlledAccordionsRank'
+import ControlledAccordionsRank from './ControlledAccordionsRank'
 
 
 const Loding = () => {

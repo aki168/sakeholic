@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useAuth } from '../MyContext'
+import { useAuth } from '../../../MyContext'
 
 
 const Avatar = styled.div`

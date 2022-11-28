@@ -1,16 +1,14 @@
 import { useState, useEffect } from 'react'
 import { Title } from '../../components/Title'
-import ScrollableTabsFeedback from "../../components/ScrollableTabsFeedback"
-import SakeCardA from "../../components/SakeCardA"
-import FeedbackCard from "../../components/FeedbackCard"
+import ScrollableTabsFeedback from "./FeedbackCard/ScrollableTabsFeedback"
+import SakeCardA from "./SakeCardA"
+import FeedbackCard from "./FeedbackCard"
 import axios from 'axios'
 
 export default function Main() {
 
   const [data, setData] = useState([])
   const [feedbackData, setFeedbackData] = useState([])
-
-  // const data = sakeCardDefault
 
   const aosEffectForCard = ['right', 'left', 'right', 'left',]
 
