@@ -1,10 +1,10 @@
-import * as React from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import FeedbackCard from '.';
 
 export default function ScrollableTabsFeedback({feedbackData}) {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -33,7 +33,7 @@ export default function ScrollableTabsFeedback({feedbackData}) {
       >
 {
   feedbackData.map((item, i) => (
-    <FeedbackCard key={i} {...item} />
+    <FeedbackCard value={i} key={i} {...item} />
   ))
 }
       </Tabs>
