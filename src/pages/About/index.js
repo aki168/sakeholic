@@ -13,8 +13,6 @@ const About = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValue: {}
   });
-  const onError = (errors, e) => console.log(errors, e);
-  // const [formData, setFormData] = useState({})
 
   const Toast = Swal.mixin({
     toast: true,
@@ -30,8 +28,8 @@ const About = () => {
 
 
   const onSubmit = async (formData) => {
-    let url = 'https://json-server-vercel-sepia.vercel.app/comments'
-    await axios.post(url, formData)
+    let url = 'https://json-server-vercel-sepia.vercel.app/messages'
+    await axios.post(url, {...formData, dt: Date.now()})
       .then(res => {
         Toast.fire({
           icon: 'success',
@@ -46,13 +44,13 @@ const About = () => {
           title: 'Oops...',
           html: "網路狀態異常"
         })
+        console.error(err)
       })
   };
   return (
     <>
       <div className='container pb-3' style={{ maxWidth: "800px" }}>
         <Title cn="聯絡我們" jp="お問い合わせ" />
-        {/* 聯絡表單 */}
         <Form className='d-flex flex-column ps-5 mb-5' onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3" controlId="formBasicName" >
             <Form.Floating>

@@ -23,6 +23,7 @@ const RankingPage = () => {
   const random = (len) => Math.floor(Math.random() * len + 1);
   let randomImg = defaultImg[random(defaultImg.length) - 1]
   const [banner, setBanner] = useState('w001')
+  const [season, setSeason] = useState([2022,'夏季'])
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,12 @@ const RankingPage = () => {
         const chartData = await responseArr[3].data.flavorCharts;
         // ranking
         const rankData = await responseArr[5].data.overall;
+        // season
+        const seasonRank = await responseArr[5].data.yearMonth;
+        let seasonYear = seasonRank.slice(0,4)
+        let seasonParse = Math.ceil ( Number(seasonRank.slice(4,)) / 3 ) - 1
+        const seasonIndex = ['春季','夏季','秋季','冬季']
+        setSeason([seasonYear, seasonIndex[seasonParse]])
 
         let allData = [];
         itemsData.forEach(element => {
@@ -83,7 +90,7 @@ const RankingPage = () => {
             score: oneRank?.score
           }
           allData.push(myItem)
-        });
+        })
         if (allData) {
           let currentData =
             allData.filter(item => item.rank !== undefined)
@@ -120,7 +127,7 @@ const RankingPage = () => {
       </div>
       <main className='container'>
         <div className='mb-5 mt-3'>
-          <p className='text-end'>日本酒ランキング 2022年夏季</p>
+          <p className='text-end'>日本酒ランキング {season[0]}年{season[1]}</p>
           <div className='mb-4'>
             {loading ? <Loding /> : (
               <>
