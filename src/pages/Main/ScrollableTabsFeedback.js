@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
-import FeedbackCard from '.';
+import FeedbackCard from './FeedbackCard';
 
 export default function ScrollableTabsFeedback({feedbackData}) {
   const [value, setValue] = useState(0);

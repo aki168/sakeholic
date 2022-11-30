@@ -39,7 +39,6 @@ const RegisterPage = () => {
     let postObj = { "user": data }
     let url = 'https://todoo.5xcamp.us/users';
     axios.post(url, postObj).then(res => {
-      // console.log(res)
 
       if (res.data.message === '註冊成功') {
         Toast.fire({

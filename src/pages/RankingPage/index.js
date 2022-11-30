@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Pagination, CircularProgress } from '@mui/material'
+import { Pagination } from '@mui/material'
 import { Title } from '../../components/Title'
 import ControlledAccordionsRank from './ControlledAccordionsRank'
 import Loading from '../../components/Loading'
