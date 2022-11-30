@@ -44,7 +44,6 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/tagsIndex')
       .then(result => {
         if (result?.data) {
-          console.log(result.data)
           setTagsIndex(result.data)
         }
       }).catch(err => {

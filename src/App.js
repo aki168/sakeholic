@@ -31,7 +31,6 @@ const ProtectedRoute = ({ children }) => {
 }
 
 const Layout = () => {
-  // const { token } = useAuth()
   return (
     <>
       <MyNavbar />
