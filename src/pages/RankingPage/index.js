@@ -3,19 +3,7 @@ import axios from 'axios'
 import { Pagination, CircularProgress } from '@mui/material'
 import { Title } from '../../components/Title'
 import ControlledAccordionsRank from './ControlledAccordionsRank'
-
-
-const Loding = () => {
-  return (
-    <div className='vh-100'>
-      <CircularProgress
-        size="64px"
-        color="error"
-        className='d-block mx-auto'
-      />
-    </div>
-  )
-}
+import Loading from '../../components/Loading'
 
 const RankingPage = () => {
 
@@ -23,7 +11,7 @@ const RankingPage = () => {
   const random = (len) => Math.floor(Math.random() * len + 1);
   let randomImg = defaultImg[random(defaultImg.length) - 1]
   const [banner, setBanner] = useState('w001')
-  const [season, setSeason] = useState([2022,'夏季'])
+  const [season, setSeason] = useState([2022, '夏季'])
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -65,9 +53,9 @@ const RankingPage = () => {
         const rankData = await responseArr[5].data.overall;
         // season
         const seasonRank = await responseArr[5].data.yearMonth;
-        let seasonYear = seasonRank.slice(0,4)
-        let seasonParse = Math.ceil ( Number(seasonRank.slice(4,)) / 3 ) - 1
-        const seasonIndex = ['春季','夏季','秋季','冬季']
+        let seasonYear = seasonRank.slice(0, 4)
+        let seasonParse = Math.ceil(Number(seasonRank.slice(4,)) / 3) - 1
+        const seasonIndex = ['春季', '夏季', '秋季', '冬季']
         setSeason([seasonYear, seasonIndex[seasonParse]])
 
         let allData = [];
@@ -104,7 +92,7 @@ const RankingPage = () => {
     setCurrentPage(page)
   }
   const initBanner = () => { setBanner(randomImg) }
-  
+
   useEffect(() => {
     init()
     initBanner()
@@ -129,7 +117,7 @@ const RankingPage = () => {
         <div className='mb-5 mt-3'>
           <p className='text-end'>日本酒ランキング {season[0]}年{season[1]}</p>
           <div className='mb-4'>
-            {loading ? <Loding /> : (
+            {loading ? <Loading /> : (
               <>
                 <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
                   <p className='col-4 text-center my-2'>排名</p>
@@ -138,8 +126,7 @@ const RankingPage = () => {
                 </div>
                 <ControlledAccordionsRank currentPost={currentPost} />
               </>
-            )
-            }
+            )}
           </div>
           <Pagination
             size="small"

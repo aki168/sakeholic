@@ -1,18 +1,16 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { InputGroup, Form, Button, Badge, Card } from 'react-bootstrap'
-import { CircularProgress } from '@mui/material'
 import SakeTable from './SakeTable'
 import { ArrowRightShort } from 'react-bootstrap-icons'
 import { Title } from '../../components/Title'
+import Loading from '../../components/Loading'
 import numeral from 'numeral'
 
 const SearchPage = () => {
 
-
   const [inputValue, setInputValue] = useState('')
   const [submitValue, setSubmitValue] = useState('')
-
 
   const [sakeList, setSakeList] = useState([]) //fetch data
   const [loading, setLoading] = useState(true)
@@ -144,8 +142,7 @@ const SearchPage = () => {
             }, 3000)
             setSubmitValue(inputValue)
             setCurrentpage(1)
-          }
-          }
+          }}
         >
           搜尋
           <ArrowRightShort size={24} />
@@ -158,33 +155,22 @@ const SearchPage = () => {
         </Badge>
       ))}
 
-      {loading ? (
-        <div className='vh-100'>
-          <CircularProgress
-            size="64px"
-            color="error"
-            className='d-block mx-auto'
-          />
-        </div>
-      ) :
-        (
-          sakeList.length > 0 ?
-            <SakeTable
-              currentPost={currentPost}
-              totalItems={totalItems}
-              perPage={perPage}
-              pageHandler={pageHandler}
-              currentpage={currentpage}
-              setCurrentpage={setCurrentpage}
-            />
-            :
+      {loading ? <Loading /> : (
+        sakeList.length > 0 ?
+          <SakeTable
+            currentPost={currentPost}
+            totalItems={totalItems}
+            perPage={perPage}
+            pageHandler={pageHandler}
+            currentpage={currentpage}
+            setCurrentpage={setCurrentpage}
+          /> : (
             <Card className='mt-4 py-5 bg-light border-0'>
               <Card.Text className='text-info text-center'>
                 查無資料，請再次輸入關鍵字
               </Card.Text>
             </Card>
-        )
-      }
+          ))}
     </div>
 
   )

@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Pagination, CircularProgress } from '@mui/material'
+import { Pagination } from '@mui/material'
 import ControlledAccordions from '../../components/ControlledAccordions'
+import Loading from '../../components/Loading'
 
 const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const [areaId, setAreaId] = useState('ALL')
-  const [areaIndex ,setAreaIndex] = useState([])
+  const [areaIndex, setAreaIndex] = useState([])
 
   const [sakeList, setSakeList] = useState([])
   const [loading, setLoading] = useState(true);
@@ -76,7 +77,6 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
             setLoading(false)
           } else {
             let filterArea = allData.filter(item => item.areaId === areaId?.id)
-            console.log('filterArea', filterArea)
             setSakeList(filterArea)
             setLoading(false)
           }
@@ -86,17 +86,14 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   const getDataIndex = async () => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/areaIndex')
-    .then(result => {
-      if(result?.data){
-        setAreaIndex(result.data)
-      }
-    })
-    .catch(err => {
-      console.error(err)
-    })
-    // if(data){
-    //   console.log(data.data)
-    // }
+      .then(result => {
+        if (result?.data) {
+          setAreaIndex(result.data)
+        }
+      })
+      .catch(err => {
+        console.error(err)
+      })
   }
 
   const pageHandler = (event, page) => {
@@ -121,24 +118,16 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   return (
     <main className='mb-5'>
       <div className='mb-4'>
-        {
-          loading ?
-            <div className='vh-100'>
-              <CircularProgress
-                size="64px"
-                color="error"
-                className='d-block mx-auto'
-              />
+        {loading ? <Loading /> : (
+          <>
+            <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
+              <p className='col-4 text-center my-2'>酒款名稱</p>
+              <p className='col-4 text-center my-2'>酒藏名稱</p>
+              <p className='col-4 text-center my-2'>地區</p>
             </div>
-            : (<>
-              <div className='row fw-bold mt-3 my-1 bg-light text-dark py-1'>
-                <p className='col-4 text-center my-2'>酒款名稱</p>
-                <p className='col-4 text-center my-2'>酒藏名稱</p>
-                <p className='col-4 text-center my-2'>地區</p>
-              </div>
-              <ControlledAccordions currentPost={currentPost} />
-            </>)
-        }
+            <ControlledAccordions currentPost={currentPost} />
+          </>
+        )}
       </div>
       <Pagination
         size="small"
