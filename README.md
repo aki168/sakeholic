@@ -41,7 +41,7 @@ src
 ├── hooks `客製化 Hooks`  
 │     ├── useCheckMobileMode.js `確認用戶裝置(影片播放偵測用)`  
 │     └── useFetch.js `遠端連線使用`  
-│ 
+│    
 ├── pages `個別頁面`  
 │     ├── About `關於本站`  
 │     ├── AreaSearchPage `依地區搜尋酒品`  
@@ -53,8 +53,9 @@ src
 │     ├── SearchPage `關鍵字檢索`  
 │     ├── UserPage `會員專區`  
 │     └── NotFoundPage.js `404頁面`  
-│  
-└── package.json `依賴套件等資訊`  
+│ 
+/////  
+── package.json `依賴套件等資訊`  
   
 ## Site Map 
 ![](https://github.com/aki168/aki-cheng/raw/d42856fc57c1ff0b0acb89a2e9120e170f82a51f/s-sitemap.png)
