@@ -39,7 +39,7 @@ src
 │     └── Title.js `標題樣式[左右兩款]`  
 │   
 ├── hooks `客製化 Hooks`  
-│     ├── useCheckMobileMode.js `偵測用戶裝置(影片放用)`  
+│     ├── useCheckMobileMode.js `確認用戶裝置(影片播放偵測用)`  
 │     └── useFetch.js `遠端連線使用`  
 │ 
 ├── pages `個別頁面`  
