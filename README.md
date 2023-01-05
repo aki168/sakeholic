@@ -1,5 +1,5 @@
 # 小酌圖鑑 🍶
-SAKEHOLIC BOOK | 日本酒檢索網站
+(SAKEHOLIC BOOK | 日本酒檢索網站)[https://aki168.github.io/sakeholic/]
 
 ![Image text](https://github.com/aki168/aki-cheng/raw/main/public/point4z.png)
 
