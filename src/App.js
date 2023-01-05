@@ -1,40 +1,78 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import AOS from 'aos'
 import {
   HashRouter,
-  NavLink,
   Routes,
   Route,
-  useNavigate,
-  useParams,
-  Outlet
+  Outlet,
+  Navigate
+  // NavLink,
+  // useNavigate,
+  // useParams,
 } from 'react-router-dom';
-// import * as antd from 'antd';
-import * as Icon from 'react-bootstrap-icons'
-import * as bs from 'react-bootstrap'
-import MyNavbar from './components/MyNavbar';
-import Main from './pages/Main'
-import About from './pages/About'
-import SearchPage from './pages/SearchPage'
-import UserPage from './pages/UserPage'
-import Footer from './components/Footer';
-import { useState } from 'react';
+import MyNavbar from '@COM/MyNavbar'
+import Main from '@PAGE/Main'
+import About from '@PAGE/About'
+import FindingPage from '@PAGE/FindingPage'
+import AreaSearchPage from '@PAGE/AreaSearchPage'
+import RankingPage from '@PAGE/RankingPage'
+import SearchPage from '@PAGE/SearchPage';
+import UserPage from '@PAGE/UserPage'
+import Footer from '@COM/Footer';
+import NotFoundPage from '@PAGE/NotFoundPage';
+import LoginPage from '@PAGE/LoginPage'
+import RegisterPage from '@PAGE/RegisterPage';
+import { AuthContext, useAuth } from '@/MyContext';
 
+
+const ProtectedRoute = ({ children }) => {
+  const { token } = useAuth()
+  return token ? <Outlet /> : <Navigate to="/login" replace />
+}
+
+const Layout = () => {
+  return (
+    <>
+      <MyNavbar />
+      <Outlet />
+      <Footer />
+    </>
+  )
+}
 
 export default function App() {
+
+  const [token, setToken] = useState(null)
+  const [userData, setUserData] = useState({})
+  const mediaPath = `${process.env.PUBLIC_URL}/media/`
+
+  useEffect(() => {
+    AOS.init({
+      duration : 2000
+    });
+  }, [])
 
 
   return (
     <HashRouter>
-      <MyNavbar/>
-      <Routes>
-        <Route path='/' element={<Main />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/search' element={<SearchPage />} />
-        <Route path='/user' element={<UserPage />} />
-      </Routes>
-
-      <Footer />
-
+      <AuthContext.Provider value={{ token, setToken, userData, setUserData, mediaPath }}>
+        <Routes>
+          <Route path='/' element={<Layout/>}>
+            <Route path='/' element={<Main />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/finding' element={<FindingPage />} />
+            <Route path='/areaSearch' element={<AreaSearchPage />} />
+            <Route path='/search' element={<SearchPage />} />
+            <Route path='/ranking' element={<RankingPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/register' element={<RegisterPage />} />
+            <Route element={<ProtectedRoute />}>
+              <Route path='/user' element={<UserPage />} />
+            </Route>
+            <Route path='*' element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </AuthContext.Provider>
     </HashRouter>
   )
 }

@@ -1,5 +1,5 @@
 // 引用字型
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Koulen&family=M+PLUS+1:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Koulen&family=M+PLUS+1:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
 
 $path: './';
 
@@ -7,12 +7,16 @@ $path: './';
   box-sizing: border-box;
 }
 
-body{
+body {
   margin: 0;
 }
 
-ul{
+ul {
   padding: 0;
+}
+
+a:hover {
+  opacity: 0.8;
 }
 
 .text-h1 {
@@ -21,7 +25,7 @@ ul{
   letter-spacing: 0.15rem;
 }
 
-.navbar{
+.navbar {
   background-color: $dark;
 }
 
@@ -33,29 +37,36 @@ ul{
 }
 
 @media (min-width:767px) {
-  .navbar{
+  .navbar {
     background-color: $light;
   }
-  .hero{
-  background-image: url('../media/main-section-text.png');
+
+  .hero {
+    background-image: url('../media/main-section-text.png');
   }
-  .text-h1{
+
+  .text-h1 {
     color: $dark;
   }
 }
 
-.title-font{
+.title-font {
   font-family: 'Koulen', cursive;
   letter-spacing: 0.15rem;
 }
 
-.title-font{
-  font-family: 'Koulen', cursive;
-}
-
-.inter-font{
+.inter-font {
   font-family: 'Inter', sans-serif;
 }
 
+.table {
+  margin-bottom: 0;
+}
 
-// font-family: 'M PLUS 1', sans-serif;
+.MuiTabs-scrollButtons.Mui-disabled {
+  opacity: 0.3;
+}
+
+.recharts-wrapper{
+  margin:auto ;
+}
