@@ -28,7 +28,23 @@ SAKEHOLIC BOOK | 日本酒檢索網站
 本專案 支援手機/電腦/平板等跨裝置瀏覽  
 
 ## Folder Structure
-``` 
+```
+public
+│
+├── media // 靜態多媒體檔案 
+│
+├── SCSS  // 模組化 CSS
+│     ├── _index.scss  // 自定義樣式 
+│     ├── _japanMap.scss // RWD日本地圖
+│     ├── _reset.scss  // CSS reset (meyerweb)  
+│     ├── all.css // 生成編譯出口
+│     ├── all.css.map 
+│     └── all.scss  // 需編譯之檔案彙總
+│
+└── index.html  
+
+/////
+
 src  
 │   
 ├── components // UI元件  
@@ -56,7 +72,8 @@ src
 │     └── NotFoundPage.js // 404頁面  
 │ 
 /////  
-── package.json // 依賴套件等資訊  
+
+── package.json // 依賴套件等資訊 
 ``` 
   
 ## Site Map 
