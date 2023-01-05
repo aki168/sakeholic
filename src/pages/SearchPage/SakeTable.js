@@ -1,5 +1,5 @@
 import { Pagination } from '@mui/material'
-import ControlledAccordions from '../../components/ControlledAccordions'
+import ControlledAccordions from '@COM/ControlledAccordions'
 
 const SakeTable = ({ currentPost, totalItems, perPage, pageHandler, currentpage }) => {
 

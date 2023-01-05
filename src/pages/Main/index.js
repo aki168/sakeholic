@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Title } from '../../components/Title'
+import { Title } from '@COM/Title'
 import ScrollableTabsFeedback from "./ScrollableTabsFeedback"
 import SakeCardA from "./SakeCardA"
 import FeedbackCard from "./FeedbackCard"
-import useCheckScreenWidth from '../../hooks/useCheckMobileMode'
+import useCheckScreenWidth from '@HOOK/useCheckMobileMode'
 
 const Main = () => {
 

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Pagination } from '@mui/material'
-import ControlledAccordions from '../../components/ControlledAccordions'
-import Loading from '../../components/Loading'
+import ControlledAccordions from '@COM/ControlledAccordions'
+import Loading from '@COM/Loading'
 
 const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 

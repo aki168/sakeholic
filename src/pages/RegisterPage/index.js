@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import { useForm } from "react-hook-form";
-import { useAuth } from '../../MyContext';
+import { useAuth } from '@/MyContext';
 import { Form, Card, Button } from 'react-bootstrap';
 import Swal from 'sweetalert2';
-import useCheckMobileMode from '../../hooks/useCheckMobileMode';
+import useCheckMobileMode from '@HOOK/useCheckMobileMode';
 
 const RegisterPage = () => {
 

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Dropdown } from 'react-bootstrap'
 import { List } from 'react-bootstrap-icons'
-import { useAuth } from '../MyContext';
+import { useAuth } from '@/MyContext';
 
 const MyNavbar = () => {
 

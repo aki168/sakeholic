@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Pagination } from '@mui/material'
-import { Title } from '../../components/Title'
+import { Title } from '@COM/Title'
 import ControlledAccordionsRank from './ControlledAccordionsRank'
-import Loading from '../../components/Loading'
+import Loading from '@COM/Loading'
 
 const RankingPage = () => {
 

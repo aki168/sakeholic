@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../MyContext'
+import { useAuth } from '@/MyContext'
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Card from 'react-bootstrap/Card'
 import Swal from 'sweetalert2';
 import { useForm } from "react-hook-form";
-import useCheckMobileMode from '../../hooks/useCheckMobileMode';
+import useCheckMobileMode from '@HOOK/useCheckMobileMode';
 
 const LoginPage = () => {
 

@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
-import { useAuth } from '../../MyContext'
+import { useAuth } from '@/MyContext'
 import { Button } from 'react-bootstrap'
 import Swal from 'sweetalert2';
-import { Title, TitleReverse } from '../../components/Title'
+import { Title, TitleReverse } from '@COM/Title'
 import ControlledAccordionsUser from './ControlledAccordionsUser'
 
 const MemberAvatar = styled.div`

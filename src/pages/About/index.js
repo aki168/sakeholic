@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
 import { Title } from '../../components/Title'
 
+import useFetch from '@HOOK/useFetch'
+
 
 
 const About = () => {
