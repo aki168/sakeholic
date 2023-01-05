@@ -28,34 +28,36 @@ SAKEHOLIC BOOK | 日本酒檢索網站
 本專案 支援手機/電腦/平板等跨裝置瀏覽  
 
 ## Folder Structure
+``` 
 src  
 │   
-├── components `UI元件`  
-│     ├── ItemCard `單酒資訊 相關組件`  
-│     ├── ControlledAccordions.js `可控手風琴元件`  
-│     ├── Footer.js `頁腳導覽列`  
-│     ├── Loading.js `載入狀態動畫`  
-│     ├── MyNavbar.js `上排導覽列`  
-│     └── Title.js `標題樣式[左右兩款]`  
+├── components // UI元件  
+│     ├── ItemCard  // 單酒資訊 相關組件  
+│     ├── ControlledAccordions.js // 可控手風琴元件  
+│     ├── Footer.js  // 頁腳導覽列  
+│     ├── Loading.js // 載入狀態動畫  
+│     ├── MyNavbar.js // 上排導覽列  
+│     └── Title.js  // 標題樣式[左右兩款]  
 │   
-├── hooks `客製化 Hooks`  
-│     ├── useCheckMobileMode.js `確認用戶裝置(影片播放偵測用)`  
-│     └── useFetch.js `遠端連線使用`  
+├── hooks // 客製化 Hooks  
+│     ├── useCheckMobileMode.js 確認用戶裝置(影片播放偵測用)  
+│     └── useFetch.js // 遠端連線使用  
 │    
-├── pages `個別頁面`  
-│     ├── About `關於本站`  
-│     ├── AreaSearchPage `依地區搜尋酒品`  
-│     ├── FindingPage `探索酒品`  
-│     ├── LoginPage `會員登入`  
-│     ├── Main `首頁`  
-│     ├── RankingPage `酒品排名`  
-│     ├── RegisterPage `註冊會員`  
-│     ├── SearchPage `關鍵字檢索`  
-│     ├── UserPage `會員專區`  
-│     └── NotFoundPage.js `404頁面`  
+├── pages // 個別頁面  
+│     ├── About // 關於本站  
+│     ├── AreaSearchPage // 依地區搜尋酒品  
+│     ├── FindingPage // 探索酒品  
+│     ├── LoginPage // 會員登入  
+│     ├── Main // 首頁  
+│     ├── RankingPage // 酒品排名  
+│     ├── RegisterPage // 註冊會員  
+│     ├── SearchPage // 關鍵字檢索  
+│     ├── UserPage // 會員專區  
+│     └── NotFoundPage.js // 404頁面  
 │ 
 /////  
-── package.json `依賴套件等資訊`  
+── package.json // 依賴套件等資訊  
+``` 
   
 ## Site Map 
 ![](https://github.com/aki168/aki-cheng/raw/d42856fc57c1ff0b0acb89a2e9120e170f82a51f/s-sitemap.png)
