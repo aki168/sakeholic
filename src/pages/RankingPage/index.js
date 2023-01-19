@@ -1,36 +1,45 @@
-import { useState, useEffect } from 'react'
+import { useReducer, useEffect } from 'react'
 import axios from 'axios'
+import ControlledAccordionsRank from './ControlledAccordionsRank'
 import { Pagination } from '@mui/material'
 import { Title } from '@COM/Title'
-import ControlledAccordionsRank from './ControlledAccordionsRank'
 import Loading from '@COM/Loading'
 
 const RankingPage = () => {
+  const [state, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'INIT_DATA':
+        return { ...state, sakeList: action.data, loading: false }
+      case 'SET_CURRENT_PAGE':
+        return { ...state, currentPage: action.page }
+      case 'SET_SEASON':
+        return { ...state, season: action.value }
+      case 'SET_BANNER':
+        return { ...state, banner: action.randomImg }
+      case 'REMOVE_LOADING':
+        return { ...state, loading: false }
+      case 'ADD_LOADING':
+        return { ...state, loading: true }
+      default: return state
+    }
+  }, {
+    banner: 'w001',
+    season: [2022, '夏季'],
+    sakeList: [],
+    loading: true,
+    currentPage: 1,
+    perPage: 10
+  })
 
-  const defaultImg = ['w001', 'w002', 'w005', 'w007']
-  const random = (len) => Math.floor(Math.random() * len + 1);
-  let randomImg = defaultImg[random(defaultImg.length) - 1]
-  const [banner, setBanner] = useState('w001')
-  const [season, setSeason] = useState([2022, '夏季'])
+  let { banner, season, sakeList, loading, currentPage, perPage } = state
 
-  const [sakeList, setSakeList] = useState([])
-  const [loading, setLoading] = useState(true);
-  // 設定：目前要渲染哪一頁
-  const [currentPage, setCurrentPage] = useState(1);
-  // 設定：每一頁有幾筆
-  const [perPage, setPerPage] = useState(10);
 
-  // arr.slice(0,2) =>> 取出arr[0]&arr[1]取2個資料排一個陣列
-  // 獲取當前頁面的資料
-  const sliceEnd = currentPage * perPage; // 若我在第二頁時=2*10=第20筆
-  const sliceStart = sliceEnd - perPage; // 第20筆 - 每頁有幾筆＝第10筆
-  // 淺拷貝部分data,取出當前頁面所需資料
+  const sliceEnd = currentPage * perPage;
+  const sliceStart = sliceEnd - perPage;
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;
 
-
   const init = () => {
-    // execute simultaneous requests -------------------------------------------------------------------------------------
     axios.all([
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/brands.json'),
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/breweries.json'),
@@ -41,32 +50,24 @@ const RankingPage = () => {
     ])
       .then(async (responseArr) => {
         const itemsData = await responseArr[0].data.brands;
-        // 2 找酒廠
         const breweriesData = await responseArr[1].data.breweries;
-        // 2-1 找地區
         const AreasData = await responseArr[4].data.areas;
-        // 1-1 找TAG
         const tagsData = await responseArr[2].data.flavorTags;
-        // 1-2 找雷達風味
         const chartData = await responseArr[3].data.flavorCharts;
-        // ranking
         const rankData = await responseArr[5].data.overall;
-        // season
         const seasonRank = await responseArr[5].data.yearMonth;
         let seasonYear = seasonRank.slice(0, 4)
         let seasonParse = Math.ceil(Number(seasonRank.slice(4,)) / 3) - 1
         const seasonIndex = ['春季', '夏季', '秋季', '冬季']
-        setSeason([seasonYear, seasonIndex[seasonParse]])
+        dispatch({ type: 'SET_SEASON', value: [seasonYear, seasonIndex[seasonParse]] })
 
         let allData = [];
         itemsData.forEach(element => {
-
           let oneBrewery = breweriesData.filter(item => item.id === element.breweryId)[0];
           let oneArea = AreasData.filter(item => item.id === oneBrewery.areaId)[0];
           let oneTags = tagsData.filter(item => item.brandId === element.id)[0];
           let oneChart = chartData.filter(item => item.brandId === element.id)[0];
           let oneRank = rankData.filter(item => item.brandId === element.id)[0];
-
           const myItem = {
             id: element.id,
             name: element.name,
@@ -83,22 +84,21 @@ const RankingPage = () => {
           let currentData =
             allData.filter(item => item.rank !== undefined)
               .sort((x, y) => x.rank > y.rank ? 1 : -1)
-          setSakeList(currentData)
-          setLoading(false)
+          dispatch({ type: 'INIT_DATA', data: currentData })
         }
       })
   }
   const pageHandler = (event, page) => {
-    setCurrentPage(page)
+    dispatch({ type: 'SET_CURRENT_PAGE', page })
   }
-  const initBanner = () => { setBanner(randomImg) }
 
   useEffect(() => {
     init()
-    initBanner()
+    const defaultImg = ['w001', 'w002', 'w005', 'w007']
+    const random = (len) => Math.floor(Math.random() * len + 1);
+    let randomImg = defaultImg[random(defaultImg.length) - 1]
+    dispatch({type: 'SET_BANNER', randomImg})
   }, [])
-
-
   return (
     <>
       <div className='container'>

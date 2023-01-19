@@ -3,7 +3,7 @@ import { Button, Form } from 'react-bootstrap';
 import { ArrowRightShort, BrightnessLowFill, Mailbox, Discord, Telegram } from 'react-bootstrap-icons';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
-import { Title } from '../../components/Title'
+import { Title } from '@COM/Title'
 
 import useFetch from '@HOOK/useFetch'
 

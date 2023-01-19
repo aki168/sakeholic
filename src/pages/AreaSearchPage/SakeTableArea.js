@@ -1,26 +1,39 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useReducer } from 'react'
 import axios from 'axios'
 import { Pagination } from '@mui/material'
 import ControlledAccordions from '@COM/ControlledAccordions'
 import Loading from '@COM/Loading'
 
-const SakeTableArea = ({ clickAreaId, setClickArea }) => {
+const SakeTableArea = ({ clickAreaId }) => {
 
-  const [areaId, setAreaId] = useState('ALL')
-  const [areaIndex, setAreaIndex] = useState([])
+  const [state, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+      case 'INIT_DATA':
+        return { ...state, sakeList: action.data, loading: false }
+      case 'SET_INDEX':
+        return { ...state, areaIndex: action.data }
+      case 'SET_CURRENT_PAGE':
+        return { ...state, currentPage: action.page }
+      case 'CHANGE_AREA':
+        return { ...state, areaId: action.areaId }
+      case 'REMOVE_LOADING':
+        return { ...state, loading: false }
+      case 'ADD_LOADING':
+        return { ...state, loading: true }
+      default: return state
+    }
+  }, {
+    loading: true,
+    areaId: 'ALL',
+    areaIndex: [],
+    sakeList: [],
+    currentPage: 1,
+    perPage: 10,
+  })
+  let { loading, areaId, areaIndex, sakeList, currentPage, perPage } = state
 
-  const [sakeList, setSakeList] = useState([])
-  const [loading, setLoading] = useState(true);
-  // 設定：目前要渲染哪一頁
-  const [currentPage, setCurrentPage] = useState(1);
-  // 設定：每一頁有幾筆
-  const [perPage, setPerPage] = useState(10);
-
-  // arr.slice(0,2) =>> 取出arr[0]&arr[1]取2個資料排一個陣列
-  // 獲取當前頁面的資料
-  const sliceEnd = currentPage * perPage; // 若我在第二頁時=2*10=第20筆
-  const sliceStart = sliceEnd - perPage; // 第20筆 - 每頁有幾筆＝第10筆
-  // 淺拷貝部分data,取出當前頁面所需資料
+  const sliceEnd = currentPage * perPage;
+  const sliceStart = sliceEnd - perPage;
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;
 
@@ -30,7 +43,6 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   }
 
   const init = () => {
-    // execute simultaneous requests -------------------------------------------------------------------------------------
     axios.all([
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/brands.json'),
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/breweries.json'),
@@ -40,16 +52,10 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
       axios.get('https://raw.githubusercontent.com/aki168/sakeData/main/rankings.json')
     ])
       .then(async (responseArr) => {
-
-        // 1 酒名搜尋
         const itemsData = await responseArr[0].data.brands;
-        // 2 找酒廠
         const breweriesData = await responseArr[1].data.breweries;
-        // 2-1 找地區
         const AreasData = await responseArr[4].data.areas;
-        // 1-1 找TAG
         const tagsData = await responseArr[2].data.flavorTags;
-        // 1-2 找雷達風味
         const chartData = await responseArr[3].data.flavorCharts;
 
         let allData = [];
@@ -68,18 +74,11 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
             tags: oneTags?.tagIds,
             chart: [oneChart?.f1, oneChart?.f2, oneChart?.f3, oneChart?.f4, oneChart?.f5, oneChart?.f6]
           }
-
           allData.push(myItem)
         })
         if (allData) {
-          if (areaId === 'ALL') {
-            setSakeList(allData)
-            setLoading(false)
-          } else {
-            let filterArea = allData.filter(item => item.areaId === areaId?.id)
-            setSakeList(filterArea)
-            setLoading(false)
-          }
+          let data = areaId === 'ALL' ? allData : allData.filter(item => item.areaId === areaId.id)
+          dispatch({ type: 'INIT_DATA', data })
         }
       })
   }
@@ -87,9 +86,7 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   const getDataIndex = async () => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/areaIndex')
       .then(result => {
-        if (result?.data) {
-          setAreaIndex(result.data)
-        }
+        dispatch({ type: 'SET_INDEX', data: result.data })
       })
       .catch(err => {
         console.error(err)
@@ -97,7 +94,7 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
   }
 
   const pageHandler = (event, page) => {
-    setCurrentPage(page)
+    dispatch({ type: 'SET_CURRENT_PAGE', page })
   }
 
   useEffect(() => {
@@ -107,12 +104,12 @@ const SakeTableArea = ({ clickAreaId, setClickArea }) => {
 
   useEffect(() => {
     if (clickAreaId !== 'ALL') {
-      setLoading(true)
+      dispatch({ type: 'ADD_LOADING' })
       setTimeout(() => {
-        setLoading(false)
+        dispatch({ type: 'REMOVE_LOADING' })
       }, 3000)
-      let filterRes = letNameToId(clickAreaId, areaIndex)
-      setAreaId(filterRes)
+      let areaId = letNameToId(clickAreaId, areaIndex)
+      dispatch({ type: 'CHANGE_AREA', areaId })
     }
   }, [clickAreaId])
   return (
