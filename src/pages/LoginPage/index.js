@@ -1,13 +1,11 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../MyContext'
+import { useAuth } from '@/MyContext'
 import axios from 'axios';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Card from 'react-bootstrap/Card'
 import Swal from 'sweetalert2';
+import { Button, Form, Card } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
-import useCheckMobileMode from '../../hooks/useCheckMobileMode';
+import useCheckMobileMode from '@HOOK/useCheckMobileMode';
 
 const LoginPage = () => {
 
@@ -17,7 +15,7 @@ const LoginPage = () => {
   const random = (len) => Math.floor(Math.random() * len + 1);
   let randomMedia = defaultMedia[random(defaultMedia.length) - 1]
 
-  const [formData, setFormData] = useState({})
+  const [ formData, setFormData] = useState({})
   const { setToken, setUserData, mediaPath } = useAuth()
   let navigate = useNavigate()
 
@@ -41,7 +39,6 @@ const LoginPage = () => {
     let postObj = { "user": data }
     let url = 'https://todoo.5xcamp.us/users/sign_in';
     axios.post(url, postObj).then(res => {
-      console.log(res)
 
       if (res.data.message === '登入成功') {
         Toast.fire({
@@ -132,11 +129,11 @@ const LoginPage = () => {
           </div>
         </Card>
         <div className='site-image py-4 d-none d-md-block col-md-6 col-lg-7 col-xl-8 my-auto' >
-        { isMobile ||
-          <video autoPlay loop muted className="img-fluid d-none d-md-block" >
-            <source src={`${mediaPath}${randomMedia}.mp4`} type="video/mp4" />
-          </video>
-        }
+          {isMobile ||
+            <video autoPlay loop muted className="img-fluid d-none d-md-block" >
+              <source src={`${mediaPath}${randomMedia}.mp4`} type="video/mp4" />
+            </video>
+          }
         </div>
       </div>
     </section>

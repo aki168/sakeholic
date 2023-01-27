@@ -1,43 +1,46 @@
 import { useState, useEffect } from 'react'
-import { Title } from '../../components/Title'
-import ScrollableTabsFeedback from "./FeedbackCard/ScrollableTabsFeedback"
+import axios from 'axios'
+import { Title } from '@COM/Title'
+import ScrollableTabsFeedback from "./ScrollableTabsFeedback"
 import SakeCardA from "./SakeCardA"
 import FeedbackCard from "./FeedbackCard"
-import axios from 'axios'
+import useCheckScreenWidth from '@HOOK/useCheckMobileMode'
 
-export default function Main() {
+const Main = () => {
+
+  const isMobile = useCheckScreenWidth()
 
   const [data, setData] = useState([])
   const [feedbackData, setFeedbackData] = useState([])
 
   const aosEffectForCard = ['right', 'left', 'right', 'left',]
 
-  const getDefaultData = async() => {
+  const getDefaultData = async () => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/sakeCardDefault')
-    .then(result => {
-      if(result?.data){
-        setData(result.data)
-      }
-    }).catch(err => {
-      console.error(err)
-    })
+      .then(result => {
+        if (result?.data) {
+          setData(result.data)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
   }
 
-  const getFeedback = async() => {
+  const getFeedback = async () => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/feedbackData')
-    .then(result => {
-      if(result?.data){
-        setFeedbackData(result.data)
-      }
-    }).catch(err =>{
-      console.error(err)
-    })
+      .then(result => {
+        if (result?.data) {
+          setFeedbackData(result.data)
+        }
+      }).catch(err => {
+        console.error(err)
+      })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getDefaultData()
     getFeedback()
-  },[])
+  }, [])
 
   return (
     <main>
@@ -67,11 +70,14 @@ export default function Main() {
             ))
           }
         </div>
-        {/* PC */}
-        <div className="d-none d-md-block mb-2">
-          <ScrollableTabsFeedback feedbackData={feedbackData} />
-        </div>
+        { isMobile || // PC
+          <div className="d-none d-md-block mb-2">
+            <ScrollableTabsFeedback feedbackData={feedbackData} />
+          </div>
+        }
       </section>
     </main>
   )
 }
+
+export default Main

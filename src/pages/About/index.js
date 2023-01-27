@@ -1,19 +1,19 @@
-import { useState } from 'react'
+import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import { ArrowRightShort, BrightnessLowFill, Mailbox, Discord, Telegram } from 'react-bootstrap-icons';
 import { useForm } from "react-hook-form";
 import Swal from 'sweetalert2';
-import { Title } from '../../components/Title'
+import { Title } from '@COM/Title'
+
+import useFetch from '@HOOK/useFetch'
 
 
 
 const About = () => {
-  
+
   const { register, handleSubmit, reset, formState: { errors } } = useForm({
     defaultValue: {}
   });
-  const onError = (errors, e) => console.log(errors, e);
-  const [formData, setFormData] = useState({})
 
   const Toast = Swal.mixin({
     toast: true,
@@ -27,22 +27,32 @@ const About = () => {
     }
   })
 
-  const onSubmit = (data) => {
-    Toast.fire({
-      icon: 'success',
-      title: '成功',
-      html: `${data.userName}，已收到您的來信<br/>
+
+  const onSubmit = async (formData) => {
+    let url = 'https://json-server-vercel-sepia.vercel.app/messages'
+    await axios.post(url, {...formData, dt: Date.now()})
+      .then(res => {
+        Toast.fire({
+          icon: 'success',
+          title: '成功',
+          html: `${formData.userName}，已收到您的來信<br/>
       我們將盡速回覆您！`,
-    })
-    setFormData(data)
-    reset();
+        })
+        reset()
+      }).catch(err => {
+        Toast.fire({
+          icon: 'error',
+          title: 'Oops...',
+          html: "網路狀態異常"
+        })
+        console.error(err)
+      })
   };
   return (
     <>
       <div className='container pb-3' style={{ maxWidth: "800px" }}>
         <Title cn="聯絡我們" jp="お問い合わせ" />
-        {/* 聯絡表單 */}
-        <Form className='d-flex flex-column ps-5 mb-5' onSubmit={handleSubmit(onSubmit, onError)}>
+        <Form className='d-flex flex-column ps-5 mb-5' onSubmit={handleSubmit(onSubmit)}>
           <Form.Group className="mb-3" controlId="formBasicName" >
             <Form.Floating>
               <Form.Control
@@ -88,6 +98,7 @@ const About = () => {
                 type="text"
                 name="title"
                 placeholder="主旨"
+                {...register("title")}
               />
               <label htmlFor="floatingInputCustom">主旨</label>
             </Form.Floating>
@@ -122,7 +133,7 @@ const About = () => {
         <section className='container py-5'>
 
           <div className="row justify-content-between"
-          data-aos="fade-right"
+            data-aos="fade-right"
           >
 
             <div className="col-12 col-md-6 py-5 px-4 mb-5 bg-light lh-base">
@@ -166,10 +177,10 @@ const About = () => {
               </ul>
             </div>
 
-            <div 
+            <div
               className="col-12 col-md-5 py-5 px-4 mb-5 bg-dark text-white col-4 d-flex flex-column justify-content-center lh-base"
               data-aos="fade-left"
-              >
+            >
               <h3 className='fw-bold mb-2'>版權聲明</h3>
               <div className='rounded-circle my-2'
                 style={{

@@ -1,4 +1,4 @@
-import { Title } from '../../components/Title'
+import { Title } from '@COM/Title'
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';

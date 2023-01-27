@@ -2,16 +2,12 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Button, Dropdown } from 'react-bootstrap'
 import { List } from 'react-bootstrap-icons'
-import { useAuth } from '../MyContext';
+import { useAuth } from '@/MyContext';
 
 const MyNavbar = () => {
 
 
   const { token } = useAuth();
-  // console.log(token)
-
-
-
   const [toggleMenu, setToggleMenu] = useState(false);
   const showMenu = (e) => {
     e.preventDefault()
@@ -62,21 +58,21 @@ const MyNavbar = () => {
               </Button>
             </NavLink>
           </div>
-          <a href="!#" onClick={showMenu} className='d-md-none'>
+          <button onClick={showMenu} className='d-md-none border-0 bg-dark'>
             <List
               size={40}
               className='text-white'
             />
-          </a>
+          </button>
         </div>
       </nav>
       <Dropdown.Menu className='w-100 fs-2 text-center rounded-0' show={toggleMenu || false}>
         {NavItems.map((item, i) => (
-          <Dropdown.Item key={i} eventKey={i} className='py-4' onClick={showMenu}>
+          <Dropdown.Item as={'div'} key={i} eventKey={i} className='py-4' onClick={showMenu}>
             <NavLink to={item.path}>{item.name}</NavLink>
           </Dropdown.Item>
         ))}
-        <Dropdown.Item eventKey="4" className="py-4" onClick={showMenu}>
+        <Dropdown.Item as={'div'} eventKey="4" className="py-4" onClick={showMenu}>
           <NavLink to={token ? '/user' : '/login'}>
             <Button
               variant={token ? "outline-dark" : "outline-primary"}

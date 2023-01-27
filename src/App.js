@@ -10,19 +10,19 @@ import {
   // useNavigate,
   // useParams,
 } from 'react-router-dom';
-import MyNavbar from './components/MyNavbar';
-import Main from './pages/Main'
-import About from './pages/About'
-import FindingPage from './pages/FindingPage'
-import AreaSearchPage from './pages/AreaSearchPage'
-import RankingPage from './pages/RankingPage'
-import SearchPage from './pages/SearchPage';
-import UserPage from './pages/UserPage'
-import Footer from './components/Footer';
-import NotFoundPage from './pages/NotFoundPage';
-import LoginPage from './pages/LoginPage'
-import RegisterPage from './pages/RegisterPage';
-import { AuthContext, useAuth } from './MyContext';
+import MyNavbar from '@COM/MyNavbar'
+import Main from '@PAGE/Main'
+import About from '@PAGE/About'
+import FindingPage from '@PAGE/FindingPage'
+import AreaSearchPage from '@PAGE/AreaSearchPage'
+import RankingPage from '@PAGE/RankingPage'
+import SearchPage from '@PAGE/SearchPage';
+import UserPage from '@PAGE/UserPage'
+import Footer from '@COM/Footer';
+import NotFoundPage from '@PAGE/NotFoundPage';
+import LoginPage from '@PAGE/LoginPage'
+import RegisterPage from '@PAGE/RegisterPage';
+import { AuthContext, useAuth } from '@/MyContext';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -31,7 +31,6 @@ const ProtectedRoute = ({ children }) => {
 }
 
 const Layout = () => {
-  // const { token } = useAuth()
   return (
     <>
       <MyNavbar />

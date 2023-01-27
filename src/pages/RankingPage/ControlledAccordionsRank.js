@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import numeral from 'numeral'
-import Accordion from '@mui/material/Accordion';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import AccordionSummary from '@mui/material/AccordionSummary';
+import { Accordion, AccordionDetails, AccordionSummary, Rating } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import Rating from '@mui/material/Rating';
-import ItemCard from '../../components/ItemCard';
+import ItemCard from '@COM/ItemCard';
 
 export default function ControlledAccordionsRank({ currentPost }) {
   const [expanded, setExpanded] = useState(false);
