@@ -25,7 +25,7 @@ const SearchPage = () => {
     submitValue: '',
     sakeList: [],
     loading: true,
-    currentpage: 1,
+    currentPage: 1,
     perPage: 10,
   })
   let { inputValue, submitValue, sakeList, loading, currentPage, perPage } = state
@@ -141,7 +141,7 @@ const SearchPage = () => {
             totalItems={totalItems}
             perPage={perPage}
             pageHandler={pageHandler}
-            currentpage={currentPage}
+            currentPage={currentPage}
           /> : (
             <Card className='mt-4 py-5 bg-light border-0'>
               <Card.Text className='text-info text-center'>
