@@ -20,17 +20,9 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   const AHandler = (e) => {
     e.preventDefault()
   }
-
-  const defaultImgA = ['005', '006', '007', '008', '009', '010']
-  const defaultImgB = ['find1', 'find2', 'find3', 'find4', 'find5', 'find6', 'find7', 'find8', 'find9']
-  const random = (len) => Math.floor(Math.random() * len + 1);
-  let randomImgA = defaultImgA[random(defaultImgA.length) - 1]
-  let randomImgB = defaultImgB[random(defaultImgB.length) - 1]
-
   const [like, setLike] = useState(isLike)
-  const [highlight, setHighlight] = useState(false)
   const [tagsIndex, setTagsIndex] = useState([])
-
+  const [mainPics, setMainPics] = useState(['',''])
 
   let tagsToText = (numArr, refArr) => {
     if (numArr) {
@@ -40,29 +32,38 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
     }
   }
 
-  const getTagsIndex = async () => {
-    await axios.get('https://json-server-vercel-sepia.vercel.app/tagsIndex')
-      .then(result => {
-        if (result?.data) {
-          setTagsIndex(result.data)
-        }
-      }).catch(err => {
-        console.error(err)
-      })
-  }
-
   useEffect(() => {
-    getTagsIndex()
+    const getTagsIndex = async () => {
+      await axios.get('https://json-server-vercel-sepia.vercel.app/tagsIndex')
+        .then(result => {
+          if (result?.data) {
+            setTagsIndex(result.data)
+          }
+        }).catch(err => {
+          console.error(err)
+        })
+    }
+    getTagsIndex();
   }, [])
 
+  useEffect(()=>{
+    const getPic = () => {
+      const defaultImgA = ['005', '006', '007', '008', '009', '010']
+      const defaultImgB = ['find1', 'find2', 'find3', 'find4', 'find5', 'find6', 'find7', 'find8', 'find9']
+      const random = (len) => Math.floor(Math.random() * len + 1)
+      let randomImgA = defaultImgA[random(defaultImgA.length) - 1]
+      let randomImgB = defaultImgB[random(defaultImgB.length) - 1]
+      setMainPics([randomImgA, randomImgB])
+    }
+    getPic();
+  },[])
   return (
     <Card className="bg-light p-3" style={{ position: "relative" }}>
       <KeepBtn
-        onMouseOver={() => setHighlight(prev => !prev)}
         onClick={() => setLike(prev => !prev)}
       >
-        {like ? <HeartFill className={`${setLike || highlight ? 'text-primary' : 'text-dark'}`} size={28} />
-          : <Heart className={`${highlight ? 'text-primary' : 'text-dark'}`} size={28} />
+        {like ? <HeartFill className={'text-primary'} size={28} />
+          : <Heart className={'text-dark'} size={28} />
         }
       </KeepBtn>
       <CardContent className='row gx-3 p-0 py-2 p-md-4'>
@@ -89,11 +90,11 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
             <ScrollableTabsButtonVisible currentData={tagsToText(tags, tagsIndex)} />
           }
           <div className='flex my-2 justify-content-between'>
-            <img src={`${process.env.PUBLIC_URL}/media/${randomImgA}.jpg`}
+            <img src={`${process.env.PUBLIC_URL}/media/${mainPics[0]}.jpg`}
               alt="sake"
               className="rounded w-50 p-1 img-fluid"
             />
-            <img src={`${process.env.PUBLIC_URL}/media/${randomImgB}.jpg`}
+            <img src={`${process.env.PUBLIC_URL}/media/${mainPics[1]}.jpg`}
               alt="sake"
               className="rounded w-50 p-1 img-fluid"
             />

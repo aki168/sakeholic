@@ -24,7 +24,7 @@ const RankingPage = () => {
     }
   }, {
     banner: 'w001',
-    season: [2022, '夏季'],
+    season: [2023, '春季'],
     sakeList: [],
     loading: true,
     currentPage: 1,

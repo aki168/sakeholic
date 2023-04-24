@@ -28,7 +28,7 @@ export default function ControlledAccordions({ currentPost }) {
             aria-controls={`${id}bh-content`}
             id={`${id}bh-header`}
             >
-            <p style={{ width: '30%', flexShrink: 0, color: "darkred", textAlign: "center" }}>
+            <p style={{ width: '30%', flexShrink: 0, color: "darked", textAlign: "center" }}>
               {name}
             </p>
             <p style={{ width: '40%', color: 'text.secondary', fontSize: '14px', textAlign: "center" }}>
