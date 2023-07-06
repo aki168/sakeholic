@@ -46,43 +46,27 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   }, []);
 
   useEffect(() => {
-    // const getPic = () => {
-    //   const defaultImgA = ["005", "006", "007", "008", "009", "010"];
-    //   const defaultImgB = [
-    //     "find1",
-    //     "find2",
-    //     "find3",
-    //     "find4",
-    //     "find5",
-    //     "find6",
-    //     "find7",
-    //     "find8",
-    //     "find9",
-    //   ];
-    //   const random = (len) => Math.floor(Math.random() * len + 1);
-    //   let randomImgA = defaultImgA[random(defaultImgA.length) - 1];
-    //   let randomImgB = defaultImgB[random(defaultImgB.length) - 1];
-    //   setMainPics([randomImgA, randomImgB]);
-    // };
+    const defaluts = [
+      `${process.env.PUBLIC_URL}/media/005.jpg`,
+      `${process.env.PUBLIC_URL}/media/find3.jpg`,
+      `${process.env.PUBLIC_URL}/media/001.jpg`,
+      `${process.env.PUBLIC_URL}/media/find7.jpg`,
+    ];
     const getPic = async () => {
-      let url = 
-      "https://sakeholic-web-crawler-aki168.vercel.app/get_sake_images";
+      let url =
+        "https://sakeholic-web-crawler-aki168.vercel.app/get_sake_images";
       await axios
         .post(url, { name, brewery: maker })
         .then((response) => {
           if (response) {
-            setMainPics(
-              response?.data?.res || [
-                `${process.env.PUBLIC_URL}/media/005.jpg`,
-                `${process.env.PUBLIC_URL}/media/find3.jpg`,
-                `${process.env.PUBLIC_URL}/media/001.jpg`,
-                `${process.env.PUBLIC_URL}/media/find7.jpg`,
-              ]
-            );
+            setMainPics(response?.data?.res || defaluts);
+          } else {
+            setMainPics(defaluts);
           }
         })
         .catch((err) => {
           console.error(err);
+          setMainPics(defaluts);
         });
     };
     getPic();
@@ -122,7 +106,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
             />
           )}
           <div className="flex my-2 justify-content-between">
-            {mainPics.map((pic,i) => (
+            {mainPics.map((pic, i) => (
               <img
                 key={i}
                 src={pic}
