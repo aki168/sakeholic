@@ -3,9 +3,17 @@ import axios from "axios";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
+import {
+  HeartFill,
+  Heart,
+  PencilSquare,
+  GeoAlt,
+  Dice1,
+} from "react-bootstrap-icons";
 import ScrollableTabsButtonVisible from "./ScrollableTabsButtonVisible";
 import Chart from "./Charts";
+import Loading from "@COM/Loading";
+import classNames from "classnames";
 
 const KeepBtn = styled.button`
   position: absolute;
@@ -22,6 +30,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   const [like, setLike] = useState(isLike);
   const [tagsIndex, setTagsIndex] = useState([]);
   const [mainPics, setMainPics] = useState(["", ""]);
+  const [loading, setLoading] = useState(true);
 
   let tagsToText = (numArr, refArr) => {
     if (numArr) {
@@ -46,7 +55,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   }, []);
 
   useEffect(() => {
-    const defaluts = [
+    const defaults = [
       `${process.env.PUBLIC_URL}/media/005.jpg`,
       `${process.env.PUBLIC_URL}/media/find3.jpg`,
       `${process.env.PUBLIC_URL}/media/001.jpg`,
@@ -59,15 +68,16 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
         .post(url, { name, brewery: maker })
         .then((response) => {
           if (response) {
-            setMainPics(response?.data?.res || defaluts);
+            setMainPics(response?.data?.res || defaults);
           } else {
-            setMainPics(defaluts);
+            setMainPics(defaults);
           }
         })
         .catch((err) => {
           console.error(err);
-          setMainPics(defaluts);
+          setMainPics(defaults);
         });
+      setLoading(false);
     };
     getPic();
   }, []);
@@ -105,16 +115,22 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
               currentData={tagsToText(tags, tagsIndex)}
             />
           )}
-          <div className="flex my-2 justify-content-between">
-            {mainPics.map((pic, i) => (
-              <img
-                key={i}
-                src={pic}
-                alt={`${name}-${i}`}
-                className="rounded p-1 img-fluid"
-              />
-            ))}
-          </div>
+          {loading ? (
+            <div className="py-5">
+              <Loading full={false} />
+            </div>
+          ) : (
+            <div className="d-flex my-2 justify-content-center flex-wrap">
+              {mainPics.map((pic, i) => (
+                <img
+                  key={i}
+                  src={pic}
+                  alt={`${name}-${i}`}
+                  className="rounded p-1 img-fluid"
+                />
+              ))}
+            </div>
+          )}
         </div>
         <div className="col-12 col-xl-5 mb-5 my-auto">
           <p className="fw-bolder text-dark py-auto">風味分析</p>
