@@ -1,32 +1,41 @@
-import { useState } from 'react'
-import { Modal, Card } from 'react-bootstrap'
-import { HeartFill, Heart, PencilSquare, GeoAlt } from 'react-bootstrap-icons'
-import ItemCard from '@COM/ItemCard'
-import styled from 'styled-components'
+import { useState } from "react";
+import { Modal, Card } from "react-bootstrap";
+import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
+import ItemCard from "@COM/ItemCard";
+import styled from "styled-components";
 
 const KeepBtn = styled.button`
-  position:absolute;
-  right:0.8em;
-  top:1em; 
-  background:none;
-  border:none
+  position: absolute;
+  right: 0.8em;
+  top: 1em;
+  background: none;
+  border: none;
 `;
 
-const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }) => {
-
+const SakeCardA = ({
+  id,
+  img,
+  furigana,
+  name,
+  maker,
+  area,
+  isLike,
+  tags,
+  chart,
+}) => {
   const [show, setShow] = useState(false);
 
-  const [like, setLike] = useState(isLike)
-  const [highlight, setHighlight] = useState(false)
+  const [like, setLike] = useState(isLike);
+  const [highlight, setHighlight] = useState(false);
   const AHandler = (e) => {
-    e.preventDefault()
-    setShow(prev => !prev)
-  }
+    e.preventDefault();
+    setShow((prev) => !prev);
+  };
 
   return (
     <>
       <Modal
-        size='lg'
+        size="lg"
         show={show}
         onHide={() => setShow(false)}
         dialogClassName="modal-100w"
@@ -37,61 +46,72 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, isLike, tags, chart }
             No.{id}　{name}
           </Modal.Title>
         </Modal.Header>
-        <Modal.Body className='p-0'>
-          <ItemCard area={area} chart={chart} id={id} maker={maker} name={name} tags={tags} isLike={isLike} />
+        <Modal.Body className="p-0">
+          <ItemCard
+            area={area}
+            chart={chart}
+            id={id}
+            maker={maker}
+            name={name}
+            tags={tags}
+            isLike={isLike}
+          />
         </Modal.Body>
       </Modal>
 
-      <a href="!#" onClick={AHandler}
-        className="rounded shadow-sm bg-opacity">
-        <Card className='border-light rounded'>
-          <Card.Header className='p-0 border-0'
+      <a href="!#" onClick={AHandler} className="rounded shadow-sm bg-opacity">
+        <Card className="border-light rounded">
+          <Card.Header
+            className="p-0 border-0"
             style={{
-              height: '370px',
+              height: "370px",
               backgroundImage: `url("${process.env.PUBLIC_URL}/media/${img}")`,
-              backgroundPosition: 'center center',
-              backgroundSize: 'cover',
-              position: "relative"
+              backgroundPosition: "center center",
+              backgroundSize: "cover",
+              position: "relative",
             }}
           >
             <KeepBtn
-              onMouseOver={() => setHighlight(prev => !prev)}
-              onClick={() => setLike(prev => !prev)}
+              onMouseOver={() => setHighlight((prev) => !prev)}
+              onClick={() => setLike((prev) => !prev)}
             >
-              {like ? <HeartFill className={`${setLike || highlight ? 'text-primary' : 'text-dark'}`} size={28} />
-                : <Heart className={`${highlight ? 'text-primary' : 'text-dark'}`} size={28} />
-              }
+              {like ? (
+                <HeartFill
+                  className={`${
+                    setLike || highlight ? "text-primary" : "text-dark"
+                  }`}
+                  size={28}
+                />
+              ) : (
+                <Heart
+                  className={`${highlight ? "text-primary" : "text-dark"}`}
+                  size={28}
+                />
+              )}
             </KeepBtn>
           </Card.Header>
-          <Card.Body className='px-4'>
-            <span className='text-info fw-bold' style={{ fontSize: "12px" }}>
+          <Card.Body className="px-4">
+            <span className="text-info fw-bold" style={{ fontSize: "12px" }}>
               {furigana}
             </span>
             <Card.Title>
-              <p className='pb-3 h1 fw-bold'>{name}</p>
+              <p className="pb-3 h1 fw-bold">{name}</p>
             </Card.Title>
-            <div className='d-flex justify-content-between'>
-              <div className='d-flex align-items-center'>
-                <PencilSquare
-                  size={21}
-                  className='text-dark me-2'
-                />
-                <p className='text-secondary fw-bold mb-0'>{maker}</p>
+            <div className="d-flex justify-content-between">
+              <div className="d-flex align-items-center">
+                <PencilSquare size={21} className="text-dark me-2" />
+                <p className="text-secondary fw-bold mb-0">{maker}</p>
               </div>
-              <div className='d-flex align-items-center'>
-                <GeoAlt
-                  size={21}
-                  className='text-dark me-2'
-                />
-                <p className='text-secondary fw-bold mb-0'>{area}</p>
+              <div className="d-flex align-items-center">
+                <GeoAlt size={21} className="text-dark me-2" />
+                <p className="text-secondary fw-bold mb-0">{area}</p>
               </div>
             </div>
           </Card.Body>
         </Card>
       </a>
     </>
+  );
+};
 
-  )
-}
-
-export default SakeCardA
+export default SakeCardA;

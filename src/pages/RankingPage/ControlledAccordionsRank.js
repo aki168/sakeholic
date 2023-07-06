@@ -1,8 +1,13 @@
-import { useState } from 'react';
-import numeral from 'numeral'
-import { Accordion, AccordionDetails, AccordionSummary, Rating } from '@mui/material';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import ItemCard from '@COM/ItemCard';
+import { useState } from "react";
+import numeral from "numeral";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Rating,
+} from "@mui/material";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ItemCard from "@COM/ItemCard";
 
 export default function ControlledAccordionsRank({ currentPost }) {
   const [expanded, setExpanded] = useState(false);
@@ -13,8 +18,8 @@ export default function ControlledAccordionsRank({ currentPost }) {
 
   return (
     <div>
-      {currentPost.map(item => {
-        const { id, name, score, rank } = item
+      {currentPost.map((item) => {
+        const { id, name, score, rank } = item;
         return (
           <Accordion
             key={id}
@@ -27,22 +32,45 @@ export default function ControlledAccordionsRank({ currentPost }) {
               aria-controls={`${id}bh-content`}
               id={`${id}bh-header`}
             >
-              <p style={{ width: '30%', flexShrink: 0, color: "text.secondary", textAlign: "center" }}>
+              <p
+                style={{
+                  width: "30%",
+                  flexShrink: 0,
+                  color: "text.secondary",
+                  textAlign: "center",
+                }}
+              >
                 {rank}
               </p>
-              <p style={{ width: '40%', color: 'darkred', textAlign: "center" }}>
+              <p
+                style={{ width: "40%", color: "darkred", textAlign: "center" }}
+              >
                 {name}
               </p>
-              <p style={{ width: '30%', color: 'text.secondary', textAlign: "center", fontSize: "14px" }}>
-                <Rating name="read-only" value={score} precision={0.5} size="small" readOnly />
-                <br />{numeral(score).format('0.00')} / 5 星
+              <p
+                style={{
+                  width: "30%",
+                  color: "text.secondary",
+                  textAlign: "center",
+                  fontSize: "14px",
+                }}
+              >
+                <Rating
+                  name="read-only"
+                  value={score}
+                  precision={0.5}
+                  size="small"
+                  readOnly
+                />
+                <br />
+                {numeral(score).format("0.00")} / 5 星
               </p>
             </AccordionSummary>
-            <AccordionDetails className='p-0'>
-              <ItemCard key={id} {...item} />
+            <AccordionDetails className="p-0">
+              {expanded === String(id) && <ItemCard key={id} {...item} />}
             </AccordionDetails>
           </Accordion>
-        )
+        );
       })}
     </div>
   );
