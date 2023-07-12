@@ -48,13 +48,7 @@ public
 
 src  
 │   
-├── components // UI元件  
-│     ├── ItemCard  // 單酒資訊 相關組件  
-│     ├── ControlledAccordions.js // 可控手風琴元件  
-│     ├── Footer.js  // 頁腳導覽列  
-│     ├── Loading.js // 載入狀態動畫  
-│     ├── MyNavbar.js // 上排導覽列  
-│     └── Title.js  // 標題樣式[左右兩款]  
+├── components // 各UI元件       
 │   
 ├── hooks // 客製化 Hooks  
 │     ├── useCheckMobileMode.js 確認用戶裝置(影片播放偵測用)  
@@ -70,7 +64,7 @@ src
 │     ├── RegisterPage // 註冊會員  
 │     ├── SearchPage // 關鍵字檢索  
 │     ├── UserPage // 會員專區  
-│     └── NotFoundPage.js // 404頁面  
+│     └── NotFoundPage // 404頁面  
 │ 
 /////  
 
