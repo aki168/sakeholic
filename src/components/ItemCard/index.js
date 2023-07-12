@@ -8,12 +8,10 @@ import {
   Heart,
   PencilSquare,
   GeoAlt,
-  Dice1,
 } from "react-bootstrap-icons";
 import ScrollableTabsButtonVisible from "./ScrollableTabsButtonVisible";
 import Chart from "./Charts";
 import Loading from "@COM/Loading";
-import classNames from "classnames";
 
 const KeepBtn = styled.button`
   position: absolute;
@@ -41,10 +39,10 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   useEffect(() => {
     const getTagsIndex = async () => {
       await axios
-        .get("https://json-server-vercel-sepia.vercel.app/tagsIndex")
+        .get("https://raw.githubusercontent.com/aki168/sakeData/main/flavor-tags.json")
         .then((result) => {
           if (result?.data) {
-            setTagsIndex(result.data);
+            setTagsIndex(result.data.tags);
           }
         })
         .catch((err) => {
