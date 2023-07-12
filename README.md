@@ -57,11 +57,8 @@ src
 ├── pages // 個別頁面  
 │     ├── About // 關於本站  
 │     ├── AreaSearchPage // 依地區搜尋酒品  
-│     ├── FindingPage // 探索酒品  
-│     ├── LoginPage // 會員登入  
 │     ├── Main // 首頁  
-│     ├── RankingPage // 酒品排名  
-│     ├── RegisterPage // 註冊會員  
+│     ├── RankingPage // 酒品排名   
 │     ├── SearchPage // 關鍵字檢索  
 │     ├── UserPage // 會員專區  
 │     └── NotFoundPage // 404頁面  

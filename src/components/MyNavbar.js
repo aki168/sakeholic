@@ -72,7 +72,7 @@ const MyNavbar = () => {
             <NavLink to={item.path}>{item.name}</NavLink>
           </Dropdown.Item>
         ))}
-        <Dropdown.Item as={'div'} eventKey="4" className="py-4" onClick={showMenu}>
+        {/* <Dropdown.Item as={'div'} eventKey="4" className="py-4" onClick={showMenu}>
           <NavLink to={token ? '/user' : '/login'}>
             <Button
               variant={token ? "outline-dark" : "outline-primary"}
@@ -81,7 +81,7 @@ const MyNavbar = () => {
               {token ? '會員中心' : '登入'}
             </Button>
           </NavLink>
-        </Dropdown.Item>
+        </Dropdown.Item> */}
       </Dropdown.Menu>
     </div>
   )
