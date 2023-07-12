@@ -3,12 +3,7 @@ import axios from "axios";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import {
-  HeartFill,
-  Heart,
-  PencilSquare,
-  GeoAlt,
-} from "react-bootstrap-icons";
+import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
 import ScrollableTabsButtonVisible from "./ScrollableTabsButtonVisible";
 import Chart from "./Charts";
 import Loading from "@COM/Loading";
@@ -29,6 +24,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   const [tagsIndex, setTagsIndex] = useState([]);
   const [mainPics, setMainPics] = useState(["", ""]);
   const [loading, setLoading] = useState(true);
+  const [recommndation, setRecommndation] = useState(null);
 
   let tagsToText = (numArr, refArr) => {
     if (numArr) {
@@ -39,7 +35,9 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   useEffect(() => {
     const getTagsIndex = async () => {
       await axios
-        .get("https://raw.githubusercontent.com/aki168/sakeData/main/flavor-tags.json")
+        .get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/flavor-tags.json"
+        )
         .then((result) => {
           if (result?.data) {
             setTagsIndex(result.data.tags);
@@ -78,6 +76,20 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
       setLoading(false);
     };
     getPic();
+  }, []);
+
+  useEffect(() => {
+    const getRecommndation = async () => {
+      await axios
+        .get("https://raw.githubusercontent.com/aki168/sakeholic-web-crawler/main/export_data/recommendations.json")
+        .then((result) => {
+          setRecommndation(result?.data[0][id] || null)
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
+    getRecommndation();
   }, []);
   return (
     <Card className="bg-light p-3" style={{ position: "relative" }}>
@@ -142,25 +154,40 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
               暫無資料...
             </div>
           )}
-          <p className="fw-bold">根據日本網友投稿數據分析呈現的風味表</p>
+          <p className="fw-bold text-secondary">根據日本網友數據分析呈現的風味表</p>
         </div>
-        <p className="fw-bold">你可能會喜歡...</p>
-        <a onClick={AHandler} href="!#" className="py-2 px-4 border rounded">
-          <span className="text-info fw-bold" style={{ fontSize: "12px" }}>
-            おいまつ
-          </span>
-          <p className="pb-3 fw-bold">老松</p>
-          <div className="d-flex justify-content-between">
-            <div className="d-flex align-items-center">
-              <PencilSquare size={21} className="text-dark me-2" />
-              <p className="text-secondary fw-bold mb-0">玉乃光酒造</p>
-            </div>
-            <div className="d-flex align-items-center">
-              <GeoAlt size={21} className="text-dark me-2" />
-              <p className="text-secondary fw-bold mb-0">兵庫</p>
-            </div>
-          </div>
-        </a>
+        {recommndation && (
+          <>
+            <p className="fw-bold">你可能會喜歡...</p>
+            <span className="text-info" style={{ fontSize: "12px" }}>
+              (演算法分析計算結果)
+            </span>
+            <a
+              onClick={AHandler}
+              href="!#"
+              className="py-2 px-4 border rounded"
+            >
+              <span className="text-info fw-bold" style={{ fontSize: "12px" }}>
+                No. {recommndation.id}
+              </span>
+              <p className="pb-3 fw-bold">{recommndation.name}</p>
+              <div className="d-flex justify-content-between">
+                <div className="d-flex align-items-center">
+                  <PencilSquare size={21} className="text-dark me-2" />
+                  <p className="text-secondary fw-bold mb-0">
+                    {recommndation.brewery_name}
+                  </p>
+                </div>
+                <div className="d-flex align-items-center">
+                  <GeoAlt size={21} className="text-dark me-2" />
+                  <p className="text-secondary fw-bold mb-0">
+                    {recommndation.area}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </>
+        )}
       </CardContent>
     </Card>
   );
