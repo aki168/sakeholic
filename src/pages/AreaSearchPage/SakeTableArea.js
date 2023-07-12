@@ -13,7 +13,7 @@ const SakeTableArea = ({ clickAreaId }) => {
       case 'SET_INDEX':
         return { ...state, areaIndex: action.data }
       case 'SET_CURRENT_PAGE':
-        return { ...state, currentPage: action.page }
+        return { ...state, currentpage: action.page }
       case 'CHANGE_AREA':
         return { ...state, areaId: action.areaId }
       case 'REMOVE_LOADING':
@@ -27,12 +27,12 @@ const SakeTableArea = ({ clickAreaId }) => {
     areaId: 'ALL',
     areaIndex: [],
     sakeList: [],
-    currentPage: 1,
+    currentpage: 1,
     perPage: 10,
   })
-  let { loading, areaId, areaIndex, sakeList, currentPage, perPage } = state
+  let { loading, areaId, areaIndex, sakeList, currentpage, perPage } = state
 
-  const sliceEnd = currentPage * perPage;
+  const sliceEnd = currentpage * perPage;
   const sliceStart = sliceEnd - perPage;
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;

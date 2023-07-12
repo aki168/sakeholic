@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
@@ -7,6 +8,7 @@ import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
 import ScrollableTabsButtonVisible from "./ScrollableTabsButtonVisible";
 import Chart from "./Charts";
 import Loading from "@COM/Loading";
+import { useSake } from "@/MyContext";
 
 const KeepBtn = styled.button`
   position: absolute;
@@ -17,14 +19,24 @@ const KeepBtn = styled.button`
 `;
 
 const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
-  const AHandler = (e) => {
-    e.preventDefault();
-  };
+  const sakeContext = useSake();
+  const navigate = useNavigate();
   const [like, setLike] = useState(isLike);
   const [tagsIndex, setTagsIndex] = useState([]);
   const [mainPics, setMainPics] = useState(["", ""]);
   const [loading, setLoading] = useState(true);
-  const [recommndation, setRecommndation] = useState(null);
+  const [recommendation, setRecommendation] = useState(null);
+
+  const toRecommendation = (e) => {
+    e.preventDefault();
+    if(window.location.hash.includes("/search") && sakeContext?.goToSearch){
+      sakeContext.goToSearch(recommendation.name)
+      window.scrollTo(0, 0);
+    }else{
+      navigate("/search", { state: { sakeName: recommendation.name } });
+      window.scrollTo(0, 0);
+    }
+  };
 
   let tagsToText = (numArr, refArr) => {
     if (numArr) {
@@ -79,17 +91,19 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
   }, []);
 
   useEffect(() => {
-    const getRecommndation = async () => {
+    const getRecommendation = async () => {
       await axios
-        .get("https://raw.githubusercontent.com/aki168/sakeholic-web-crawler/main/export_data/recommendations.json")
+        .get(
+          "https://raw.githubusercontent.com/aki168/sakeholic-web-crawler/main/export_data/recommendations.json"
+        )
         .then((result) => {
-          setRecommndation(result?.data[0][id] || null)
+          setRecommendation(result?.data[0][id] || null);
         })
         .catch((err) => {
           console.error(err);
         });
     };
-    getRecommndation();
+    getRecommendation();
   }, []);
   return (
     <Card className="bg-light p-3" style={{ position: "relative" }}>
@@ -154,34 +168,36 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
               暫無資料...
             </div>
           )}
-          <p className="fw-bold text-secondary">根據日本網友數據分析呈現的風味表</p>
+          <p className="fw-bold text-secondary">
+            根據日本網友數據分析呈現的風味表
+          </p>
         </div>
-        {recommndation && (
+        {recommendation && (
           <>
             <p className="fw-bold">你可能會喜歡...</p>
             <span className="text-info" style={{ fontSize: "12px" }}>
               (演算法分析計算結果)
             </span>
             <a
-              onClick={AHandler}
+              onClick={toRecommendation}
               href="!#"
               className="py-2 px-4 border rounded"
             >
               <span className="text-info fw-bold" style={{ fontSize: "12px" }}>
-                No. {recommndation.id}
+                No. {recommendation.id}
               </span>
-              <p className="pb-3 fw-bold">{recommndation.name}</p>
+              <p className="pb-3 fw-bold">{recommendation.name}</p>
               <div className="d-flex justify-content-between">
                 <div className="d-flex align-items-center">
                   <PencilSquare size={21} className="text-dark me-2" />
                   <p className="text-secondary fw-bold mb-0">
-                    {recommndation.brewery_name}
+                    {recommendation.brewery_name}
                   </p>
                 </div>
                 <div className="d-flex align-items-center">
                   <GeoAlt size={21} className="text-dark me-2" />
                   <p className="text-secondary fw-bold mb-0">
-                    {recommndation.area}
+                    {recommendation.area}
                   </p>
                 </div>
               </div>

@@ -28,7 +28,7 @@ const MyNavbar = () => {
       path: "/ranking"
     },
     {
-      name: "酒品總覽",
+      name: "搜尋酒品",
       path: "/search"
     },
   ]
@@ -50,13 +50,13 @@ const MyNavbar = () => {
                 </li>
               ))}
             </ul>
-            <NavLink to={token ? '/user' : '/login'}>
+            {/* <NavLink to={token ? '/user' : '/login'}>
               <Button
                 variant={token ? "outline-dark" : "outline-primary"}
                 className='fw-bold px-4 py-0'>
                 {token ? '會員中心' : '登入'}
               </Button>
-            </NavLink>
+            </NavLink> */}
           </div>
           <button onClick={showMenu} className='d-md-none border-0 bg-dark'>
             <List

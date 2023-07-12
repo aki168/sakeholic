@@ -1,7 +1,7 @@
 import { Pagination } from '@mui/material'
 import ControlledAccordions from '@COM/ControlledAccordions'
 
-const SakeTable = ({ currentPost, totalItems, perPage, pageHandler, currentPage }) => {
+const SakeTable = ({ currentPost, totalItems, perPage, pageHandler, currentpage }) => {
 
   return (
     <main className='mb-5'>
@@ -19,7 +19,7 @@ const SakeTable = ({ currentPost, totalItems, perPage, pageHandler, currentPage 
         count={Math.floor(totalItems / perPage) === 0 ? 1 : Math.floor(totalItems / perPage)}
         shape="rounded"
         onChange={pageHandler}
-        currentPage={currentPage}
+        currentpage={currentpage}
         showLastButton />
     </main>
   )

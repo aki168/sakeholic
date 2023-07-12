@@ -11,7 +11,7 @@ const RankingPage = () => {
       case 'INIT_DATA':
         return { ...state, sakeList: action.data, loading: false }
       case 'SET_CURRENT_PAGE':
-        return { ...state, currentPage: action.page }
+        return { ...state, currentpage: action.page }
       case 'SET_SEASON':
         return { ...state, season: action.value }
       case 'SET_BANNER':
@@ -27,14 +27,14 @@ const RankingPage = () => {
     season: [2023, '春季'],
     sakeList: [],
     loading: true,
-    currentPage: 1,
+    currentpage: 1,
     perPage: 10
   })
 
-  let { banner, season, sakeList, loading, currentPage, perPage } = state
+  let { banner, season, sakeList, loading, currentpage, perPage } = state
 
 
-  const sliceEnd = currentPage * perPage;
+  const sliceEnd = currentpage * perPage;
   const sliceStart = sliceEnd - perPage;
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;
