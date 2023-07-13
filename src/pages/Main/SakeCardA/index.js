@@ -1,37 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Modal, Card } from "react-bootstrap";
 import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
 import ItemCard from "@COM/ItemCard";
 import styled from "styled-components";
+import useCollectedSake from "@HOOK/useCollectSake";
 
-// const KeepBtn = styled.button`
-//   position: absolute;
-//   right: 0.8em;
-//   top: 1em;
-//   background: none;
-//   border: none;
-// `;
+const KeepBtn = styled.button`
+  position: absolute;
+  right: 0.8em;
+  top: 1em;
+  background: none;
+  border: none;
+`;
 
-const SakeCardA = ({
-  id,
-  img,
-  furigana,
-  name,
-  maker,
-  area,
-  // isLike,
-  tags,
-  chart,
-}) => {
+const SakeCardA = ({ id, img, furigana, name, maker, area, tags, chart }) => {
+  const { getSake } = useCollectedSake();
   const [show, setShow] = useState(false);
-
-  // const [like, setLike] = useState(false);
-  const [highlight, setHighlight] = useState(false);
+  const [like, setLike] = useState(false);
   const AHandler = (e) => {
     e.preventDefault();
     setShow((prev) => !prev);
   };
 
+  let list = getSake();
+  useEffect(() => {
+    if (list.includes(id)) {
+      setLike(true);
+    }
+  }, [list]);
   return (
     <>
       <Modal
@@ -54,7 +50,6 @@ const SakeCardA = ({
             maker={maker}
             name={name}
             tags={tags}
-            // isLike={isLike}
           />
         </Modal.Body>
       </Modal>
@@ -71,24 +66,13 @@ const SakeCardA = ({
               position: "relative",
             }}
           >
-            {/* <KeepBtn
-              onMouseOver={() => setHighlight((prev) => !prev)}
-              onClick={() => setLike((prev) => !prev)}
-            >
+            <KeepBtn>
               {like ? (
-                <HeartFill
-                  className={`${
-                    setLike || highlight ? "text-primary" : "text-dark"
-                  }`}
-                  size={28}
-                />
+                <HeartFill className={"text-primary"} size={28} />
               ) : (
-                <Heart
-                  className={`${highlight ? "text-primary" : "text-dark"}`}
-                  size={28}
-                />
+                <Heart className={"text-dark"} size={28} />
               )}
-            </KeepBtn> */}
+            </KeepBtn>
           </Card.Header>
           <Card.Body className="px-4">
             <span className="text-info fw-bold" style={{ fontSize: "12px" }}>

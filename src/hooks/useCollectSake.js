@@ -4,19 +4,19 @@ const useCollectedSake = () => {
   const [collectedSake, setCollectedSake] = useState(new Set());
 
   const addSake = (sid) => {
-    let list = collectedSake.add(sid)
+    collectedSake.add(sid)
     window.localStorage.setItem(
       "collected_sake",
-      JSON.stringify(Array.from(list))
+      JSON.stringify(Array.from(collectedSake))
     );
     console.log("ADD", sid)
   };
 
   const removeSake = (sid) => {
-    let list = collectedSake.delete(sid)
+    collectedSake.delete(sid)
     window.localStorage.setItem(
       "collected_sake",
-      JSON.stringify(Array.from(list))
+      JSON.stringify(Array.from(collectedSake))
     );
     console.log("REV", sid)
   };
