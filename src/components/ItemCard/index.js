@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSake } from "@/MyContext";
+import useCollectedSake from "@HOOK/useCollectSake";
 import axios from "axios";
 import styled from "styled-components";
 import Card from "@mui/material/Card";
@@ -18,10 +19,12 @@ const KeepBtn = styled.button`
   border: none;
 `;
 
-const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
+const ItemCard = ({ area, chart, id, maker, name, tags }) => {
+  const { getSake, addSake, removeSake } = useCollectedSake();
   const sakeContext = useSake();
   const navigate = useNavigate();
-  const [like, setLike] = useState(isLike);
+  const [like, setLike] = useState(false);
+  const [toggleLike, setToggleLike] = useState(null);
   const [tagsIndex, setTagsIndex] = useState([]);
   const [mainPics, setMainPics] = useState(["", ""]);
   const [loading, setLoading] = useState(true);
@@ -29,10 +32,10 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
 
   const toRecommendation = (e) => {
     e.preventDefault();
-    if(window.location.hash.includes("/search") && sakeContext?.goToSearch){
-      sakeContext.goToSearch(recommendation.name)
+    if (window.location.hash.includes("/search") && sakeContext?.goToSearch) {
+      sakeContext.goToSearch(recommendation.name);
       window.scrollTo(0, 0);
-    }else{
+    } else {
       navigate("/search", { state: { sakeName: recommendation.name } });
       window.scrollTo(0, 0);
     }
@@ -105,13 +108,43 @@ const ItemCard = ({ area, chart, id, maker, name, tags, isLike }) => {
     };
     getRecommendation();
   }, []);
+
+  useEffect(() => {
+    let list = getSake();
+    if (list.includes(id)) {
+      setLike(true);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (toggleLike === null) return;
+    if (toggleLike) {
+      addSake(id);
+      setLike(true);
+    } else {
+      removeSake(id);
+      setLike(false);
+    }
+  }, [toggleLike]);
   return (
     <Card className="bg-light p-3" style={{ position: "relative" }}>
-      <KeepBtn onClick={() => setLike((prev) => !prev)}>
+      <KeepBtn>
         {like ? (
-          <HeartFill className={"text-primary"} size={28} />
+          <HeartFill
+            className={"text-primary"}
+            size={28}
+            onClick={() => {
+              setToggleLike(false);
+            }}
+          />
         ) : (
-          <Heart className={"text-dark"} size={28} />
+          <Heart
+            className={"text-dark"}
+            size={28}
+            onClick={() => {
+              setToggleLike(true);
+            }}
+          />
         )}
       </KeepBtn>
       <CardContent className="row gx-3 p-0 py-2 p-md-4">

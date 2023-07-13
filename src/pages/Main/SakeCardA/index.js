@@ -4,13 +4,13 @@ import { HeartFill, Heart, PencilSquare, GeoAlt } from "react-bootstrap-icons";
 import ItemCard from "@COM/ItemCard";
 import styled from "styled-components";
 
-const KeepBtn = styled.button`
-  position: absolute;
-  right: 0.8em;
-  top: 1em;
-  background: none;
-  border: none;
-`;
+// const KeepBtn = styled.button`
+//   position: absolute;
+//   right: 0.8em;
+//   top: 1em;
+//   background: none;
+//   border: none;
+// `;
 
 const SakeCardA = ({
   id,
@@ -19,13 +19,13 @@ const SakeCardA = ({
   name,
   maker,
   area,
-  isLike,
+  // isLike,
   tags,
   chart,
 }) => {
   const [show, setShow] = useState(false);
 
-  const [like, setLike] = useState(isLike);
+  // const [like, setLike] = useState(false);
   const [highlight, setHighlight] = useState(false);
   const AHandler = (e) => {
     e.preventDefault();
@@ -54,7 +54,7 @@ const SakeCardA = ({
             maker={maker}
             name={name}
             tags={tags}
-            isLike={isLike}
+            // isLike={isLike}
           />
         </Modal.Body>
       </Modal>
@@ -71,7 +71,7 @@ const SakeCardA = ({
               position: "relative",
             }}
           >
-            <KeepBtn
+            {/* <KeepBtn
               onMouseOver={() => setHighlight((prev) => !prev)}
               onClick={() => setLike((prev) => !prev)}
             >
@@ -88,7 +88,7 @@ const SakeCardA = ({
                   size={28}
                 />
               )}
-            </KeepBtn>
+            </KeepBtn> */}
           </Card.Header>
           <Card.Body className="px-4">
             <span className="text-info fw-bold" style={{ fontSize: "12px" }}>
