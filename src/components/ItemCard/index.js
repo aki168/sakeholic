@@ -110,7 +110,7 @@ const ItemCard = ({ area, chart, id, maker, name, tags }) => {
   }, []);
 
   useEffect(() => {
-    let list = getSake();
+    let list = getSake() || [];
     if (list.includes(id)) {
       setLike(true);
     }

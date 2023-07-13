@@ -22,7 +22,7 @@ const SakeCardA = ({ id, img, furigana, name, maker, area, tags, chart }) => {
     setShow((prev) => !prev);
   };
 
-  let list = getSake();
+  let list = getSake() || [];
   useEffect(() => {
     if (list.includes(id)) {
       setLike(true);
