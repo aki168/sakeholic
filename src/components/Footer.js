@@ -16,7 +16,7 @@ const Footer = () => {
       path: "/ranking"
     },
     {
-      name: "酒品總覽",
+      name: "搜尋酒品",
       path: "/search"
     },
   ]
