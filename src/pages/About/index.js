@@ -178,10 +178,6 @@ const About = () => {
                 </li>
                 <li>
                   <BrightnessLowFill size={20} className="me-2" />
-                  22夏切版直播班 第17小組
-                </li>
-                <li>
-                  <BrightnessLowFill size={20} className="me-2" />
                   hex school 洧杰校長
                 </li>
               </ul>
