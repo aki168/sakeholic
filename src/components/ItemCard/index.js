@@ -19,7 +19,7 @@ const KeepBtn = styled.button`
   border: none;
 `;
 
-const ItemCard = ({ area, chart, id, maker, name, tags }) => {
+const ItemCard = ({ area, chart, id, brewery_name: maker, name, tags }) => {
   const { getSake, addSake, removeSake } = useCollectedSake();
   const sakeContext = useSake();
   const navigate = useNavigate();

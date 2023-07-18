@@ -15,7 +15,8 @@ export default function ControlledAccordions({ currentPost }) {
   return (
     <div>
       {currentPost.map((item) => {
-        const { id, maker, name, area } = item;
+        const { id, brewery_name: maker, name, area, f1, f2, f3, f4, f5, f6 } = item;
+        const chart = [f1, f2, f3, f4, f5, f6];
         return (
           <Accordion
             key={item.id}
@@ -59,9 +60,9 @@ export default function ControlledAccordions({ currentPost }) {
               </p>
             </AccordionSummary>
             <AccordionDetails className="p-0">
-              { expanded === String(id) &&
-                <ItemCard key={id} {...item} />
-              }
+              {expanded === String(id) && (
+                <ItemCard key={id} chart={chart} {...item} />
+              )}
             </AccordionDetails>
           </Accordion>
         );
