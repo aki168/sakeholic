@@ -15,7 +15,7 @@ export default function ControlledAccordions({ currentPost }) {
   return (
     <div>
       {currentPost.map((item) => {
-        const { id, brewery_name: maker, name, area, f1, f2, f3, f4, f5, f6 } = item;
+        const { id, maker, name, area, f1, f2, f3, f4, f5, f6 } = item;
         const chart = [f1, f2, f3, f4, f5, f6];
         return (
           <Accordion

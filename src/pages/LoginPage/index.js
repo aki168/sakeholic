@@ -22,7 +22,7 @@ const LoginPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({
     defaultValue: {}
   });
-  const onError = (errors, e) => console.log(errors, e);
+  const onError = (errors, e) => console.error(errors, e);
 
 
   const Toast = Swal.mixin({

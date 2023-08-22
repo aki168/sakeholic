@@ -9,7 +9,6 @@ const useCollectedSake = () => {
       "collected_sake",
       JSON.stringify(Array.from(collectedSake))
     );
-    console.log("ADD", sid);
   };
 
   const removeSake = (sid) => {
@@ -18,7 +17,6 @@ const useCollectedSake = () => {
       "collected_sake",
       JSON.stringify(Array.from(collectedSake))
     );
-    console.log("REV", sid);
   };
 
   const getSake = () => {

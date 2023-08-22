@@ -48,95 +48,74 @@ const SearchPage = () => {
   const currentPost = sakeList.slice(sliceStart, sliceEnd);
   const totalItems = sakeList.length;
 
-  const init = async () => {
-    await axios
-      .get(
-        "https://raw.githubusercontent.com/aki168/sakeholic-web-crawler/main/export_data/records.json"
-      )
-      .then((res) => {
-        let allData = res.data || [];
-        dispatch({ type: "INIT_DATA", data: submitValue? getList(submitValue, allData) : allData });
-      })
-      .catch((err) => {
-        dispatch({ type: "INIT_DATA", data: [] });
-        console.error(err);
+  const init = () => {
+    axios
+      .all([
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/brands.json"
+        ),
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/breweries.json"
+        ),
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/brand-flavor-tags.json"
+        ),
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/flavor-charts.json"
+        ),
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/areas.json"
+        ),
+        axios.get(
+          "https://raw.githubusercontent.com/aki168/sakeData/main/rankings.json"
+        ),
+      ])
+      .then(async (responseArr) => {
+        const itemsData = await responseArr[0].data.brands;
+        const breweriesData = await responseArr[1].data.breweries;
+        const AreasData = await responseArr[4].data.areas;
+        const tagsData = await responseArr[2].data.flavorTags;
+        const chartData = await responseArr[3].data.flavorCharts;
+
+        let allData = [];
+        itemsData.forEach((element) => {
+          let oneBrewery = breweriesData.filter(
+            (item) => item.id === element.breweryId
+          )[0];
+          let oneArea = AreasData.filter(
+            (item) => item.id === oneBrewery.areaId
+          )[0];
+          let oneTags = tagsData.filter(
+            (item) => item.brandId === element.id
+          )[0];
+          let oneChart = chartData.filter(
+            (item) => item.brandId === element.id
+          )[0];
+          const myItem = {
+            id: element.id,
+            name: element.name,
+            maker: oneBrewery.name,
+            area: oneArea.name,
+            tags: oneTags?.tagIds,
+            chart: [
+              oneChart?.f1,
+              oneChart?.f2,
+              oneChart?.f3,
+              oneChart?.f4,
+              oneChart?.f5,
+              oneChart?.f6,
+            ],
+          };
+          allData.push(myItem);
+        });
+        if (submitValue) {
+          let filteredData = getList(submitValue, allData);
+          dispatch({ type: "INIT_DATA", data: filteredData });
+        } else {
+          dispatch({ type: "INIT_DATA", data: allData });
+        }
       });
   };
-  // const init = () => {
-  //   axios
-  //     .all([
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/brands.json"
-  //       ),
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/breweries.json"
-  //       ),
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/brand-flavor-tags.json"
-  //       ),
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/flavor-charts.json"
-  //       ),
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/areas.json"
-  //       ),
-  //       axios.get(
-  //         "https://raw.githubusercontent.com/aki168/sakeData/main/rankings.json"
-  //       ),
-  //     ])
-  //     .then(async (responseArr) => {
-  //       const itemsData = await responseArr[0].data.brands;
-  //       const breweriesData = await responseArr[1].data.breweries;
-  //       const AreasData = await responseArr[4].data.areas;
-  //       const tagsData = await responseArr[2].data.flavorTags;
-  //       const chartData = await responseArr[3].data.flavorCharts;
-
-  //       let allData = [];
-  //       itemsData.forEach((element) => {
-  //         let oneBrewery = breweriesData.filter(
-  //           (item) => item.id === element.breweryId
-  //         )[0];
-  //         let oneArea = AreasData.filter(
-  //           (item) => item.id === oneBrewery.areaId
-  //         )[0];
-  //         let oneTags = tagsData.filter(
-  //           (item) => item.brandId === element.id
-  //         )[0];
-  //         let oneChart = chartData.filter(
-  //           (item) => item.brandId === element.id
-  //         )[0];
-  //         const myItem = {
-  //           id: element.id,
-  //           name: element.name,
-  //           maker: oneBrewery.name,
-  //           area: oneArea.name,
-  //           tags: oneTags?.tagIds,
-  //           chart: [
-  //             oneChart?.f1,
-  //             oneChart?.f2,
-  //             oneChart?.f3,
-  //             oneChart?.f4,
-  //             oneChart?.f5,
-  //             oneChart?.f6,
-  //           ],
-  //         };
-  //         if (submitValue) {
-  //           let isMatch =
-  //             myItem.name.search(submitValue) !== -1 ||
-  //             myItem.maker.search(submitValue) !== -1 ||
-  //             myItem.area.search(submitValue) !== -1;
-  //           if (isMatch) {
-  //             allData.push(myItem);
-  //           }
-  //         } else {
-  //           allData.push(myItem);
-  //         }
-  //       });
-  //       if (allData) {
-  //         dispatch({ type: "INIT_DATA", data: allData });
-  //       }
-  //     });
-  // };
 
   const pageHandler = (event, page) => {
     dispatch({ type: "SET_CURRENT_PAGE", page });
