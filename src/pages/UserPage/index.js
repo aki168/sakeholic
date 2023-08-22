@@ -41,7 +41,6 @@ const UserPage = () => {
 
     let url = 'https://todoo.5xcamp.us/users/sign_out'
     axios.delete(url, config).then(res => {
-      console.log(res)
 
       if (res.data.message === '已登出') {
         setToken(null)
@@ -65,7 +64,6 @@ const UserPage = () => {
     await axios.get('https://json-server-vercel-sepia.vercel.app/sakeCardDefault')
     .then(result => {
       if(result?.data){
-        console.log(result.data)
         setData(result.data)
       }
     }).catch(err => {

@@ -2,6 +2,7 @@ import { useReducer, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import numeral from "numeral";
+import useSearch from "@HOOK/useSearch";
 import { sakeContext } from "@/MyContext";
 import { InputGroup, Form, Button, Badge, Card } from "react-bootstrap";
 import { ArrowRightShort } from "react-bootstrap-icons";
@@ -10,6 +11,7 @@ import SakeTable from "./SakeTable";
 import Loading from "@COM/Loading";
 
 const SearchPage = () => {
+  const getList = useSearch();
   const location = useLocation();
   const goToSearch = (name) => {
     dispatch({ type: "SET_INPUT_VAL", value: name });
@@ -104,19 +106,12 @@ const SearchPage = () => {
               oneChart?.f6,
             ],
           };
-          if (submitValue) {
-            let isMatch =
-              myItem.name.search(submitValue) !== -1 ||
-              myItem.maker.search(submitValue) !== -1 ||
-              myItem.area.search(submitValue) !== -1;
-            if (isMatch) {
-              allData.push(myItem);
-            }
-          } else {
-            allData.push(myItem);
-          }
+          allData.push(myItem);
         });
-        if (allData) {
+        if (submitValue) {
+          let filteredData = getList(submitValue, allData);
+          dispatch({ type: "INIT_DATA", data: filteredData });
+        } else {
           dispatch({ type: "INIT_DATA", data: allData });
         }
       });
