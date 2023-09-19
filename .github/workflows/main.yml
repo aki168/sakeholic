@@ -9,9 +9,9 @@ jobs:
     env:
       GITHUB_REPOSITORY : aki168/sakeholic
       MY_SECRET   : ${{secrets.commit_secret}}
-      USER_NAME   : githubaction
+      USER_NAME   : aki168
       USER_EMAIL  : ahsi.aki@gmail.com
-      PUBLISH_DIR : ./dist
+      PUBLISH_DIR : ./build
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -27,7 +27,6 @@ jobs:
         npm install
     - name: npm run build
       run: |
-        npm run gulp m
         npm run build
     - name: Commit files
       run: |
