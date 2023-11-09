@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/sakeholic/static/js/main.3e396aee.js",
+    "main.js": "/sakeholic/static/js/main.a1c3991c.js",
     "index.html": "/sakeholic/index.html",
-    "main.3e396aee.js.map": "/sakeholic/static/js/main.3e396aee.js.map"
+    "main.a1c3991c.js.map": "/sakeholic/static/js/main.a1c3991c.js.map"
   },
   "entrypoints": [
-    "static/js/main.3e396aee.js"
+    "static/js/main.a1c3991c.js"
   ]
 }
