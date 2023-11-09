@@ -23,8 +23,8 @@ const RankingPage = () => {
       default: return state
     }
   }, {
-    banner: 'w001',
-    season: [2023, '春季'],
+    banner: 'w003',
+    season: [2023, '冬季'],
     sakeList: [],
     loading: true,
     currentpage: 1,
